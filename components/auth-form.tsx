@@ -62,7 +62,7 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
         }
 
         onLoginSuccess({ email: data.user?.email || email })
-        router.push("/dashboard")
+        router.push("/")
       }
     } catch (err) {
       setError("An error occurred. Please try again.")
