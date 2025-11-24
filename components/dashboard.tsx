@@ -27,10 +27,8 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
   const fetchGames = async () => {
     try {
-      console.log("[v0] Fetching games...")
       const response = await fetch("/api/games")
       const data = await response.json()
-      console.log("[v0] Games response:", data)
       const formattedGames = (data.games || []).map((game: any) => ({
         gameID: game.gameid,
         title: game.title,
@@ -40,10 +38,9 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
         gameLogoURL: game.gamelogourl,
         multiplayerSupport: game.multiplayersupport,
       }))
-      console.log("[v0] Formatted games:", formattedGames)
       setGames(formattedGames)
     } catch (err) {
-      console.error("[v0] Failed to fetch games:", err)
+      console.error("Failed to fetch games:", err)
     } finally {
       setLoading(false)
     }

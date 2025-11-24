@@ -5,25 +5,14 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    // Server-side queries use service role key which has full permissions
-    console.log("[v0] About to fetch games from database")
     const { data: games, error } = await supabase.from("games").select("*").order("releasedate", { ascending: false })
 
-    console.log("[v0] Supabase response - Data:", games)
-    console.log("[v0] Supabase response - Error:", error)
-
     if (error) {
-      console.error("[v0] Database error details:", {
-        message: error.message,
-        code: error.code,
-        details: error.details,
-      })
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
     return NextResponse.json({ games }, { status: 200 })
   } catch (error) {
-    console.error("[v0] API error:", error)
     return NextResponse.json({ error: "Failed to fetch games" }, { status: 500 })
   }
 }
