@@ -14,15 +14,9 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    console.log("[v0] Fetching games from crimson schema...")
-    const { data: games, error } = await supabase
-      .schema("crimson")
-      .from("games")
-      .select("*")
-      .order("releasedate", { ascending: false })
+    const { data: games, error } = await supabase.from("games").select("*").order("releasedate", { ascending: false })
 
-    console.log("[v0] Games query error:", error)
-    console.log("[v0] Games data:", games)
+    console.log("[v0] Games response:", games)
 
     if (error) {
       console.error("[v0] Database error:", error)
@@ -55,7 +49,6 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await supabase
-      .schema("crimson")
       .from("games")
       .insert([
         {

@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { data: mobs, error } = await supabase.schema("crimson").from("mobs").select("*")
+    const { data: mobs, error } = await supabase.from("mobs").select("*")
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })
@@ -44,7 +44,6 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await supabase
-      .schema("crimson")
       .from("mobs")
       .insert([
         {

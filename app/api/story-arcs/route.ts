@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await supabase
-      .schema("crimson")
       .from("storyarcs")
       .insert([
         {
@@ -57,7 +56,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { data: arcs, error } = await supabase.schema("crimson").from("storyarcs").select("*")
+    const { data: arcs, error } = await supabase.from("storyarcs").select("*")
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })
