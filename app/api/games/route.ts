@@ -13,7 +13,11 @@ export async function GET(request: NextRequest) {
     console.log("[v0] Supabase response - Error:", error)
 
     if (error) {
-      console.error("[v0] Database error:", error)
+      console.error("[v0] Database error details:", {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+      })
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
