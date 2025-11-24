@@ -14,9 +14,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    console.log("[v0] About to fetch games from database")
     const { data: games, error } = await supabase.from("games").select("*").order("releasedate", { ascending: false })
 
-    console.log("[v0] Games response:", games)
+    console.log("[v0] Supabase response - Data:", games)
+    console.log("[v0] Supabase response - Error:", error)
 
     if (error) {
       console.error("[v0] Database error:", error)
