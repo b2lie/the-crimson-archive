@@ -5,15 +5,7 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      console.log("[v0] Auth error:", userError)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
+    // Server-side queries use service role key which has full permissions
     console.log("[v0] About to fetch games from database")
     const { data: games, error } = await supabase.from("games").select("*").order("releasedate", { ascending: false })
 
@@ -35,14 +27,6 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
-
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
 
     const gameData = await request.json()
 
