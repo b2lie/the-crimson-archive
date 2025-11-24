@@ -1,22 +1,36 @@
+import { createClient } from "@/lib/supabase/server"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, email, password, displayName, isDev } = await request.json()
+    const { email, password, displayName } = await request.json()
 
-    // TODO: Integrate with Flask backend or Supabase auth
-    // This is a placeholder - replace with actual auth logic
-    if (!username || !email || !password) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    const supabase = await createClient()
+
+    if (!email || !password) {
+      return NextResponse.json({ error: "Email and password required" }, { status: 400 })
     }
 
-    // Placeholder response
+    // Sign up user with Supabase Auth
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/dashboard`,
+        data: {
+          display_name: displayName || email.split("@")[0],
+        },
+      },
+    })
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 })
+    }
+
     return NextResponse.json(
       {
-        username,
-        email,
-        displayName: displayName || username,
-        isDev,
+        message: "Check your email for verification link",
+        user: data.user,
       },
       { status: 201 },
     )

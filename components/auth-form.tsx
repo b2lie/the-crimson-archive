@@ -1,25 +1,25 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface AuthFormProps {
-  onLoginSuccess: (userData: { username: string; email: string }) => void
+  onLoginSuccess: (userData: { email: string }) => void
 }
 
 export function AuthForm({ onLoginSuccess }: AuthFormProps) {
   const [isSignup, setIsSignup] = useState(false)
-  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [displayName, setDisplayName] = useState("")
-  const [isDev, setIsDev] = useState(false)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,23 +27,43 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
     setLoading(true)
 
     try {
-      const endpoint = isSignup ? "/api/auth/signup" : "/api/auth/login"
-      const payload = isSignup ? { username, email, password, displayName, isDev } : { email, password }
+      const supabase = createClient()
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      })
+      if (isSignup) {
+        const { error: signupError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/dashboard`,
+            data: {
+              display_name: displayName,
+            },
+          },
+        })
 
-      const data = await response.json()
+        if (signupError) {
+          setError(signupError.message)
+          return
+        }
 
-      if (!response.ok) {
-        setError(data.error || "Authentication failed")
-        return
+        setError("Check your email to confirm your account")
+        setEmail("")
+        setPassword("")
+        setDisplayName("")
+      } else {
+        const { data, error: loginError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
+
+        if (loginError) {
+          setError(loginError.message)
+          return
+        }
+
+        onLoginSuccess({ email: data.user?.email || email })
+        router.push("/dashboard")
       }
-
-      onLoginSuccess({ username: data.username || email, email: data.email })
     } catch (err) {
       setError("An error occurred. Please try again.")
     } finally {
@@ -64,17 +84,6 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignup && (
               <>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-foreground">Username</label>
-                  <Input
-                    type="text"
-                    placeholder="Enter username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required={isSignup}
-                    className="border-primary bg-background"
-                  />
-                </div>
                 <div>
                   <label className="block text-sm font-medium mb-2 text-foreground">Display Name</label>
                   <Input
@@ -111,21 +120,6 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
                 className="border-primary bg-background"
               />
             </div>
-
-            {isSignup && (
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="isDev"
-                  checked={isDev}
-                  onChange={(e) => setIsDev(e.target.checked)}
-                  className="rounded border-primary"
-                />
-                <label htmlFor="isDev" className="text-sm text-foreground">
-                  I'm a developer/contributor
-                </label>
-              </div>
-            )}
 
             {error && <div className="p-3 bg-accent/10 border border-accent text-accent rounded">{error}</div>}
 

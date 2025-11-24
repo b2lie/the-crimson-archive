@@ -1,9 +1,24 @@
+import { createClient } from "@/lib/supabase/server"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Connect to Flask backend to fetch characters
-    const characters = []
+    const supabase = await createClient()
+
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser()
+    if (userError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const { data: characters, error } = await supabase.schema("crimson").from("ingamecharacters").select("*")
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
     return NextResponse.json({ characters }, { status: 200 })
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch characters" }, { status: 500 })
@@ -12,14 +27,43 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const characterData = await request.json()
+    const supabase = await createClient()
 
-    // TODO: Connect to Flask backend to save character
-    if (!characterData.characterName) {
-      return NextResponse.json({ error: "Missing character name" }, { status: 400 })
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser()
+    if (userError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    return NextResponse.json({ characterID: Date.now(), ...characterData }, { status: 201 })
+    const characterData = await request.json()
+
+    if (!characterData.characterName) {
+      return NextResponse.json({ error: "Character name required" }, { status: 400 })
+    }
+
+    const { data, error } = await supabase
+      .schema("crimson")
+      .from("ingamecharacters")
+      .insert([
+        {
+          charactername: characterData.characterName,
+          backstory: characterData.backstory,
+          description: characterData.description,
+          englishva: characterData.englishVA,
+          japaneseva: characterData.japaneseVA,
+          motioncapture: characterData.motionCapture,
+          spriteurl: characterData.spriteURL,
+        },
+      ])
+      .select()
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json(data[0], { status: 201 })
   } catch (error) {
     return NextResponse.json({ error: "Failed to add character" }, { status: 500 })
   }

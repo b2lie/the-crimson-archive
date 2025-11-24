@@ -1,20 +1,27 @@
+import { createClient } from "@/lib/supabase/server"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Integrate with Flask backend to fetch games from PostgreSQL
-    // Placeholder data
-    const games = [
-      {
-        gameID: 1,
-        title: "Example Game",
-        plotSummary: "A thrilling adventure awaits",
-        releaseDate: "2024-01-01",
-        gameCoverURL: "/game-cover.jpg",
-        gameLogoURL: "",
-        multiplayerSupport: true,
-      },
-    ]
+    const supabase = await createClient()
+
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser()
+    if (userError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const { data: games, error } = await supabase
+      .schema("crimson")
+      .from("games")
+      .select("*")
+      .order("releasedate", { ascending: false })
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
 
     return NextResponse.json({ games }, { status: 200 })
   } catch (error) {
@@ -24,21 +31,42 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const gameData = await request.json()
+    const supabase = await createClient()
 
-    // TODO: Integrate with Flask backend to save game to PostgreSQL
-    if (!gameData.title || !gameData.releaseDate) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser()
+    if (userError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    // Placeholder response
-    return NextResponse.json(
-      {
-        gameID: Date.now(),
-        ...gameData,
-      },
-      { status: 201 },
-    )
+    const gameData = await request.json()
+
+    if (!gameData.title || !gameData.releaseDate) {
+      return NextResponse.json({ error: "Title and release date required" }, { status: 400 })
+    }
+
+    const { data, error } = await supabase
+      .schema("crimson")
+      .from("games")
+      .insert([
+        {
+          title: gameData.title,
+          releasedate: gameData.releaseDate,
+          plotsummary: gameData.plotSummary,
+          gamecoverurl: gameData.gameCoverURL,
+          gamelogourl: gameData.gameLogoURL,
+          multiplayersupport: gameData.multiplayerSupport || false,
+        },
+      ])
+      .select()
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json(data[0], { status: 201 })
   } catch (error) {
     return NextResponse.json({ error: "Failed to add game" }, { status: 500 })
   }
