@@ -7,11 +7,29 @@ import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2, Plus } from "lucide-react"
 import { CharacterEditModal } from "./character-edit-modal"
 
-export function CharacterBrowser() {
-  const [characters, setCharacters] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+interface Character {
+  characterid: number
+  charactername: string
+  englishva?: string
+  japaneseva?: string
+  motioncapture?: string
+  backstory?: string
+  description?: string
+  spriteurl?: string
+}
+
+interface CharacterBrowserProps {
+  characters: Character[]
+  loading: boolean
+  onRefresh: () => Promise<void>
+  onCharacterAdded: () => void
+}
+
+export function CharacterBrowser({ characters: initialCharacters, loading: initialLoading, onRefresh, onCharacterAdded }: CharacterBrowserProps) {
+  const [characters, setCharacters] = useState<Character[]>(initialCharacters || [])
+  const [loading, setLoading] = useState(initialLoading)
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCharacter, setSelectedCharacter] = useState<any | null>(null)
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
 
   useEffect(() => {
@@ -35,12 +53,9 @@ export function CharacterBrowser() {
     if (!confirm("Are you sure you want to delete this character?")) return
 
     try {
-      const response = await fetch(`/api/characters/${characterID}`, {
-        method: "DELETE",
-      })
-
+      const response = await fetch(`/api/characters/${characterID}`, { method: "DELETE" })
       if (response.ok) {
-        setCharacters(characters.filter((c) => c.characterID !== characterID))
+        setCharacters(characters.filter((c) => c.characterid !== characterID))
       }
     } catch (err) {
       console.error("Failed to delete character:", err)
@@ -48,7 +63,7 @@ export function CharacterBrowser() {
   }
 
   const filteredCharacters = characters.filter(c =>
-    (c.characterName || "").toLowerCase().includes(searchTerm.toLowerCase())
+    (c.charactername || "").toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   if (loading) {
@@ -61,35 +76,35 @@ export function CharacterBrowser() {
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex justify-between items-center gap-4">
         <h1 className="text-3xl font-bold text-primary">Characters</h1>
         <div className="flex gap-2">
           <Button onClick={fetchCharacters} className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <RefreshCw size={20} className="mr-2" />
-            Refresh
+            <RefreshCw size={20} className="mr-2" /> Refresh
           </Button>
           <Button
             onClick={() => setShowAddForm(!showAddForm)}
             className="bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-primary"
           >
-            <Plus size={20} className="mr-2" />
-            Add Character
+            <Plus size={20} className="mr-2" /> Add Character
           </Button>
         </div>
       </div>
 
+      {/* Add Form Placeholder */}
       {showAddForm && (
         <Card className="border-2 border-accent bg-card">
           <CardHeader>
             <CardTitle className="text-accent">Add New Character</CardTitle>
           </CardHeader>
           <CardContent>
-            {/* Embedded form from character-form.tsx */}
             <div className="text-muted-foreground">Use the Add Game form to add characters</div>
           </CardContent>
         </Card>
       )}
 
+      {/* Search */}
       <div className="flex gap-2 mb-4">
         <Input
           type="text"
@@ -100,6 +115,7 @@ export function CharacterBrowser() {
         />
       </div>
 
+      {/* Character Grid */}
       {filteredCharacters.length === 0 ? (
         <Card className="border-2 border-primary bg-card">
           <CardContent className="pt-6 text-center">
@@ -112,24 +128,29 @@ export function CharacterBrowser() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredCharacters.map((character) => (
             <Card
-              key={character.characterID}
+              key={character.characterid}
               className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
               onClick={() => setSelectedCharacter(character)}
             >
-              {character.spriteURL && (
+              {character.spriteurl && (
                 <div className="w-full h-48 bg-muted overflow-hidden rounded-t">
                   <img
-                    src={character.spriteURL || "/placeholder.svg"}
-                    alt={character.characterName}
+                    src={character.spriteurl || "/placeholder.svg"}
+                    alt={character.charactername}
                     className="w-full h-full object-cover"
                   />
                 </div>
               )}
               <CardHeader>
-                <CardTitle className="text-primary">{character.characterName}</CardTitle>
-                {(character.englishVA || character.japaneseVA) && (
+                <CardTitle className="text-primary">{character.charactername}</CardTitle>
+                {(character.englishva || character.japaneseva) && (
                   <CardDescription className="text-muted-foreground">
-                    VA: {character.englishVA || character.japaneseVA}
+                    VA: {character.englishva || character.japaneseva}
+                  </CardDescription>
+                )}
+                {(character.motioncapture) && (
+                  <CardDescription className="text-muted-foreground">
+                    Motion Capture Actor: {character.motioncapture}
                   </CardDescription>
                 )}
               </CardHeader>
@@ -144,19 +165,17 @@ export function CharacterBrowser() {
                     }}
                     className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
                   >
-                    <Edit2 size={16} className="mr-1" />
-                    Edit
+                    <Edit2 size={16} className="mr-1" /> Edit
                   </Button>
                   <Button
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation()
-                      handleDelete(character.characterID)
+                      handleDelete(character.characterid)
                     }}
                     className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
                   >
-                    <Trash2 size={16} className="mr-1" />
-                    Delete
+                    <Trash2 size={16} className="mr-1" /> Delete
                   </Button>
                 </div>
               </CardContent>
@@ -165,6 +184,7 @@ export function CharacterBrowser() {
         </div>
       )}
 
+      {/* Edit Modal */}
       {selectedCharacter && (
         <CharacterEditModal
           character={selectedCharacter}

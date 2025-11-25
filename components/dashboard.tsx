@@ -171,7 +171,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
         {view === "home" && <DashboardHome games={games} characters={characters} onNavigate={setView} />}
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
-        {view === "characters" && <CharacterBrowser />}
+        {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
         {view === "maps" && <MapBrowser />}
         {view === "mobs" && <MobBrowser />}
       </main>

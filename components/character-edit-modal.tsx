@@ -9,14 +9,14 @@ import { Input } from "@/components/ui/input"
 import { X } from "lucide-react"
 
 interface Character {
-  characterID: number
-  characterName: string
-  englishVA?: string
-  japaneseVA?: string
-  motionCapture?: string
+  characterid: number
+  charactername: string
+  englishva?: string
+  japaneseva?: string
+  motioncapture?: string
   backstory?: string
   description?: string
-  spriteURL?: string
+  spriteurl?: string
 }
 
 interface CharacterEditModalProps {
@@ -25,27 +25,14 @@ interface CharacterEditModalProps {
   onSave: () => void
 }
 
-interface ExpandedSections {
-  overview: boolean
-  characters: boolean
-  maps: boolean
-  mobs: boolean
-  storyArcs: boolean
-}
-
 export function CharacterEditModal({ character, onClose, onSave }: CharacterEditModalProps) {
-  const [expandedSections, setExpandedSections] = useState<ExpandedSections>({
-    overview: true,
-    characters: true,
-    maps: false,
-    mobs: false,
-    storyArcs: false,
-  })
 
   const [formData, setFormData] = useState<Character>(character)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
+
+  console.log("character prop:", character)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -62,7 +49,7 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
     setSuccess("")
 
     try {
-      const response = await fetch(`/api/characters/${character.characterID}`, {
+      const response = await fetch(`/api/characters/${character.characterid}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -90,7 +77,7 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
         <CardHeader className="border-b-2 border-accent flex justify-between items-start">
           <div>
             <CardTitle className="text-2xl text-primary">Edit Character</CardTitle>
-            <CardDescription className="text-muted-foreground">{character.characterName}</CardDescription>
+            <CardDescription className="text-muted-foreground">{character.charactername}</CardDescription>
           </div>
           <button onClick={onClose} className="p-1 hover:bg-accent/20 rounded">
             <X size={24} className="text-accent" />
@@ -104,8 +91,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
                 <label className="block text-sm font-medium mb-2 text-foreground">Character Name</label>
                 <Input
                   type="text"
-                  name="characterName"
-                  value={formData.characterName}
+                  name="charactername"
+                  value={formData.charactername}
                   onChange={handleChange}
                   className="border-primary bg-background"
                 />
@@ -115,8 +102,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
                 <label className="block text-sm font-medium mb-2 text-foreground">English Voice Actor</label>
                 <Input
                   type="text"
-                  name="englishVA"
-                  value={formData.englishVA || ""}
+                  name="englishva"
+                  value={formData.englishva || ""}
                   onChange={handleChange}
                   className="border-primary bg-background"
                 />
@@ -126,8 +113,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
                 <label className="block text-sm font-medium mb-2 text-foreground">Japanese Voice Actor</label>
                 <Input
                   type="text"
-                  name="japaneseVA"
-                  value={formData.japaneseVA || ""}
+                  name="japaneseva"
+                  value={formData.japaneseva || ""}
                   onChange={handleChange}
                   className="border-primary bg-background"
                 />
@@ -137,8 +124,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
                 <label className="block text-sm font-medium mb-2 text-foreground">Motion Capture Actor</label>
                 <Input
                   type="text"
-                  name="motionCapture"
-                  value={formData.motionCapture || ""}
+                  name="motioncapture"
+                  value={formData.motioncapture || ""}
                   onChange={handleChange}
                   className="border-primary bg-background"
                 />
@@ -171,8 +158,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
               <label className="block text-sm font-medium mb-2 text-foreground">Sprite URL</label>
               <Input
                 type="url"
-                name="spriteURL"
-                value={formData.spriteURL || ""}
+                name="spriteurl"
+                value={formData.spriteurl || ""}
                 onChange={handleChange}
                 className="border-primary bg-background"
               />

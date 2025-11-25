@@ -191,7 +191,7 @@ export function DashboardHome({ games, characters, onNavigate }: DashboardHomePr
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm line-clamp-2 text-muted-foreground">{char.description}</p>
+                  <p className="text-sm line-clamp-2 text-muted-foreground">{char.backstory}</p>
                 </CardContent>
               </Card>
             ))}
