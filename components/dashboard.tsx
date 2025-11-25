@@ -19,8 +19,10 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
   const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs">("home")
   const [games, setGames] = useState<any[]>([])
   const [characters, setCharacters] = useState<any[]>([])
+  const [maps, setMaps] = useState<any[]>([])
   const [loadingGames, setLoadingGames] = useState(true)
   const [loadingCharacters, setLoadingCharacters] = useState(true)
+  const [loadingMaps, setLoadingMaps] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -88,6 +90,30 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
   const handleCharacterAdded = () => {
     fetchCharacters()
     setView("characters")
+  }
+
+  const fetchMaps = async () => {
+    try {
+      const response = await fetch("/api/maps")
+      const data = await response.json()
+      const formattedMaps = (data.maps || []).map((map: any) => ({
+        mapid: map.mapid,
+        mapname: map.mapname,
+        floorname: map.floorname,
+        description: map.description,
+        mapurl: map.mapurl,
+      }))
+      setMaps(formattedMaps)
+    } catch (err) {
+      console.error("Failed to fetch maps:", err)
+    } finally {
+      setLoadingMaps(false)
+    }
+  }
+
+  const handleMapAdded = () => {
+    fetchMaps()
+    setView("maps")
   }
 
   const navItems = [
@@ -172,7 +198,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
         {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
-        {view === "maps" && <MapBrowser />}
+        {view === "maps" && <MapBrowser maps={maps} loading={loadingMaps} onRefresh={fetchMaps} onMapAdded={handleMapAdded} />}
         {view === "mobs" && <MobBrowser />}
       </main>
     </div>

@@ -25,7 +25,7 @@ interface CharacterBrowserProps {
   onCharacterAdded: () => void
 }
 
-export function CharacterBrowser({ characters: initialCharacters, loading: initialLoading, onRefresh, onCharacterAdded }: CharacterBrowserProps) {
+export function CharacterBrowser({ characters: initialCharacters, loading: initialLoading }: CharacterBrowserProps) {
   const [characters, setCharacters] = useState<Character[]>(initialCharacters || [])
   const [loading, setLoading] = useState(initialLoading)
   const [searchTerm, setSearchTerm] = useState("")

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Plus } from "lucide-react"
 
 export function MapForm() {
+  const [maps, setMaps] = useState<any[]>([])
   const [formData, setFormData] = useState({
     mapName: "",
     floorName: "",
@@ -25,6 +26,8 @@ export function MapForm() {
       [name]: value,
     }))
   }
+
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -55,6 +58,16 @@ export function MapForm() {
       setError("An error occurred")
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchMaps = async () => {
+    try {
+      const response = await fetch("/api/maps")
+      const data = await response.json()
+      setMaps(data.maps || [])
+    } catch (err) {
+      console.error("Failed to fetch maps:", err)
     }
   }
 

@@ -6,10 +6,27 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
 
-export function MapBrowser() {
-  const [maps, setMaps] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+interface Map {
+  mapid: number
+  mapname: string
+  floorname?: string
+  description?: string
+  mapurl?: string
+}
+
+interface MapBrowserProps {
+  maps: Map[]
+  loading: boolean
+  onRefresh: () => Promise<void>
+  onMapAdded: () => void
+}
+
+export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBrowserProps) {
+  const [maps, setMaps] = useState<Map[]>(initialMaps || [])
+  const [loading, setLoading] = useState(initialLoading)
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedMap, setSelectedMap] = useState<Map | null>(null)
+  const [showAddForm, setShowAddForm] = useState(false)
 
   useEffect(() => {
     fetchMaps()
@@ -37,14 +54,16 @@ export function MapBrowser() {
       })
 
       if (response.ok) {
-        setMaps(maps.filter((m) => m.mapID !== mapID))
+        setMaps(maps.filter((m) => m.mapid !== mapID))
       }
     } catch (err) {
       console.error("Failed to delete map:", err)
     }
   }
 
-  const filteredMaps = maps.filter((m) => m.mapName.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredMaps = maps.filter((m) => 
+    (m.mapname || "").toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   if (loading) {
     return (
@@ -83,13 +102,13 @@ export function MapBrowser() {
       ) : (
         <div className="space-y-2">
           {filteredMaps.map((map) => (
-            <Card key={map.mapID} className="border-2 border-primary hover:border-accent transition-colors bg-card">
+            <Card key={map.mapid} className="border-2 border-primary hover:border-accent transition-colors bg-card">
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-primary">{map.mapName}</CardTitle>
-                    {map.floorName && (
-                      <CardDescription className="text-muted-foreground">Floor: {map.floorName}</CardDescription>
+                    <CardTitle className="text-primary">{map.mapname}</CardTitle>
+                    {map.floorname && (
+                      <CardDescription className="text-muted-foreground">Floor: {map.floorname}</CardDescription>
                     )}
                   </div>
                   <div className="flex gap-2">
@@ -98,7 +117,7 @@ export function MapBrowser() {
                     </Button>
                     <Button
                       size="sm"
-                      onClick={() => handleDelete(map.mapID)}
+                      onClick={() => handleDelete(map.mapid)}
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
                     >
                       <Trash2 size={16} />
