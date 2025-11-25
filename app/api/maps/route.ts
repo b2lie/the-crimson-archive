@@ -5,14 +5,6 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
     const { data: maps, error } = await supabase.from("maps").select("*")
 
     if (error) {
@@ -29,18 +21,10 @@ export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
     const mapData = await request.json()
 
-    if (!mapData.mapName || !mapData.gameid) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    if (!mapData.mapName) {
+      return NextResponse.json({ error: "Map name required" }, { status: 400 })
     }
 
     const { data, error } = await supabase
@@ -48,10 +32,9 @@ export async function POST(request: NextRequest) {
       .insert([
         {
           mapname: mapData.mapName,
-          description: mapData.description,
           floorname: mapData.floorName,
+          description: mapData.description,
           mapurl: mapData.mapURL,
-          gameid: mapData.gameid,
         },
       ])
       .select()
