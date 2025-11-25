@@ -44,14 +44,14 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {games.map((game) => (
               <Card
-                key={game.gameID}
+                key={game.gameid}
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => setSelectedGame(game)}
               >
-                {game.gameCoverURL && (
+                {game.gamecoverurl && (
                   <div className="w-full h-48 bg-muted overflow-hidden rounded-t">
                     <img
-                      src={game.gameCoverURL || "/placeholder.svg"}
+                      src={game.gamecoverurl || "/placeholder.svg"}
                       alt={game.title}
                       className="w-full h-full object-cover"
                     />
@@ -60,14 +60,14 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
                 <CardHeader>
                   <CardTitle className="text-primary">{game.title}</CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    Released: {new Date(game.releaseDate).getFullYear()}
+                    Released: {new Date(game.releasedate).getFullYear()}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p className="text-sm">{game.plotSummary}</p>
+                  <p className="text-sm">{game.plotsummary}</p>
                   <div className="flex gap-2 flex-wrap">
                     <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
-                      {game.multiplayerSupport ? "Multiplayer" : "Single Player"}
+                      {game.multiplayersupport ? "Multiplayer" : "Single Player"}
                     </span>
                   </div>
                 </CardContent>

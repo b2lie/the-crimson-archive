@@ -134,14 +134,14 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {games.slice(0, 3).map((game) => (
               <Card
-                key={game.gameID}
+                key={game.gameid}
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => onNavigate("browse")}
               >
-                {game.gameCoverURL && (
+                {game.gamecoverurl && (
                   <div className="w-full h-32 bg-muted overflow-hidden rounded-t">
                     <img
-                      src={game.gameCoverURL || "/placeholder.svg"}
+                      src={game.gamecoverurl || "/placeholder.svg"}
                       alt={game.title}
                       className="w-full h-full object-cover"
                     />
@@ -150,11 +150,11 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
                 <CardHeader>
                   <CardTitle className="text-primary line-clamp-1">{game.title}</CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {new Date(game.releaseDate).getFullYear()}
+                    {new Date(game.releasedate).getFullYear()}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm line-clamp-2 text-muted-foreground">{game.plotSummary}</p>
+                  <p className="text-sm line-clamp-2 text-muted-foreground">{game.plotsummary}</p>
                 </CardContent>
               </Card>
             ))}
@@ -177,19 +177,19 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {characters.slice(0, 3).map((char) => (
               <Card
-                key={char.characterID}
+                key={char.characterid}
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => onNavigate("characters")}
               >
-                {char.spriteURL && (
+                {char.spriteurl && (
                   <div className="w-full h-32 bg-muted overflow-hidden rounded-t">
-                    <img src={char.spriteURL || "/placeholder.svg"} alt={char.name} className="w-full h-full object-cover" />
+                    <img src={char.spriteurl || "/placeholder.svg"} alt={char.name} className="w-full h-full object-cover" />
                   </div>
                 )}
                 <CardHeader>
                   <CardTitle className="text-primary line-clamp-1">{char.name}</CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {char.englishVA && `English VA: ${char.englishVA}`}
+                    {char.englishva && `English VA: ${char.englishva}`}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

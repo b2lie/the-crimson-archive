@@ -12,6 +12,8 @@ export async function GET(request: NextRequest, { params }: { params: { gameId: 
       .eq("gameid", gameId)
       .single()
 
+    console.log("raw game from supabase:", game, "error:", error)
+
     if (error || !game) {
       return NextResponse.json({ error: "Game not found" }, { status: 404 })
     }

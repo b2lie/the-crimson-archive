@@ -22,9 +22,9 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!game?.gameID) return
+    if (!game?.gameid) return
     fetchGameDetails()
-  }, [game?.gameID])
+  }, [game?.gameid])
 
   console.log("opening modal for game:", game)
 
@@ -111,7 +111,7 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
           <div>
             <CardTitle className="text-2xl text-primary">{gameData.title}</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Released: {new Date(gameData.releaseDate).toLocaleDateString()}
+              Released: {new Date(gameData.releasedate).toLocaleDateString()}
             </CardDescription>
           </div>
           <button onClick={onClose} className="p-1 hover:bg-accent/20 rounded">
@@ -132,10 +132,10 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
 
             {expandedSections.overview && (
               <div className="p-4 space-y-3">
-                {gameData.gameLogoURL && (
+                {gameData.gamelogourl && (
                   <div className="w-32 h-32 bg-muted rounded overflow-hidden">
                     <img
-                      src={gameData.gameLogoURL || "/placeholder.svg"}
+                      src={gameData.gamelogourl || "/placeholder.svg"}
                       alt="Game Logo"
                       className="w-full h-full object-cover"
                     />
@@ -143,12 +143,12 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
                 )}
                 <div>
                   <p className="text-sm font-semibold text-muted-foreground">Plot Summary</p>
-                  <p className="text-foreground">{gameData.plotSummary || "No description available"}</p>
+                  <p className="text-foreground">{gameData.plotsummary || "No description available"}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm font-semibold text-muted-foreground">Multiplayer</p>
-                    <p className="text-foreground">{gameData.multiplayerSupport ? "Yes" : "Single Player"}</p>
+                    <p className="text-foreground">{gameData.multiplayersupport ? "Yes" : "Single Player"}</p>
                   </div>
                 </div>
               </div>
@@ -169,8 +169,8 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
               <div className="p-4 space-y-2">
                 {gameData.characters && gameData.characters.length > 0 ? (
                   gameData.characters.map((char: any) => (
-                    <div key={char.characterID} className="p-2 bg-muted rounded">
-                      <p className="font-semibold text-foreground">{char.characterName}</p>
+                    <div key={char.characterid} className="p-2 bg-muted rounded">
+                      <p className="font-semibold text-foreground">{char.charactername}</p>
                       <p className="text-sm text-muted-foreground">{char.backstory}</p>
                     </div>
                   ))
@@ -195,9 +195,9 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
               <div className="p-4 space-y-2">
                 {gameData.maps && gameData.maps.length > 0 ? (
                   gameData.maps.map((map: any) => (
-                    <div key={map.mapID} className="p-2 bg-muted rounded">
+                    <div key={map.mapid} className="p-2 bg-muted rounded">
                       <p className="font-semibold text-foreground">
-                        {map.mapName} {map.floorName && `(${map.floorName})`}
+                        {map.mapname} {map.floorname && `(${map.floorname})`}
                       </p>
                       <p className="text-sm text-muted-foreground">{map.description}</p>
                     </div>
@@ -223,14 +223,14 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
               <div className="p-4 space-y-2">
                 {gameData.mobs && gameData.mobs.length > 0 ? (
                   gameData.mobs.map((mob: any) => (
-                    <div key={mob.mobID} className="p-2 bg-muted rounded">
+                    <div key={mob.mobid} className="p-2 bg-muted rounded">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="font-semibold text-foreground">{mob.mobName}</p>
+                          <p className="font-semibold text-foreground">{mob.mobname}</p>
                           <p className="text-sm text-muted-foreground">{mob.description}</p>
                         </div>
                         <span className="text-xs bg-accent text-accent-foreground px-2 py-1 rounded">
-                          {mob.mobType}
+                          {mob.mobtype}
                         </span>
                       </div>
                       {mob.weakness && (
@@ -261,13 +261,13 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
               <div className="p-4 space-y-2">
                 {gameData.storyArcs && gameData.storyArcs.length > 0 ? (
                   gameData.storyArcs.map((arc: any) => (
-                    <div key={arc.storyArcID} className="p-2 bg-muted rounded">
+                    <div key={arc.storyarcid} className="p-2 bg-muted rounded">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="font-semibold text-foreground">{arc.arcTitle}</p>
+                          <p className="font-semibold text-foreground">{arc.arctitle}</p>
                           <p className="text-sm text-muted-foreground">{arc.summary}</p>
                         </div>
-                        {arc.isMainArc && (
+                        {arc.ismainarc && (
                           <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">Main Arc</span>
                         )}
                       </div>
@@ -289,9 +289,9 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
               {gameData.contributors && gameData.contributors.length > 0 ? (
                 gameData.contributors.map((contrib: any, idx: number) => (
                   <div key={idx} className="p-2 bg-muted rounded">
-                    <p className="font-semibold text-foreground">{contrib.contributorName}</p>
+                    <p className="font-semibold text-foreground">{contrib.contributorname}</p>
                     <div className="flex gap-2 text-xs mt-1">
-                      <span className="text-muted-foreground">{contrib.roleName}</span>
+                      <span className="text-muted-foreground">{contrib.rolename}</span>
                       {contrib.specialization && <span className="text-muted-foreground">•</span>}
                       {contrib.specialization && (
                         <span className="text-muted-foreground">{contrib.specialization}</span>
