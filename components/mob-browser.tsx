@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
+import { MobEditModal } from "./mob-edit-modal"
 
 interface Mob {
   mobid: number;
