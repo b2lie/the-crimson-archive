@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
 import { MobEditModal } from "./mob-edit-modal"
+import { MapEditModal } from "./map-edit-modal"
 
 interface Mob {
   mobid: number;
@@ -63,7 +64,7 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
     }
   }
 
-  const filteredMobs = mobs.filter((m) => 
+  const filteredMobs = mobs.filter((m) =>
     (m.mobname || "").toLowerCase().includes(searchTerm.toLowerCase()))
 
   if (loading) {
@@ -137,6 +138,16 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
             </Card>
           ))}
         </div>
+      )}
+      {selectedMob && (
+        <MobEditModal
+          mob={selectedMob}
+          onClose={() => setSelectedMob(null)}
+          onSave={() => {
+            fetchMobs()
+            setSelectedMob(null)
+          }}
+        />
       )}
     </div>
   )
