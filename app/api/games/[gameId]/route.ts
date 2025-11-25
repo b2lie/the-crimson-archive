@@ -23,7 +23,7 @@ export async function GET(
         .from("games_characters")
         .select(`
           characterid,
-          characters (
+          ingamecharacters (
             characterName,
             backstory,
             englishVA,
@@ -91,15 +91,16 @@ export async function GET(
     // map characters to proper format
     const characters = (charactersRaw || []).map((c: any) => ({
       characterID: c.characterid,
-      characterName: c.characters.characterName,
-      backstory: c.characters.backstory,
+      characterName: c.ingamecharacters?.characterName,
+      backstory: c.ingamecharacters?.backstory,
     }))
 
     // map contributors
     const contributors = (contributorsRaw || []).map((c: any) => ({
       contributorID: c.contributorid,
       contributorName: c.contributors.contributorName,
-      specialization: c.contributors.specialization
+      specialization: c.contributors.specialization,
+      role: c.roles.roleName
     }))
 
     return NextResponse.json(

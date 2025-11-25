@@ -29,7 +29,9 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
   useEffect(() => {
     fetchGames(),
-    fetchCharacters()
+    fetchCharacters(),
+    fetchMaps(),
+    fetchMobs()
   }, [])
 
   const fetchGames = async () => {
@@ -150,7 +152,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     { id: "add", label: "Add Game" },
     { id: "characters", label: "Characters" },
     { id: "maps", label: "Maps" },
-    { id: "mobs", label: "Enemies" },
+    { id: "mobs", label: "Mobs" },
   ]
 
   return (
@@ -227,7 +229,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
         {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
         {view === "maps" && <MapBrowser maps={maps} loading={loadingMaps} onRefresh={fetchMaps} onMapAdded={handleMapAdded} />}
-        {view === "mobs" && <MobBrowser />}
+        {view === "mobs" && <MobBrowser mobs={mobs} loading={loadingMobs} onRefresh={fetchMobs} onMobAdded={handleMobAdded} />}
       </main>
     </div>
   )

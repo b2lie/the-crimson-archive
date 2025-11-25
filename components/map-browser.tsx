@@ -27,7 +27,7 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
   const [loading, setLoading] = useState(initialLoading)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedMap, setSelectedMap] = useState<Map | null>(null)
-  
+
   console.log("map received:", selectedMap)
 
   useEffect(() => {
@@ -54,7 +54,6 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
       const response = await fetch(`/api/maps/${mapID}`, {
         method: "DELETE",
       })
-
       if (response.ok) {
         setMaps(maps.filter((m) => m.mapid !== mapID))
       }
