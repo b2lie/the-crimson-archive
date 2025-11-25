@@ -41,26 +41,40 @@ export function MapEditModal({ map, onClose, onSave }: MapEditModalProps) {
           <CardTitle className="text-primary">Edit Map</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <Input
-            value={form.mapname}
-            onChange={(e) => setForm({ ...form, mapname: e.target.value })}
-            placeholder="Map name"
-          />
-          <Input
-            value={form.floorname || ""}
-            onChange={(e) => setForm({ ...form, floorname: e.target.value })}
-            placeholder="Floor name"
-          />
-          <Input
-            value={form.mapurl || ""}
-            onChange={(e) => setForm({ ...form, mapurl: e.target.value })}
-            placeholder="Map image URL"
-          />
-          <Input
-            value={form.description || ""}
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
-            placeholder="Description"
-          />
+          <div>
+            <label className="block text-sm font-medium mb-2 text-foreground">Map Name</label>
+            <Input
+              value={form.mapname}
+              onChange={(e) => setForm({ ...form, mapname: e.target.value })}
+              placeholder="Map name"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-2 text-foreground">Floor Name</label>
+            <Input
+              value={form.floorname || ""}
+              onChange={(e) => setForm({ ...form, floorname: e.target.value })}
+              placeholder="Floor name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2 text-foreground">Map Image URL</label>
+            <Input
+              value={form.mapurl || ""}
+              onChange={(e) => setForm({ ...form, mapurl: e.target.value })}
+              placeholder="Map image URL"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2 text-foreground">Description</label>
+            <Input
+              value={form.description || ""}
+              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              placeholder="Description"
+            />
+          </div>
 
           <div className="flex justify-end gap-2 pt-3">
             <Button variant="outline" onClick={onClose} className="border-primary">
