@@ -28,8 +28,6 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedMap, setSelectedMap] = useState<Map | null>(null)
 
-  console.log("map received:", selectedMap)
-
   useEffect(() => {
     fetchMaps()
   }, [])

@@ -99,10 +99,13 @@ export default function Home() {
         <Dashboard user={user} onLogout={handleLogout} />
       ) : (
         <AuthForm
-          onLoginSuccess={(userData) => {
-            setUser(userData)
-          }}
-        />
+            onLoginSuccess={(userData) => {
+              setUser({
+                email: userData.email,
+                username: (userData as { username?: string }).username ?? userData.email.split("@")[0] ?? "User",
+              })
+            }}
+          />
       )}
     </main>
   )

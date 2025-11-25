@@ -77,7 +77,11 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
         )}
       </div>
 
-      {selectedGame && <GameDetailModal game={selectedGame} onClose={() => setSelectedGame(null)} />}
+      {selectedGame && 
+        <GameDetailModal 
+          game={selectedGame} 
+          onClose={() => setSelectedGame(null)} />
+      }
     </>
   )
 }

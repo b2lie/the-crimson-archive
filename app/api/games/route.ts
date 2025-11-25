@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
     const supabase = await createClient()
 
     const { data: games, error } = await supabase.from("games").select("*").order("releasedate", { ascending: false })
-
+    console.log("fetched games:", games)
+    
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })
     }

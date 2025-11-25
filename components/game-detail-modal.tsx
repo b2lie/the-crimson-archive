@@ -22,18 +22,26 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (!game?.gameID) return
     fetchGameDetails()
-  }, [game.gameID])
+  }, [game?.gameID])
+
+  console.log("opening modal for game:", game)
 
   const fetchGameDetails = async () => {
     try {
-      const response = await fetch(`/api/games/${game.gameID}`)
+      const response = await fetch(`/api/games/${game.gameid}`)
       console.log("response status:", response.status)
       const data = await response.json()
       console.log("data received:", data)
 
-      if (!response.ok || data.error) {
-        console.error("Error fetching game:", data.error || response.statusText)
+      if (!response.ok) {
+        console.error("response not ok:", response.status, data)
+        setGameData(null)
+        return
+      }
+      if (data.error) {
+        console.error("API returned error:", data.error)
         setGameData(null)
         return
       }
@@ -75,7 +83,26 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
     )
   }
 
-  if (!gameData) return null
+  console.log("gameData:", gameData)
+  if (!gameData) {
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <Card className="w-full max-w-xl border-2 border-red-500 bg-card">
+          <CardHeader className="border-b-2 border-red-500 flex justify-between items-start">
+            <CardTitle className="text-xl text-red-500">Failed to load game</CardTitle>
+            <button onClick={onClose} className="p-1 hover:bg-red-500/20 rounded">
+              <X size={24} className="text-red-500" />
+            </button>
+          </CardHeader>
+          <CardContent className="pt-6 text-center">
+            <p className="text-muted-foreground">
+              could not fetch game details.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">

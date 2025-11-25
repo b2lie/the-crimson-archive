@@ -29,6 +29,14 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
     try {
       const supabase = createClient()
 
+      if (!supabase) {
+        setError(
+          "Supabase client not initialized. Make sure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set."
+        )
+        setLoading(false)
+        return
+      }
+
       if (isSignup) {
         const { error: signupError } = await supabase.auth.signUp({
           email,

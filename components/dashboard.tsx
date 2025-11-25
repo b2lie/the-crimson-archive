@@ -39,13 +39,13 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
       const response = await fetch("/api/games")
       const data = await response.json()
       const formattedGames = (data.games || []).map((game: any) => ({
-        gameID: game.gameid,
+        gameid: game.gameid,
         title: game.title,
-        releaseDate: game.releasedate,
-        plotSummary: game.plotsummary,
-        gameCoverURL: game.gamecoverurl,
-        gameLogoURL: game.gamelogourl,
-        multiplayerSupport: game.multiplayersupport,
+        releasedate: game.releasedate,
+        plotsummary: game.plotsummary,
+        gamecoverurl: game.gamecoverurl,
+        gamelogourl: game.gamelogourl,
+        multiplayersupport: game.multiplayersupport,
       }))
       setGames(formattedGames)
     } catch (err) {
@@ -72,14 +72,14 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
       }
 
       const formattedCharacters = (data.characters || []).map((char: any) => ({
-        characterID: char.characterid,
+        characterid: char.characterid,
         name: char.charactername,
         description: char.description,
         backstory: char.backstory,
-        englishVA: char.englishva,
-        japaneseVA: char.japaneseva,
-        motionCapture: char.motioncapture,
-        spriteURL: char.spriteurl,
+        englishva: char.englishva,
+        japaneseva: char.japaneseva,
+        motioncapture: char.motioncapture,
+        spriteurl: char.spriteurl,
       }));
 
       setCharacters(formattedCharacters);
