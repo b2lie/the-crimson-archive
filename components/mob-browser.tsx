@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
 import { MobEditModal } from "./mob-edit-modal"
-import { MapEditModal } from "./map-edit-modal"
 
 interface Mob {
   mobid: number;
@@ -114,7 +113,11 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
                     )}
                   </div>
                   <div className="flex gap-2">
-                    <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    <Button
+                      size="sm"
+                      onClick={() => setSelectedMob(mob)}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
                       <Edit2 size={16} />
                     </Button>
                     <Button
@@ -139,6 +142,7 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
           ))}
         </div>
       )}
+
       {selectedMob && (
         <MobEditModal
           mob={selectedMob}
