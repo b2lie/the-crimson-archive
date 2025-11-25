@@ -23,10 +23,13 @@ export async function GET(
         .from("games_characters")
         .select(`
           characterid,
-          characters (
-            characterName,
-            backstory
-          )
+          characterName,
+          englishVA,
+          japaneseVA,
+          motionCapture,
+          backstory,
+          description,
+          spriteURL
         `)
         .eq("gameid", gameId),
       supabase.from("maps").select("*").eq("gameid", gameId),
