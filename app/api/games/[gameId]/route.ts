@@ -23,18 +23,51 @@ export async function GET(
         .from("games_characters")
         .select(`
           characterid,
-          characterName,
-          englishVA,
-          japaneseVA,
-          motionCapture,
-          backstory,
-          description,
-          spriteURL
+          characters (
+            characterName,
+            backstory,
+            englishVA,
+            japaneseVA,
+            motionCapture,
+            description,
+            spriteURL
+          )
         `)
         .eq("gameid", gameId),
-      supabase.from("maps").select("*").eq("gameid", gameId),
-      supabase.from("mobs").select("*").eq("gameid", gameId),
-      supabase.from("storyarcs").select("*").eq("gameid", gameId),
+      supabase
+        .from("maps")
+        .select(`
+          mapid,
+          mapname,
+          floorname,
+          description,
+          mapurl
+        `)
+        .eq("gameid", gameId),
+      supabase
+        .from("mobs")
+        .select(`
+          mobid,
+          mobname,
+          mobtype,
+          description,
+          weakness,
+          mobspriteurl,
+          spawnnotes
+        `)
+        .eq("gameid", gameId),
+      supabase
+        .from("storyarcs")
+        .select(`
+          storyarcid,
+          parentarcid,
+          arctitle,
+          arcorder,
+          summary,
+          description,
+          ismainarc
+        `)
+        .eq("gameid", gameId),
       supabase
         .from("games_contributors")
         .select(`
@@ -42,7 +75,9 @@ export async function GET(
           roleid,
           contributors (
             contributorName,
-            specialization,
+            specialization
+          ),
+          roles (
             roleName
           )
         `)
@@ -64,9 +99,7 @@ export async function GET(
     const contributors = (contributorsRaw || []).map((c: any) => ({
       contributorID: c.contributorid,
       contributorName: c.contributors.contributorName,
-      specialization: c.contributors.specialization,
-      roleName: c.contributors.roleName,
-      roleID: c.roleid,
+      specialization: c.contributors.specialization
     }))
 
     return NextResponse.json(
