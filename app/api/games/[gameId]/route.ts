@@ -1,69 +1,37 @@
-import { createClient } from "@/lib/supabase/server"
-import { NextRequest, NextResponse } from "next/server"
+import { createClient } from "@/lib/supabase/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { gameId: string } }) {
-  try {
-    const supabase = await createClient()
-    const gameId = Number(params.gameId)
+  const supabase = await createClient();
+  const gameId = Number(params.gameId);
 
-    const { data: game, error } = await supabase
-      .from("games")
-      .select("*")
-      .eq("gameid", gameId)
-      .single()
+  // fetch main game
+  const { data: game, error: gameError } = await supabase
+    .from("games")
+    .select("*")
+    .eq("gameid", gameId)
+    .single();
 
-    console.log("raw game from supabase:", game, "error:", error)
-
-    if (error || !game) {
-      return NextResponse.json({ error: "Game not found" }, { status: 404 })
-    }
-
-    return NextResponse.json(game, { status: 200 })
-  } catch (err) {
-    return NextResponse.json({ error: "Failed to fetch game" }, { status: 500 })
+  if (gameError || !game) {
+    return NextResponse.json({ error: "Game not found" }, { status: 404 });
   }
-}
 
-export async function PUT(request: NextRequest, { params }: { params: { gameId: string } }) {
-  try {
-    const supabase = await createClient()
-    const gameId = Number(params.gameId)
-    const gameData = await request.json()
-    const { data, error } = await supabase
-      .from("games")
-      .update(gameData)
-      .eq("gameid", gameId)
-      .select()
-      .single()
+  // fetch related data
+  const [{ data: characters }, { data: maps }, { data: mobs }, { data: storyArcs }, { data: contributors }] =
+    await Promise.all([
+      supabase.from("characters").select("*").eq("gameid", gameId),
+      supabase.from("maps").select("*").eq("gameid", gameId),
+      supabase.from("mobs").select("*").eq("gameid", gameId),
+      supabase.from("storyarcs").select("*").eq("gameid", gameId),
+      supabase.from("contributors").select("*").eq("gameid", gameId),
+    ]);
 
-    if (error || !data) {
-      return NextResponse.json({ error: "Failed to update game" }, { status: 400 })
-    }
-
-    return NextResponse.json(data, { status: 200 })
-  } catch (err) {
-    return NextResponse.json({ error: "Failed to update game" }, { status: 500 })
-  }
-}
-
-export async function DELETE(request: NextRequest, { params }: { params: { gameId: string } }) {
-  try {
-    const supabase = await createClient()
-    const gameId = Number(params.gameId)
-
-    const { data, error } = await supabase
-      .from("games")
-      .delete()
-      .eq("gameid", gameId)
-      .select()
-      .single()
-
-    if (error) {
-      return NextResponse.json({ error: "Failed to delete game" }, { status: 400 })
-    }
-
-    return NextResponse.json({ success: true, deleted: data }, { status: 200 })
-  } catch (err) {
-    return NextResponse.json({ error: "Failed to delete game" }, { status: 500 })
-  }
+  return NextResponse.json({
+    ...game,
+    characters: characters || [],
+    maps: maps || [],
+    mobs: mobs || [],
+    storyArcs: storyArcs || [],
+    contributors: contributors || [],
+  });
 }

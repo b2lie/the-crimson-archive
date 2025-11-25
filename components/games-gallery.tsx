@@ -13,7 +13,7 @@ interface GamesGalleryProps {
 }
 
 export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
-  const [selectedGame, setSelectedGame] = useState<any | null>(null)
+  const [selectedGameId, setSelectedGameId] = useState<number | null>(null)
 
   if (loading) {
     return (
@@ -46,7 +46,7 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
               <Card
                 key={game.gameid}
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
-                onClick={() => setSelectedGame(game)}
+                onClick={() => setSelectedGameId(game.gameid)}
               >
                 {game.gamecoverurl && (
                   <div className="w-full h-48 bg-muted overflow-hidden rounded-t">
@@ -77,11 +77,12 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
         )}
       </div>
 
-      {selectedGame && 
-        <GameDetailModal 
-          game={selectedGame} 
-          onClose={() => setSelectedGame(null)} />
-      }
+      {selectedGameId && (
+        <GameDetailModal
+          gameId={selectedGameId}
+          onClose={() => setSelectedGameId(null)}
+        />
+      )}
     </>
   )
 }
