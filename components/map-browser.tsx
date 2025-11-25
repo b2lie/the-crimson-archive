@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
+import { MapEditModal } from "./map-edit-modal"
 
 interface Map {
   mapid: number
@@ -26,7 +27,8 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
   const [loading, setLoading] = useState(initialLoading)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedMap, setSelectedMap] = useState<Map | null>(null)
-  const [showAddForm, setShowAddForm] = useState(false)
+  
+  console.log("map received:", selectedMap)
 
   useEffect(() => {
     fetchMaps()
@@ -61,7 +63,7 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
     }
   }
 
-  const filteredMaps = maps.filter((m) => 
+  const filteredMaps = maps.filter((m) =>
     (m.mapname || "").toLowerCase().includes(searchTerm.toLowerCase())
   )
 
@@ -112,7 +114,11 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
                     )}
                   </div>
                   <div className="flex gap-2">
-                    <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    <Button
+                      size="sm"
+                      onClick={() => setSelectedMap(map)}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
                       <Edit2 size={16} />
                     </Button>
                     <Button
@@ -132,6 +138,18 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
           ))}
         </div>
       )}
+
+      {selectedMap && (
+        <MapEditModal
+          map={selectedMap}
+          onClose={() => setSelectedMap(null)}
+          onSave={() => {
+            fetchMaps()
+            setSelectedMap(null)
+          }}
+        />
+      )}
+
     </div>
   )
 }

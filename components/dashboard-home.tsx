@@ -7,10 +7,12 @@ import { Gamepad2, Users, Map, Zap, Plus, Eye } from "lucide-react"
 interface DashboardHomeProps {
   games: any[]
   characters: any[]
+  maps: any[]
+  mobs: any[]
   onNavigate: (view: "home" | "browse" | "add" | "characters" | "maps" | "mobs") => void
 }
 
-export function DashboardHome({ games, characters, onNavigate }: DashboardHomeProps) {
+export function DashboardHome({ games, characters, maps, mobs, onNavigate }: DashboardHomeProps) {
   const stats = [
     {
       title: "Total Games",
@@ -28,14 +30,14 @@ export function DashboardHome({ games, characters, onNavigate }: DashboardHomePr
     },
     {
       title: "Maps",
-      value: "0",
+      value: maps.length,
       icon: Map,
       color: "text-primary",
       bgColor: "bg-primary/10",
     },
     {
       title: "Enemies",
-      value: "0",
+      value: mobs.length,
       icon: Zap,
       color: "text-accent",
       bgColor: "bg-accent/10",

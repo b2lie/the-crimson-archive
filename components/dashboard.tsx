@@ -20,9 +20,11 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
   const [games, setGames] = useState<any[]>([])
   const [characters, setCharacters] = useState<any[]>([])
   const [maps, setMaps] = useState<any[]>([])
+  const [mobs, setMobs] = useState<any[]>([])
   const [loadingGames, setLoadingGames] = useState(true)
   const [loadingCharacters, setLoadingCharacters] = useState(true)
   const [loadingMaps, setLoadingMaps] = useState(true)
+  const [loadingMobs, setLoadingMobs] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -90,6 +92,32 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
   const handleCharacterAdded = () => {
     fetchCharacters()
     setView("characters")
+  }
+
+  const fetchMobs = async () => {
+    try {
+      const response = await fetch("/api/mobs")
+      const data = await response.json()
+      const formattedMobs = (data.mobs || []).map((mob: any) => ({
+        mobid: mob.mobid,
+        mobname: mob.mobname,
+        mobtype: mob.mobtype,
+        description: mob.description,
+        weakness: mob.weakness,
+        mobspriteurl: mob.mobspriteurl,
+        spawnnotes: mob.spawnnotes,
+      }))
+      setMobs(formattedMobs)
+    } catch (err) {
+      console.error("Failed to fetch mobs:", err)
+    } finally {
+      setLoadingMobs(false)
+    }
+  }
+
+  const handleMobAdded = () => {
+    fetchMobs()
+    setView("mobs")
   }
 
   const fetchMaps = async () => {
@@ -194,7 +222,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto p-4">
-        {view === "home" && <DashboardHome games={games} characters={characters} onNavigate={setView} />}
+        {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} onNavigate={setView}/>}
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
         {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
