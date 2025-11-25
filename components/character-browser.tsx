@@ -130,7 +130,7 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
             <Card
               key={character.characterid}
               className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
-              onClick={() => setSelectedCharacter(character)}
+              // onClick={() => setSelectedCharacter(character)}
             >
               {character.spriteurl && (
                 <div className="w-full h-48 bg-muted overflow-hidden rounded-t">

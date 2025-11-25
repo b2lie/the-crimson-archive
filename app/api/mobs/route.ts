@@ -5,14 +5,6 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
     const { data: mobs, error } = await supabase.from("mobs").select("*")
 
     if (error) {
@@ -29,31 +21,22 @@ export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
     const mobData = await request.json()
 
-    if (!mobData.mobname || !mobData.gameid) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    if (!mobData.mobName) {
+      return NextResponse.json({ error: "Mob name required" }, { status: 400 })
     }
 
     const { data, error } = await supabase
       .from("mobs")
       .insert([
         {
-          mobname: mobData.mobname,
-          mobtype: mobData.mobtype,
+          mobname: mobData.mobName,
+          mobtype: mobData.mobType,
           description: mobData.description,
           weakness: mobData.weakness,
-          spawnnotes: mobData.spawnnotes,
           mobspriteurl: mobData.mobspriteurl,
-          gameid: mobData.gameid,
+          spawnnotes: mobData.spawnnotes,
         },
       ])
       .select()

@@ -6,10 +6,28 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
 
-export function MobBrowser() {
+interface Mob {
+  mobid: number;
+  mobname: string;
+  mobtype: string;
+  description: string;
+  weakness: string;
+  mobspriteurl: string;
+  spawnnotes: string;
+}
+
+interface MobBrowserProps {
+  mobs: Mob[]
+  loading: boolean
+  onRefresh: () => Promise<void>
+  onMobAdded: () => void
+}
+
+export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBrowserProps) {
   const [mobs, setMobs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedMob, setSelectedMob] = useState<Mob | null>(null)
 
   useEffect(() => {
     fetchMobs()
@@ -44,7 +62,8 @@ export function MobBrowser() {
     }
   }
 
-  const filteredMobs = mobs.filter((m) => m.mobName.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredMobs = mobs.filter((m) => 
+    (m.mobname || "").toLowerCase().includes(searchTerm.toLowerCase()))
 
   if (loading) {
     return (
@@ -83,13 +102,13 @@ export function MobBrowser() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredMobs.map((mob) => (
-            <Card key={mob.mobID} className="border-2 border-primary hover:border-accent transition-colors bg-card">
+            <Card key={mob.mobid} className="border-2 border-primary hover:border-accent transition-colors bg-card">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <CardTitle className="text-primary">{mob.mobName}</CardTitle>
-                    {mob.mobType && (
-                      <CardDescription className="text-muted-foreground">Type: {mob.mobType}</CardDescription>
+                    <CardTitle className="text-primary">{mob.mobname}</CardTitle>
+                    {mob.mobtype && (
+                      <CardDescription className="text-muted-foreground">Type: {mob.mobtype}</CardDescription>
                     )}
                   </div>
                   <div className="flex gap-2">
@@ -98,7 +117,7 @@ export function MobBrowser() {
                     </Button>
                     <Button
                       size="sm"
-                      onClick={() => handleDelete(mob.mobID)}
+                      onClick={() => handleDelete(mob.mobid)}
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
                     >
                       <Trash2 size={16} />
