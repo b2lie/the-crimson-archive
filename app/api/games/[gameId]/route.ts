@@ -23,17 +23,19 @@ export async function GET(request: NextRequest, { params }: { params: { gameId: 
       { data: arcs, error: arcsError },
       { data: contributors, error: contribError },
     ] = await Promise.all([
-      supabase.schema("crimson").from("games").select("*").eq("gameid", gameId).single(),
-      supabase.schema("crimson").from("games_characters").select("characterid").eq("gameid", gameId),
-      supabase.schema("crimson").from("maps").select("*").eq("gameid", gameId),
-      supabase.schema("crimson").from("mobs").select("*").eq("gameid", gameId),
-      supabase.schema("crimson").from("storyarcs").select("*").eq("gameid", gameId),
-      supabase.schema("crimson").from("games_contributors").select("contributorid, roleid").eq("gameid", gameId),
+      supabase.from("games").select("*").eq("gameid", gameId).single(),
+      supabase.from("games_characters").select("characterid").eq("gameid", gameId),
+      supabase.from("maps").select("*").eq("gameid", gameId),
+      supabase.from("mobs").select("*").eq("gameid", gameId),
+      supabase.from("storyarcs").select("*").eq("gameid", gameId),
+      supabase.from("games_contributors").select("contributorid, roleid").eq("gameid", gameId),
     ])
 
     if (gameError) {
       return NextResponse.json({ error: "Game not found" }, { status: 404 })
     }
+
+    console.log(`game: ${game}\ncharacters: ${characters}\nmaps: ${maps}\nmobs:${mobs}\narcs: ${arcs}\ncontributers: ${contributors}`)
 
     return NextResponse.json(
       {
