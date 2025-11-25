@@ -27,45 +27,30 @@ export function GameDetailModal({ game, onClose }: GameDetailModalProps) {
 
   const fetchGameDetails = async () => {
     try {
-      // TODO: Replace with actual API call to Flask backend
-      const mockData = {
-        ...game,
-        characters: [
-          { characterID: 1, characterName: "Hero", backstory: "The main protagonist" },
-          { characterID: 2, characterName: "Rival", backstory: "A skilled opponent" },
-        ],
-        maps: [
-          { mapID: 1, mapName: "Starting Village", floorName: "Ground", description: "Where the adventure begins" },
-          { mapID: 2, mapName: "Dark Forest", floorName: "1F", description: "A dangerous wilderness" },
-        ],
-        mobs: [
-          { mobID: 1, mobName: "Goblin", mobType: "Enemy", weakness: "Fire", description: "Small green creature" },
-          { mobID: 2, mobName: "Orc Warrior", mobType: "Boss", weakness: "Ice", description: "Powerful foe" },
-        ],
-        storyArcs: [
-          {
-            storyArcID: 1,
-            arcTitle: "Introduction",
-            arcOrder: 1.0,
-            isMainArc: true,
-            summary: "Meet the main character",
-          },
-          {
-            storyArcID: 2,
-            arcTitle: "The Quest Begins",
-            arcOrder: 2.0,
-            isMainArc: true,
-            summary: "Start the main journey",
-          },
-        ],
-        contributors: [
-          { contributorName: "John Developer", specialization: "Programmer", roleName: "Lead Developer" },
-          { contributorName: "Jane Artist", specialization: "Art", roleName: "Character Designer" },
-        ],
+      const response = await fetch(`/api/games/${game.gameID}`)
+      console.log("response status:", response.status)
+      const data = await response.json()
+      console.log("data received:", data)
+
+      if (!response.ok || data.error) {
+        console.error("Error fetching game:", data.error || response.statusText)
+        setGameData(null)
+        return
       }
-      setGameData(mockData)
+
+      const formattedGame = {
+        ...data,
+        characters: data.characters || [],
+        maps: data.maps || [],
+        mobs: data.mobs || [],
+        storyArcs: data.storyArcs || [],
+        contributors: data.contributors || [],
+      }
+
+      setGameData(formattedGame)
     } catch (err) {
       console.error("Failed to fetch game details:", err)
+      setGameData(null)
     } finally {
       setLoading(false)
     }

@@ -8,21 +8,48 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { X } from "lucide-react"
 
+interface Character {
+  characterID: number
+  characterName: string
+  englishVA?: string
+  japaneseVA?: string
+  motionCapture?: string
+  backstory?: string
+  description?: string
+  spriteURL?: string
+}
+
 interface CharacterEditModalProps {
-  character: any
+  character: Character
   onClose: () => void
   onSave: () => void
 }
 
+interface ExpandedSections {
+  overview: boolean
+  characters: boolean
+  maps: boolean
+  mobs: boolean
+  storyArcs: boolean
+}
+
 export function CharacterEditModal({ character, onClose, onSave }: CharacterEditModalProps) {
-  const [formData, setFormData] = useState(character)
+  const [expandedSections, setExpandedSections] = useState<ExpandedSections>({
+    overview: true,
+    characters: true,
+    maps: false,
+    mobs: false,
+    storyArcs: false,
+  })
+
+  const [formData, setFormData] = useState<Character>(character)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
+    setFormData((prev: Character) => ({
       ...prev,
       [name]: value,
     }))

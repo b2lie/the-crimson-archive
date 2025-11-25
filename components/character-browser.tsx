@@ -47,7 +47,9 @@ export function CharacterBrowser() {
     }
   }
 
-  const filteredCharacters = characters.filter((c) => c.characterName.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredCharacters = characters.filter(c =>
+    (c.characterName || "").toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   if (loading) {
     return (

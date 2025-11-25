@@ -18,11 +18,14 @@ interface DashboardProps {
 export function Dashboard({ user, onLogout }: DashboardProps) {
   const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs">("home")
   const [games, setGames] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+  const [characters, setCharacters] = useState<any[]>([])
+  const [loadingGames, setLoadingGames] = useState(true)
+  const [loadingCharacters, setLoadingCharacters] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    fetchGames()
+    fetchGames(),
+    fetchCharacters()
   }, [])
 
   const fetchGames = async () => {
@@ -42,13 +45,49 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     } catch (err) {
       console.error("Failed to fetch games:", err)
     } finally {
-      setLoading(false)
+      setLoadingGames(false)
     }
   }
 
   const handleGameAdded = () => {
     fetchGames()
     setView("browse")
+  }
+
+  const fetchCharacters = async () => {
+    try {
+      const response = await fetch("/api/characters");
+      const data = await response.json();
+
+      if (data.error) {
+        console.error(data.error);
+        setCharacters([]);
+        return;
+      }
+
+      const formattedCharacters = (data.characters || []).map((char: any) => ({
+        characterID: char.characterid,
+        name: char.charactername,
+        description: char.description,
+        backstory: char.backstory,
+        englishVA: char.englishva,
+        japaneseVA: char.japaneseva,
+        motionCapture: char.motioncapture,
+        spriteURL: char.spriteurl,
+      }));
+
+      setCharacters(formattedCharacters);
+    } catch (err) {
+      console.error("Failed to fetch characters:", err);
+      setCharacters([]);
+    } finally {
+      setLoadingCharacters(false);
+    }
+  };
+
+  const handleCharacterAdded = () => {
+    fetchCharacters()
+    setView("characters")
   }
 
   const navItems = [
@@ -85,11 +124,10 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
                 key={item.id}
                 onClick={() => setView(item.id as any)}
                 variant={view === item.id ? "default" : "outline"}
-                className={`${
-                  view === item.id
+                className={`${view === item.id
                     ? "bg-accent text-accent-foreground"
                     : "border-primary-foreground text-primary-foreground hover:bg-primary/80"
-                }`}
+                  }`}
               >
                 {item.label}
               </Button>
@@ -130,8 +168,8 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto p-4">
-        {view === "home" && <DashboardHome games={games} onNavigate={setView} />}
-        {view === "browse" && <GamesGallery games={games} loading={loading} onRefresh={fetchGames} />}
+        {view === "home" && <DashboardHome games={games} characters={characters} onNavigate={setView} />}
+        {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
         {view === "characters" && <CharacterBrowser />}
         {view === "maps" && <MapBrowser />}

@@ -6,11 +6,11 @@ import { Gamepad2, Users, Map, Zap, Plus, Eye } from "lucide-react"
 
 interface DashboardHomeProps {
   games: any[]
-  onNavigate: (view: string) => void
+  characters: any[]
+  onNavigate: (view: "home" | "browse" | "add" | "characters" | "maps" | "mobs") => void
 }
 
-export function DashboardHome({ games, onNavigate }: DashboardHomeProps) {
-  // Mock stats - replace with actual API calls
+export function DashboardHome({ games, characters, onNavigate }: DashboardHomeProps) {
   const stats = [
     {
       title: "Total Games",
@@ -21,7 +21,7 @@ export function DashboardHome({ games, onNavigate }: DashboardHomeProps) {
     },
     {
       title: "Characters",
-      value: "0",
+      value: characters.length,
       icon: Users,
       color: "text-accent",
       bgColor: "bg-accent/10",
@@ -159,6 +159,46 @@ export function DashboardHome({ games, onNavigate }: DashboardHomeProps) {
           </div>
         </div>
       )}
+
+      {/* Recent Characters */}
+      {characters.length > 0 && (
+        <div className="mt-8">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold text-primary">Recent Characters</h2>
+            <Button
+              onClick={() => onNavigate("characters")}
+              className="bg-accent text-accent-foreground hover:bg-accent/90"
+            >
+              View All
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {characters.slice(0, 3).map((char) => (
+              <Card
+                key={char.characterID}
+                className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
+                onClick={() => onNavigate("characters")}
+              >
+                {char.spriteURL && (
+                  <div className="w-full h-32 bg-muted overflow-hidden rounded-t">
+                    <img src={char.spriteURL || "/placeholder.svg"} alt={char.name} className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <CardHeader>
+                  <CardTitle className="text-primary line-clamp-1">{char.name}</CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    {char.englishVA && `English VA: ${char.englishVA}`}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm line-clamp-2 text-muted-foreground">{char.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
+
 
       {/* Navigation Help */}
       <Card className="border-2 border-primary bg-primary/5">

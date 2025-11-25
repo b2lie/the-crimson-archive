@@ -1,41 +1,70 @@
 import { createClient } from "@/lib/supabase/server"
-import { type NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(request: NextRequest, { params }: { params: { gameId: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { gameId: string } }
+) {
   try {
     const supabase = await createClient()
+    const gameId = Number(params.gameId)
 
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser()
-    if (userError || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
-    const gameId = Number.parseInt(params.gameId)
-
+    // fetch all related data in parallel
     const [
       { data: game, error: gameError },
-      { data: characters, error: charsError },
+      { data: charactersRaw, error: charsError },
       { data: maps, error: mapsError },
       { data: mobs, error: mobsError },
       { data: arcs, error: arcsError },
-      { data: contributors, error: contribError },
+      { data: contributorsRaw, error: contribError },
     ] = await Promise.all([
       supabase.from("games").select("*").eq("gameid", gameId).single(),
-      supabase.from("games_characters").select("characterid").eq("gameid", gameId),
+      supabase
+        .from("games_characters")
+        .select(`
+          characterid,
+          characters (
+            characterName,
+            backstory
+          )
+        `)
+        .eq("gameid", gameId),
       supabase.from("maps").select("*").eq("gameid", gameId),
       supabase.from("mobs").select("*").eq("gameid", gameId),
       supabase.from("storyarcs").select("*").eq("gameid", gameId),
-      supabase.from("games_contributors").select("contributorid, roleid").eq("gameid", gameId),
+      supabase
+        .from("games_contributors")
+        .select(`
+          contributorid,
+          roleid,
+          contributors (
+            contributorName,
+            specialization,
+            roleName
+          )
+        `)
+        .eq("gameid", gameId),
     ])
 
     if (gameError) {
       return NextResponse.json({ error: "Game not found" }, { status: 404 })
     }
 
-    console.log(`game: ${game}\ncharacters: ${characters}\nmaps: ${maps}\nmobs:${mobs}\narcs: ${arcs}\ncontributers: ${contributors}`)
+    // map characters to proper format
+    const characters = (charactersRaw || []).map((c: any) => ({
+      characterID: c.characterid,
+      characterName: c.characters.characterName,
+      backstory: c.characters.backstory,
+    }))
+
+    // map contributors
+    const contributors = (contributorsRaw || []).map((c: any) => ({
+      contributorID: c.contributorid,
+      contributorName: c.contributors.contributorName,
+      specialization: c.contributors.specialization,
+      roleName: c.contributors.roleName,
+      roleID: c.roleid,
+    }))
 
     return NextResponse.json(
       {
@@ -46,15 +75,19 @@ export async function GET(request: NextRequest, { params }: { params: { gameId: 
         gameCoverURL: game.gamecoverurl,
         gameLogoURL: game.gamelogourl,
         multiplayerSupport: game.multiplayersupport,
-        characters: characters || [],
+        characters,
         maps: maps || [],
         mobs: mobs || [],
         storyArcs: arcs || [],
-        contributors: contributors || [],
+        contributors,
       },
-      { status: 200 },
+      { status: 200 }
     )
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch game details" }, { status: 500 })
+    console.error(error)
+    return NextResponse.json(
+      { error: "Failed to fetch game details" },
+      { status: 500 }
+    )
   }
 }
