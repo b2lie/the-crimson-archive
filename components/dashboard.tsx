@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { GamesGallery } from "./games-gallery"
-import { AddGameForm } from "./add-game-form"
-import { CharacterBrowser } from "./character-browser"
-import { MapBrowser } from "./map-browser"
-import { MobBrowser } from "./mob-browser"
-import { AccountDetails } from "./account-details"
-import { DashboardHome } from "./dashboard-home"
+// Correcting relative imports to absolute imports using alias "@/components/"
+import { GamesGallery } from "@/components/games-gallery"
+import { AddGameForm } from "@/components/add-game-form"
+import { CharacterBrowser } from "@/components/character-browser"
+import { MapBrowser } from "@/components/map-browser"
+import { MobBrowser } from "@/components/mob-browser"
+import { AccountDetails } from "@/components/account-details"
+import { DashboardHome } from "@/components/dashboard-home"
 import { Menu, X } from "lucide-react"
 
 interface DashboardProps {
@@ -147,12 +148,12 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     }
   }
 
-  const handleAccountDetailsAdded = () => {
-    fetchAccountDetails()
-    setView("account")
+  const handleMapAdded = () => {
+    fetchMaps()
+    setView("maps")
   }
 
-    const fetchAccountDetails = async () => {
+  const fetchAccountDetails = async () => {
     try {
       const response = await fetch("/api/account")
       const data = await response.json()
@@ -172,9 +173,9 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     }
   }
 
-  const handleMapAdded = () => {
-    fetchMaps()
-    setView("maps")
+  const handleAccountDetailsAdded = () => {
+    fetchAccountDetails()
+    setView("account")
   }
 
   const navItems = [
@@ -185,6 +186,12 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     { id: "maps", label: "Maps" },
     { id: "mobs", label: "Mobs" },
   ]
+
+  // Logic to ensure a clean display name is always shown.
+  // Use the username property, or fall back to the local part of the email.
+  const displayName = user.username && user.username.length > 0
+    ? user.username
+    : (user.email ? user.email.split('@')[0] : 'Account');
 
   return (
     <div className="min-h-screen bg-background">
@@ -208,7 +215,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
               onClick={() => { setView("account"); setMenuOpen(false); }}
               className="text-sm underline hover:opacity-80 transition-opacity"
             >
-              {user.username}
+              {displayName}
             </button>
 
             {/* 3. Hamburger Toggle (Always visible) */}

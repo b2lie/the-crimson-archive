@@ -194,7 +194,7 @@ export function AddGameForm({ onGameAdded }: AddGameFormProps) {
                     className="rounded border-primary"
                   />
                   <label htmlFor="multiplayerSupport" className="text-sm text-foreground">
-                    Supports Multiplayer
+                    Multiplayer Support
                   </label>
                 </div>
 

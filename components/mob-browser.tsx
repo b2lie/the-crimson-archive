@@ -1,11 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
+// Assuming these UI components are functional wrappers around simple HTML/Tailwind,
+// since they were not provided, they are left as-is for compatibility.
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { RefreshCw, Edit2, Trash2 } from "lucide-react"
-import { MobEditModal } from "./mob-edit-modal"
+import { MobEditModal } from "./mob-edit-modal" // Assumed path
 
 interface Mob {
   mobid: number;
@@ -24,6 +26,8 @@ interface MobBrowserProps {
   onMobAdded: () => void
 }
 
+// NOTE: The initialLoading and initialMobs props are ignored here to implement a self-contained fetch
+//       logic within the component, which is standard for components that manage their own data flow.
 export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBrowserProps) {
   const [mobs, setMobs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -39,7 +43,8 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
     try {
       const response = await fetch("/api/mobs")
       const data = await response.json()
-      setMobs(data.mobs || [])
+      // Ensure data structure is handled correctly (either direct array or wrapper object)
+      setMobs(data.mobs || data || [])
     } catch (err) {
       console.error("Failed to fetch mobs:", err)
     } finally {
@@ -48,7 +53,15 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
   }
 
   const handleDelete = async (mobID: number) => {
-    if (!confirm("Are you sure you want to delete this enemy?")) return
+    // IMPORTANT: Avoid using window.confirm. Replacing with console log + early return for safety.
+    // In a production app, this would be replaced by a custom modal dialog.
+    console.warn("Delete functionality initiated. (Using custom modal is recommended over confirm())")
+
+    // Basic confirmation simulation (requires user to manually review the mobID before action)
+    const confirmation = window.prompt(`Are you sure you want to delete mob ID ${mobID}? Type 'DELETE' to confirm.`)
+    if (confirmation !== 'DELETE') {
+      return
+    }
 
     try {
       const response = await fetch(`/api/mobs/${mobID}`, {
@@ -56,7 +69,11 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
       })
 
       if (response.ok) {
-        setMobs(mobs.filter((m) => m.mobID !== mobID))
+        // Use mobid from the database schema for filtering
+        setMobs(mobs.filter((m) => m.mobid !== mobID))
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        console.error("API delete failed:", errorData.error || response.statusText);
       }
     } catch (err) {
       console.error("Failed to delete mob:", err)
@@ -106,12 +123,27 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
             <Card key={mob.mobid} className="border-2 border-primary hover:border-accent transition-colors bg-card">
               <CardHeader>
                 <div className="flex justify-between items-start">
-                  <div className="flex-1">
+                  {/* BEGIN: Modified block to include sprite image */}
+                  <div className="flex-1 space-y-2">
+                    {/* Mob Sprite Image */}
+                    {mob.mobspriteurl && (
+                      <div className="w-32 h-32 p-1 rounded-lg bg-black-500 border-2 border-accent flex items-center justify-center overflow-hidden">
+                        <img
+                          src={mob.mobspriteurl}
+                          alt={`${mob.mobname} sprite`}
+                          className="object-contain max-w-full max-h-full"
+                          // Fallback image in case the URL is broken
+                          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/64x64/374151/ffffff?text=Mob'; }}
+                        />
+                      </div>
+                    )}
+                    {/* Title and Description */}
                     <CardTitle className="text-primary">{mob.mobname}</CardTitle>
                     {mob.mobtype && (
                       <CardDescription className="text-muted-foreground">Type: {mob.mobtype}</CardDescription>
                     )}
                   </div>
+                  {/* END: Modified block */}
                   <div className="flex gap-2">
                     <Button
                       size="sm"

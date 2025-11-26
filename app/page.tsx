@@ -5,8 +5,17 @@ import { createClient } from "@/lib/supabase/client"
 import { AuthForm } from "@/components/auth-form"
 import { Dashboard } from "@/components/dashboard"
 
+// Define the required User type
+interface User {
+  email: string
+  username: string
+  // Add the missing 'userid' property
+  userid: string 
+}
+
 export default function Home() {
-  const [user, setUser] = useState<{ email: string; username: string } | null>(null)
+  // Use the new User type
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -31,6 +40,8 @@ export default function Home() {
           setUser({
             email: supabaseUser.email || "",
             username: supabaseUser.user_metadata?.display_name || supabaseUser.email?.split("@")[0] || "User",
+            // Make sure to include the userid (which is the Supabase user's ID)
+            userid: supabaseUser.id, 
           })
         }
       } catch (error) {
@@ -49,6 +60,8 @@ export default function Home() {
         setUser({
           email: session.user.email || "",
           username: session.user.user_metadata?.display_name || session.user.email?.split("@")[0] || "User",
+          // Include the userid from the session
+          userid: session.user.id,
         })
       } else {
         setUser(null)
@@ -100,9 +113,14 @@ export default function Home() {
       ) : (
         <AuthForm
             onLoginSuccess={(userData) => {
+              // Assuming userData from AuthForm has an 'id' or 'userid' field
+              // You might need to adjust this logic based on what AuthForm actually returns
+              const userObject = userData as { email: string; id: string; username?: string };
               setUser({
-                email: userData.email,
-                username: (userData as { username?: string }).username ?? userData.email.split("@")[0] ?? "User",
+                email: userObject.email,
+                username: userObject.username ?? userObject.email.split("@")[0] ?? "User",
+                // Assuming the user ID is returned as 'id'
+                userid: userObject.id, 
               })
             }}
           />

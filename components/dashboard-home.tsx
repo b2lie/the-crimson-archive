@@ -2,7 +2,8 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Users, Map, Zap, Plus, Eye } from "lucide-react"
+// Imported User as UserIconPlaceholder for the character fallback
+import { Gamepad2, Users, Map, Zap, Plus, Eye, User as UserIconPlaceholder } from "lucide-react"
 
 interface DashboardHomeProps {
   games: any[]
@@ -65,9 +66,9 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
     <div className="space-y-8">
       {/* Hero Section */}
       <div className="bg-primary text-primary-foreground p-8 rounded-lg border-2 border-accent">
-        <h1 className="text-4xl font-bold mb-2">Welcome to Crimson Database</h1>
+        <h1 className="text-4xl font-bold mb-2">Welcome Page</h1>
         <p className="text-lg opacity-90">
-          Manage and explore your comprehensive gaming database with detailed character, map, and story arc information.
+          Add whatever you'd like here tbh. Maybe some news, updates, or quick links? Ur marzi.
         </p>
       </div>
 
@@ -138,15 +139,20 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => onNavigate("browse")}
               >
-                {game.gamecoverurl && (
-                  <div className="w-full h-32 bg-muted overflow-hidden rounded-t">
+                {/* MODIFIED: Game Logo Display (object-contain for full fit) */}
+                <div className="w-full h-40 overflow-hidden rounded-t flex items-center justify-center p-4">
+                  {game.gamelogourl ? (
                     <img
-                      src={game.gamecoverurl || "/placeholder.svg"}
+                      src={game.gamelogourl} // Changed from gamecoverurl to gamelogourl
                       alt={game.title}
-                      className="w-full h-full object-cover"
+                      className="object-contain max-w-full max-h-full" // Use object-contain
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/160x160/292524/ffffff?text=Logo'; }} // Fallback
                     />
-                  </div>
-                )}
+                  ) : (
+                    <Gamepad2 className="w-16 h-16 text-muted-foreground" /> // Placeholder icon
+                  )}
+                </div>
+                {/* END MODIFIED */}
                 <CardHeader>
                   <CardTitle className="text-primary line-clamp-1">{game.title}</CardTitle>
                   <CardDescription className="text-muted-foreground">
@@ -181,11 +187,20 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => onNavigate("characters")}
               >
-                {char.spriteurl && (
-                  <div className="w-full h-32 bg-muted overflow-hidden rounded-t">
-                    <img src={char.spriteurl || "/placeholder.svg"} alt={char.name} className="w-full h-full object-cover" />
-                  </div>
-                )}
+                {/* MODIFIED: Character Sprite Display (fixed height, object-contain for sprites) */}
+                <div className="w-full h-40 overflow-hidden rounded-t flex items-center justify-center p-4">
+                  {char.spriteurl ? (
+                    <img
+                      src={char.spriteurl}
+                      alt={char.name}
+                      className="object-contain max-w-full max-h-full" // Use object-contain
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/160x160/292524/ffffff?text=Char'; }} // Fallback
+                    />
+                  ) : (
+                    <UserIconPlaceholder className="w-16 h-16 text-muted-foreground" /> // Placeholder icon
+                  )}
+                </div>
+                {/* END MODIFIED */}
                 <CardHeader>
                   <CardTitle className="text-primary line-clamp-1">{char.name}</CardTitle>
                   <CardDescription className="text-muted-foreground">
@@ -201,26 +216,7 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
         </div>
       )}
 
-
-      {/* Navigation Help */}
-      <Card className="border-2 border-primary bg-primary/5">
-        <CardHeader>
-          <CardTitle className="text-primary">Navigation Guide</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2 text-sm">
-          <p>
-            <span className="font-bold text-primary">Browse Games:</span> View all games with detailed information and
-            expand to see related entities.
-          </p>
-          <p>
-            <span className="font-bold text-primary">Add Game:</span> Create new game entries and manage characters,
-            maps, and story arcs using tabbed forms.
-          </p>
-          <p>
-            <span className="font-bold text-primary">Characters, Maps, Enemies:</span> Browse and manage individual
-            entities with search and edit functionality.
-          </p>
-        </CardContent>
+      <Card className="border-0 border-primary bg-primary/5">
       </Card>
     </div>
   )
