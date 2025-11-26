@@ -1,16 +1,13 @@
-[00:00:01.728] Server  LOG      ✓ Ready in 1228ms
-[00:00:04.833] Server  LOG      ○ Compiling / ...
-[00:00:07.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:09.669] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:09.870] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:37.446] Server  LOG      ✓ Compiled in 148ms
-[00:00:40.403] Server  LOG      ✓ Compiled in 85ms
-[00:07:13.558] Server  LOG      ✓ Compiled in 289ms
-[00:15:16.142] Server  ERROR   Supabase POST Error: "User b031fa73-c82d-4143-ae5f-fbe129a8858c has already rated game 2" null
-[00:15:25.956] Server  ERROR   Supabase POST Error: "User b031fa73-c82d-4143-ae5f-fbe129a8858c has already rated game 1" null
-[00:15:28.815] Server  ERROR   Supabase POST Error: "User b031fa73-c82d-4143-ae5f-fbe129a8858c has already rated game 3" null
-[00:15:36.412] Browser WARN    Please confirm deletion by clicking the trash icon again.
-[00:15:50.169] Server  ERROR   Supabase POST Error: "User b031fa73-c82d-4143-ae5f-fbe129a8858c has already rated game 2" null
-[00:16:48.800] Server  LOG      ✓ Compiled in 163ms
-[00:16:55.770] Server  LOG      ✓ Compiled in 198ms
-[00:17:09.457] Server  LOG      ✓ Compiled in 170ms
+[00:00:01.925] Server  LOG      ✓ Ready in 1249ms
+[00:00:05.051] Server  LOG      ○ Compiling / ...
+[00:00:10.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.486] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:12.795] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:14.738] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `RatingsBrowser`. 
+[00:01:30.658] Server  LOG      ✓ Compiled in 101ms
+[00:01:37.965] Server  LOG      ✓ Compiled in 101ms
+[00:01:45.457] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:45.890] Server  LOG     fetched games: [{...},{...},{...}]
+[00:01:46.144] Server  LOG     fetched games: [{...},{...},{...}]

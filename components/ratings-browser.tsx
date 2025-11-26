@@ -4,10 +4,16 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { RefreshCw, Edit2, Trash2, Star, User } from "lucide-react"
+import { RefreshCw, Edit2, Trash2, Star, User, PlusCircleIcon, MessageCircle, Mail, MailPlus } from "lucide-react"
 import { RatingEditModal } from "./rating-edit-modal"
-import { GameDetailModal } from "./game-detail-modal"
 import { RatingForm } from "./rating-form"
+
+interface RatingBrowserProps {
+    ratings?: any[]
+    loading?: boolean
+    onRefresh?: () => void
+    onAddRating?: () => void
+}
 
 // FIX: Updated interface to match API response structure (e.g., 'games' instead of 'game')
 interface Rating {
@@ -28,13 +34,12 @@ interface Rating {
     }
 }
 
-export function RatingsBrowser() {
-    const [ratings, setRatings] = useState<Rating[]>([])
-    const [loading, setLoading] = useState(true)
+export function RatingsBrowser({ ratings: initialRatings = [], loading: initialLoading = false, onRefresh, onAddRating }: RatingBrowserProps) {
+    const [ratings, setRatings] = useState<Rating[]>(initialRatings)
+    const [loading, setLoading] = useState(initialLoading)
     const [searchTerm, setSearchTerm] = useState("")
     const [addOpen, setAddOpen] = useState(false)
     const [selectedRating, setSelectedRating] = useState<Rating | null>(null)
-    const [selectedGameId, setSelectedGameId] = useState<number | null>(null)
     const [deletionConfirmed, setDeletionConfirmed] = useState(false) // Custom confirmation state
 
     useEffect(() => {
@@ -57,7 +62,6 @@ export function RatingsBrowser() {
     // Replaced window.confirm
     const handleDelete = async (ratingId: number) => {
         if (!deletionConfirmed) {
-            // In a real app, this would open a custom modal for confirmation
             console.warn("Please confirm deletion by clicking the trash icon again.")
             setDeletionConfirmed(true);
             return;
@@ -91,7 +95,10 @@ export function RatingsBrowser() {
                     ratings <Star size={20} className="text-yellow-400" />
                 </h1>
                 <div className="flex gap-2">
-                    <Button onClick={() => setAddOpen(true)}>add rating</Button>
+                    <Button onClick={() => setAddOpen(true)}>
+                        <MailPlus size={16} />
+                            add rating
+                    </Button>
                     <Button onClick={fetchRatings} disabled={loading}>
                         <RefreshCw className={loading ? "animate-spin mr-2" : "mr-2"} size={16} />
                         refresh
@@ -131,8 +138,8 @@ export function RatingsBrowser() {
                 </Card>
             ) : (
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {filteredRatings.map((rating) => (
-                        <Card key={rating.ratingid} className="transition hover:shadow-md">
+                    {filteredRatings.map((rating, index) => (
+                        <Card key={index} className="transition hover:shadow-md">
                             <CardHeader className="flex flex-col gap-1">
                                 {/* CRITICAL FIX: Access 'games.title' */}
                                 <CardTitle>{rating.games?.title || "Unknown Game"}</CardTitle>
@@ -151,9 +158,6 @@ export function RatingsBrowser() {
                                 <div className="flex justify-between pt-2">
                                     <Button size="sm" variant="outline" onClick={() => setSelectedRating(rating)}>
                                         <Edit2 size={14} />
-                                    </Button>
-                                    <Button size="sm" variant="secondary" onClick={() => setSelectedGameId(rating.games?.gameid || null)}>
-                                        details
                                     </Button>
                                     <Button
                                         size="sm"
@@ -177,13 +181,6 @@ export function RatingsBrowser() {
                         fetchRatings()
                         setSelectedRating(null)
                     }}
-                />
-            )}
-
-            {selectedGameId !== null && (
-                <GameDetailModal
-                    gameId={selectedGameId}
-                    onClose={() => setSelectedGameId(null)}
                 />
             )}
         </div>

@@ -1,0 +1,3 @@
+{
+  "/api/clips/[clipId]/route": "app/api/clips/[clipId]/route.js"
+}

@@ -119,6 +119,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/clips/[clipId]/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/clips/[clipId]">> = Specific
+  const handler = {} as typeof import("../../../app/api/clips/[clipId]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/clips/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/clips">> = Specific
+  const handler = {} as typeof import("../../../app/api/clips/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/games/[gameId]/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/games/[gameId]">> = Specific

@@ -6535,8 +6535,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user.js [app-client] (ecmascript) <export default as User>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MailPlus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/mail-plus.js [app-client] (ecmascript) <export default as MailPlus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$rating$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/rating-edit-modal.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$game$2d$detail$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/game-detail-modal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$rating$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/rating-form.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -6548,15 +6548,13 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-;
-function RatingsBrowser() {
+function RatingsBrowser({ ratings: initialRatings = [], loading: initialLoading = false, onRefresh, onAddRating }) {
     _s();
-    const [ratings, setRatings] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [ratings, setRatings] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(initialRatings);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(initialLoading);
     const [searchTerm, setSearchTerm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [addOpen, setAddOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedRating, setSelectedRating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [selectedGameId, setSelectedGameId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [deletionConfirmed, setDeletionConfirmed] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false) // Custom confirmation state
     ;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -6579,7 +6577,6 @@ function RatingsBrowser() {
     // Replaced window.confirm
     const handleDelete = async (ratingId)=>{
         if (!deletionConfirmed) {
-            // In a real app, this would open a custom modal for confirmation
             console.warn("Please confirm deletion by clicking the trash icon again.");
             setDeletionConfirmed(true);
             return;
@@ -6616,13 +6613,13 @@ function RatingsBrowser() {
                                 className: "text-yellow-400"
                             }, void 0, false, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 91,
+                                lineNumber: 95,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ratings-browser.tsx",
-                        lineNumber: 90,
+                        lineNumber: 94,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6630,10 +6627,19 @@ function RatingsBrowser() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                 onClick: ()=>setAddOpen(true),
-                                children: "add rating"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MailPlus$3e$__["MailPlus"], {
+                                        size: 16
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ratings-browser.tsx",
+                                        lineNumber: 99,
+                                        columnNumber: 25
+                                    }, this),
+                                    "add rating"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 94,
+                                lineNumber: 98,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6645,20 +6651,20 @@ function RatingsBrowser() {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/components/ratings-browser.tsx",
-                                        lineNumber: 96,
+                                        lineNumber: 103,
                                         columnNumber: 25
                                     }, this),
                                     "refresh"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 95,
+                                lineNumber: 102,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ratings-browser.tsx",
-                        lineNumber: 93,
+                        lineNumber: 97,
                         columnNumber: 17
                     }, this),
                     addOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6671,7 +6677,7 @@ function RatingsBrowser() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 103,
+                                lineNumber: 110,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6680,19 +6686,19 @@ function RatingsBrowser() {
                                 children: "cancel"
                             }, void 0, false, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 109,
+                                lineNumber: 116,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ratings-browser.tsx",
-                        lineNumber: 102,
+                        lineNumber: 109,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ratings-browser.tsx",
-                lineNumber: 89,
+                lineNumber: 93,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -6701,7 +6707,7 @@ function RatingsBrowser() {
                 onChange: (e)=>setSearchTerm(e.target.value)
             }, void 0, false, {
                 fileName: "[project]/components/ratings-browser.tsx",
-                lineNumber: 120,
+                lineNumber: 127,
                 columnNumber: 13
             }, this),
             filteredRatings.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -6710,16 +6716,16 @@ function RatingsBrowser() {
                     children: "no ratings found."
                 }, void 0, false, {
                     fileName: "[project]/components/ratings-browser.tsx",
-                    lineNumber: 128,
+                    lineNumber: 135,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ratings-browser.tsx",
-                lineNumber: 127,
+                lineNumber: 134,
                 columnNumber: 17
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
-                children: filteredRatings.map((rating)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                children: filteredRatings.map((rating, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
                         className: "transition hover:shadow-md",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
@@ -6729,7 +6735,7 @@ function RatingsBrowser() {
                                         children: rating.games?.title || "Unknown Game"
                                     }, void 0, false, {
                                         fileName: "[project]/components/ratings-browser.tsx",
-                                        lineNumber: 138,
+                                        lineNumber: 145,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -6740,7 +6746,7 @@ function RatingsBrowser() {
                                                 className: "mr-1"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ratings-browser.tsx",
-                                                lineNumber: 140,
+                                                lineNumber: 147,
                                                 columnNumber: 37
                                             }, this),
                                             "By: ",
@@ -6748,7 +6754,7 @@ function RatingsBrowser() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/ratings-browser.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 146,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -6759,13 +6765,13 @@ function RatingsBrowser() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/ratings-browser.tsx",
-                                        lineNumber: 143,
+                                        lineNumber: 150,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 136,
+                                lineNumber: 143,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -6776,7 +6782,7 @@ function RatingsBrowser() {
                                         children: rating.review || "no review written"
                                     }, void 0, false, {
                                         fileName: "[project]/components/ratings-browser.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 155,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6790,22 +6796,12 @@ function RatingsBrowser() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/ratings-browser.tsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 160,
                                                     columnNumber: 41
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ratings-browser.tsx",
-                                                lineNumber: 152,
-                                                columnNumber: 37
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                size: "sm",
-                                                variant: "secondary",
-                                                onClick: ()=>setSelectedGameId(rating.games?.gameid || null),
-                                                children: "details"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/ratings-browser.tsx",
-                                                lineNumber: 155,
+                                                lineNumber: 159,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6816,35 +6812,35 @@ function RatingsBrowser() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/ratings-browser.tsx",
-                                                    lineNumber: 163,
+                                                    lineNumber: 167,
                                                     columnNumber: 41
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ratings-browser.tsx",
-                                                lineNumber: 158,
+                                                lineNumber: 162,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/ratings-browser.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 158,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/ratings-browser.tsx",
-                                lineNumber: 147,
+                                lineNumber: 154,
                                 columnNumber: 29
                             }, this)
                         ]
-                    }, rating.ratingid, true, {
+                    }, index, true, {
                         fileName: "[project]/components/ratings-browser.tsx",
-                        lineNumber: 135,
+                        lineNumber: 142,
                         columnNumber: 25
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/ratings-browser.tsx",
-                lineNumber: 133,
+                lineNumber: 140,
                 columnNumber: 17
             }, this),
             selectedRating && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$rating$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["RatingEditModal"], {
@@ -6856,25 +6852,17 @@ function RatingsBrowser() {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/ratings-browser.tsx",
-                lineNumber: 173,
-                columnNumber: 17
-            }, this),
-            selectedGameId !== null && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$game$2d$detail$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GameDetailModal"], {
-                gameId: selectedGameId,
-                onClose: ()=>setSelectedGameId(null)
-            }, void 0, false, {
-                fileName: "[project]/components/ratings-browser.tsx",
-                lineNumber: 184,
+                lineNumber: 177,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ratings-browser.tsx",
-        lineNumber: 88,
+        lineNumber: 92,
         columnNumber: 9
     }, this);
 }
-_s(RatingsBrowser, "Bzc51d8034JuoUZEaq/NwZQKkdA=");
+_s(RatingsBrowser, "25k9hVM5DHhRBYbs05n9W2Xc0G4=");
 _c = RatingsBrowser;
 var _c;
 __turbopack_context__.k.register(_c, "RatingsBrowser");
