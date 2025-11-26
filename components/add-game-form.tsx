@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CharacterForm } from "./character-form"
 import { MapForm } from "./map-form"
 import { MobForm } from "./mob-form"
-import { StoryArcForm } from "./story-arc-form"
+// import { StoryArcForm } from "./story-arc-form"
 
 interface AddGameFormProps {
   onGameAdded: () => void
@@ -228,9 +228,9 @@ export function AddGameForm({ onGameAdded }: AddGameFormProps) {
             </TabsContent>
 
             {/* Story Arcs Tab */}
-            <TabsContent value="storyarcs" className="mt-4">
+            {/* <TabsContent value="storyarcs" className="mt-4">
               <StoryArcForm />
-            </TabsContent>
+            </TabsContent> */}
           </Tabs>
         </CardContent>
       </Card>

@@ -13,10 +13,11 @@ interface GameDetailModalProps {
 export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
   const [expandedSections, setExpandedSections] = useState({
     overview: true,
-    characters: true,
+    characters: false,
     maps: false,
     mobs: false,
     storyArcs: false,
+    contributors: false
   })
   const [gameData, setGameData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
@@ -31,16 +32,17 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
       setLoading(true)
       setError(false)
       try {
+        console.log(`Fetching game details for game ID: ${gameId}`)
         const res = await fetch(`/api/games/${gameId}`)
         if (!res.ok) throw new Error("Failed to fetch")
         const data = await res.json()
         setGameData({
           ...data,
-          characters: data.characters || [],
+          characters: data.games_characters || [],
           maps: data.maps || [],
           mobs: data.mobs || [],
-          storyArcs: data.storyArcs || [],
-          contributors: data.contributors || [],
+          storyArcs: data.storyarcs || [],
+          contributors: data.games_contributors || [],
         })
       } catch (err) {
         console.error(err)
@@ -126,12 +128,15 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
           </div>
 
           {/* Characters */}
-          <Section title="Characters" items={gameData.characters} expanded={expandedSections.characters} toggle={() => toggleSection("characters")} renderItem={(char: any) => (
-            <div key={char.characterid} className="p-2 bg-muted rounded">
-              <p className="font-semibold text-foreground">{char.charactername}</p>
-              <p className="text-sm text-muted-foreground">{char.backstory}</p>
-            </div>
-          )} />
+          <Section title="Characters" items={gameData.characters} expanded={expandedSections.characters} toggle={() => toggleSection("characters")} renderItem={(bridgeItem: any) => {
+            const char = bridgeItem.ingamecharacters || {};
+            return (
+              <div key={char.characterid} className="p-2 bg-muted rounded">
+                <p className="font-semibold text-foreground">{char.charactername}</p>
+                <p className="text-sm text-muted-foreground">{char.backstory}</p>
+              </div>
+            );
+          }} />
 
           {/* Maps */}
           <Section title="Maps" items={gameData.maps} expanded={expandedSections.maps} toggle={() => toggleSection("maps")} renderItem={(map: any) => (
@@ -169,18 +174,20 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
           )} />
 
           {/* Contributors */}
-          <Section title="Contributors" items={gameData.contributors} expanded={true} toggle={() => {}} renderItem={(contrib: any, idx: number) => (
-            <div key={idx} className="p-2 bg-muted rounded">
-              <p className="font-semibold text-foreground">{contrib.contributorname}</p>
-              <div className="flex gap-2 text-xs mt-1">
-                <span className="text-muted-foreground">{contrib.rolename}</span>
-                {contrib.specialization && <>
-                  <span className="text-muted-foreground">•</span>
-                  <span className="text-muted-foreground">{contrib.specialization}</span>
-                </>}
+          <Section title="Contributors" items={gameData.contributors} expanded={expandedSections.contributors} toggle={() => toggleSection("contributors")} renderItem={(bridgeItem: any) => {
+            const contrib = bridgeItem.contributors || {};
+            return (
+              <div key={contrib.contributorid} className="p-2 bg-muted rounded">
+                <p className="font-semibold text-foreground">{contrib.contributorname}</p>
+                <div className="flex gap-2 text-xs mt-1">
+                  <span className="text-muted-foreground">{contrib.rolename}</span>
+                  {contrib.specialization && <>
+                    <span className="text-muted-foreground">{contrib.specialization}</span>
+                  </>}
+                </div>
               </div>
-            </div>
-          )} />
+            );
+          }} />
 
           <Button
             onClick={onClose}

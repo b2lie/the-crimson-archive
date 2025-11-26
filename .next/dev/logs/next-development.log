@@ -1,5 +1,103 @@
-[00:00:01.668] Server  LOG      ✓ Ready in 1102ms
-[00:00:09.085] Server  ERROR   D:\the-crimson-archive\.next\dev\server\chunks\[root-of-the-server]__de7d48ab._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:00:09.126] Server  ERROR   D:\the-crimson-archive\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:00:09.129] Server  ERROR   D:\the-crimson-archive\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:00:09.132] Server  ERROR   Error: Missing Supabase URL and keys
+[00:00:01.586] Server  LOG      ✓ Ready in 1025ms
+[00:00:04.632] Server  LOG      ○ Compiling / ...
+[00:00:07.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.746] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:10.090] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:10.189] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:11.674] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:12.978] Browser LOG     Fetching game details for game ID: 1
+[00:00:12.978] Browser LOG     Fetching game details for game ID: 1
+[00:00:13.915] Server  LOG     Received params: {}
+[00:00:13.917] Server  LOG     Fetching game with ID: 1
+[00:00:13.918] Server  LOG     Raw gameId parameter: "1"
+[00:00:14.389] Server  LOG     Received params: {}
+[00:00:14.390] Server  LOG     Fetching game with ID: 1
+[00:00:14.392] Server  LOG     Raw gameId parameter: "1"
+[00:00:54.497] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:54.775] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{lazyData:null, ...}}>
+                    <__next_viewport_boundary__>
+                    <Next.Metadata>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="dark">
+                          <body
+                            className="font-sans antialiased"
+-                           __processed_a7e9f337-26f2-46a4-b8b8-15ad76e8cd7f__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6Im5pbWxtZWpibW5lY25hZ2hnbWJhaG1iYWRk..."
+                          >
+                            ...
+                              <ClientPageRoot Component={function Home} serverProvidedParams={{...}}>
+                                <Home params={Promise} searchParams={Promise}>
+                                  <main className="min-h-scre...">
+                                    <div
+                                      className="text-center"
+-                                     bis_skin_checked="1"
+                                    >
+                                      <div
+                                        className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-..."
+-                                       bis_skin_checked="1"
+                                      >
+                                      ...
+                  ...
+
+[00:00:55.390] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:55.643] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:57.664] Server  LOG     Received params: {}
+[00:00:57.666] Server  LOG     Fetching game with ID: 1
+[00:00:57.668] Server  LOG     Raw gameId parameter: "1"
+[00:00:57.736] Browser LOG     Fetching game details for game ID: 1
+[00:00:57.736] Browser LOG     Fetching game details for game ID: 1
+[00:00:57.941] Server  LOG     Received params: {}
+[00:00:57.942] Server  LOG     Fetching game with ID: 1
+[00:00:57.967] Server  LOG     Raw gameId parameter: "1"
+[00:01:55.918] Server  LOG      ✓ Compiled in 164ms
+[00:01:56.418] Server  LOG     Received params: {}
+[00:01:56.420] Server  LOG     Fetching game with ID: 1
+[00:01:56.421] Server  LOG     Raw gameId parameter: "1"
+[00:01:56.989] Browser LOG     Fetching game details for game ID: 1
+[00:02:06.124] Server  LOG      ✓ Compiled in 95ms
+[00:02:06.142] Server  LOG     Received params: {}
+[00:02:06.148] Server  LOG     Fetching game with ID: 1
+[00:02:06.149] Server  LOG     Raw gameId parameter: "1"
+[00:02:06.795] Browser LOG     Fetching game details for game ID: 1
+[00:02:09.660] Server  LOG     Received params: {}
+[00:02:09.663] Server  LOG     Fetching game with ID: 1
+[00:02:09.664] Server  LOG     Raw gameId parameter: "1"
+[00:02:09.676] Server  LOG      ✓ Compiled in 78ms
+[00:02:09.787] Browser LOG     Fetching game details for game ID: 1
+[00:02:10.551] Server  LOG      ✓ Compiled in 181ms
+[00:02:10.724] Server  LOG     Received params: {}
+[00:02:10.725] Server  LOG     Fetching game with ID: 1
+[00:02:10.726] Server  LOG     Raw gameId parameter: "1"
+[00:02:11.790] Browser LOG     Fetching game details for game ID: 1
+[00:03:08.724] Server  LOG      ✓ Compiled in 87ms

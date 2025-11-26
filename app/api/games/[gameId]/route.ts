@@ -3,9 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: { gameId?: string } } // make optional
+  { params }: { params: { gameId?: string | Promise<string> } } // make optional
 ) {
-  const gameIdStr = params.gameId;
+  let resolvedParams = await params;
+  console.log("Received params:", resolvedParams);
+  const gameIdStr = resolvedParams.gameId;
   const gameId = Number(gameIdStr);
 
   console.log("Fetching game with ID:", gameId);
@@ -21,11 +23,11 @@ export async function GET(
     .from("games")
     .select(`
       *,
-      characters(*),
+      games_characters(ingamecharacters(*)),
       maps(*),
       mobs(*),
-      storyArcs(*),
-      contributors(*)
+      storyarcs(*),
+      games_contributors(contributors(*))
     `)
     .eq("gameid", gameId)
     .single();

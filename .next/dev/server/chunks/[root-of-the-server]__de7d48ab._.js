@@ -45,13 +45,12 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@supabase/supabase-js/dist/module/index.js [app-route] (ecmascript) <locals>");
 ;
 async function createClient() {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseUrl = ("TURBOPACK compile-time value", "https://fhyxpygukzrvwdhojlis.supabase.co");
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!supabaseUrl || !supabaseServiceKey) {
-        const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-        if (!supabaseUrl || !anonKey) {
-            throw new Error("Missing Supabase URL and keys");
-        }
+        const anonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZoeXhweWd1a3pydndkaG9qbGlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MTg5MzcsImV4cCI6MjA3OTQ5NDkzN30.16w4I3UEZBPn6TqShKS0VzUibCqY7H7mRBX9S8jU0H4");
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
         return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, anonKey);
     }
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseServiceKey);
@@ -74,112 +73,38 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 ;
 ;
-async function GET(request, { params }) {
-    const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
-    const gameId = Number(params.gameId);
-    console.log("[API] requested gameID:", gameId);
-    try {
-        // 1️⃣ fetch main game first
-        const { data: game, error: gameError } = await supabase.from("games").select("*").eq("gameid", gameId).single();
-        if (gameError || !game) {
-            console.error("[API] game not found:", gameError);
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Game not found"
-            }, {
-                status: 404
-            });
-        }
-        // 2️⃣ fetch related tables safely
-        const [{ data: charactersRaw }, { data: mapsRaw }, { data: mobsRaw }, { data: arcsRaw }, { data: contributorsRaw }] = await Promise.all([
-            supabase.from("games_characters").select(`
-          characterid,
-          ingamecharacters (
-            characterName,
-            backstory,
-            englishVA,
-            japaneseVA,
-            motionCapture,
-            description,
-            spriteURL
-          )
-        `).eq("gameid", gameId).maybeSingle(),
-            supabase.from("maps").select(`
-          mapid,
-          mapname,
-          floorname,
-          description,
-          mapurl
-        `).eq("gameid", gameId),
-            supabase.from("mobs").select(`
-          mobid,
-          mobname,
-          mobtype,
-          description,
-          weakness,
-          mobspriteurl,
-          spawnnotes
-        `).eq("gameid", gameId),
-            supabase.from("storyarcs").select(`
-          storyarcid,
-          parentarcid,
-          arctitle,
-          arcorder,
-          summary,
-          description,
-          ismainarc
-        `).eq("gameid", gameId),
-            supabase.from("games_contributors").select(`
-          contributorid,
-          roleid,
-          contributors (
-            contributorName,
-            specialization
-          ),
-          roles (
-            roleName
-          )
-        `).eq("gameid", gameId)
-        ]);
-        // 3️⃣ map characters safely
-        const characters = (charactersRaw ? [
-            charactersRaw
-        ] : []).map((c)=>({
-                characterID: c.characterid,
-                characterName: c.ingamecharacters?.characterName || "Unknown",
-                backstory: c.ingamecharacters?.backstory || ""
-            }));
-        // 4️⃣ map contributors safely
-        const contributors = (contributorsRaw || []).map((c)=>({
-                contributorID: c.contributorid,
-                contributorName: c.contributors?.contributorName || "Unknown",
-                specialization: c.contributors?.specialization || "",
-                role: c.roles?.roleName || ""
-            }));
-        // 5️⃣ return safe JSON
+async function GET(req, { params } // make optional
+) {
+    let resolvedParams = await params;
+    console.log("Received params:", resolvedParams);
+    const gameIdStr = resolvedParams.gameId;
+    const gameId = Number(gameIdStr);
+    console.log("Fetching game with ID:", gameId);
+    console.log("Raw gameId parameter:", gameIdStr);
+    if (!gameIdStr || isNaN(gameId)) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            gameID: game.gameid,
-            title: game.title,
-            plotSummary: game.plotsummary || "",
-            releaseDate: game.releasedate,
-            gameCoverURL: game.gamecoverurl || "",
-            gameLogoURL: game.gamelogourl || "",
-            multiplayerSupport: game.multiplayersupport || false,
-            characters,
-            maps: mapsRaw || [],
-            mobs: mobsRaw || [],
-            storyArcs: arcsRaw || [],
-            contributors
+            error: "Invalid game ID"
         }, {
-            status: 200
-        });
-    } catch (error) {
-        console.error("[API] Failed to fetch game details:", error);
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to fetch game details"
-        }, {
-            status: 500
+            status: 400
         });
     }
+    const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
+    const { data, error } = await supabase.from("games").select(`
+      *,
+      games_characters(ingamecharacters(*)),
+      maps(*),
+      mobs(*),
+      storyarcs(*),
+      games_contributors(contributors(*))
+    `).eq("gameid", gameId).single();
+    if (error || !data) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: error?.message || "Game not found"
+        }, {
+            status: 404
+        });
+    }
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data);
 }
 }),
 ];

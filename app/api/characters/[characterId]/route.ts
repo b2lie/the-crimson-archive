@@ -1,13 +1,13 @@
 import { createClient } from "@/lib/supabase/server"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(request: NextRequest, { params }: { params: { characterId: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ characterId: string }> }) {
   try {
-    const supabase = await createClient()
-    const characterId = Number(params.characterId)
+    const supabase = await createClient() 
+    const characterId = Number((await params).characterId)
 
     const { data: character, error } = await supabase
-      .from("characters")
+      .from("ingamecharacters")
       .select("*")
       .eq("characterid", characterId)
       .single()
