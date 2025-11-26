@@ -1,91 +1,191 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { RefreshCw } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { RefreshCw, Edit2, Trash2, Star, User } from "lucide-react"
+import { RatingEditModal } from "./rating-edit-modal"
 import { GameDetailModal } from "./game-detail-modal"
+import { RatingForm } from "./rating-form"
 
-interface RatingsBrowserProps {
-  ratings: any[]
-  loading: boolean
-  onRefresh: () => void
-  onAddRating: () => void
+// FIX: Updated interface to match API response structure (e.g., 'games' instead of 'game')
+interface Rating {
+    ratingid: number
+    rating?: number
+    review?: string
+    reviewtimestamp?: string
+    personalbest?: string
+
+    // CRITICAL FIX: The nested object key must match the table name used in the API join.
+    games: { // Assuming your games table is aliased/referenced as 'games'
+        gameid: number // Assuming 'id' is the primary key of the games table
+        title: string
+    }
+    users?: { // Optional user data
+        username?: string
+        // Add other user fields if needed
+    }
 }
 
-export function RatingsBrowser({ ratings, loading, onRefresh, onAddRating }: RatingsBrowserProps) {
-  const [selectedGameId, setSelectedGameId] = useState<number | null>(null)
+export function RatingsBrowser() {
+    const [ratings, setRatings] = useState<Rating[]>([])
+    const [loading, setLoading] = useState(true)
+    const [searchTerm, setSearchTerm] = useState("")
+    const [addOpen, setAddOpen] = useState(false)
+    const [selectedRating, setSelectedRating] = useState<Rating | null>(null)
+    const [selectedGameId, setSelectedGameId] = useState<number | null>(null)
+    const [deletionConfirmed, setDeletionConfirmed] = useState(false) // Custom confirmation state
 
-  if (loading) {
+    useEffect(() => {
+        fetchRatings()
+    }, [])
+
+    const fetchRatings = async () => {
+        setLoading(true)
+        try {
+            const res = await fetch("/api/ratings")
+            const data = await res.json()
+            setRatings(data.ratings || [])
+        } catch (err) {
+            console.error("failed to fetch ratings:", err)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    // Replaced window.confirm
+    const handleDelete = async (ratingId: number) => {
+        if (!deletionConfirmed) {
+            // In a real app, this would open a custom modal for confirmation
+            console.warn("Please confirm deletion by clicking the trash icon again.")
+            setDeletionConfirmed(true);
+            return;
+        }
+
+        try {
+            const res = await fetch(`/api/ratings/${ratingId}`, { method: "DELETE" })
+            if (res.ok) {
+                setRatings((prev) => prev.filter((r) => r.ratingid !== ratingId))
+            } else {
+                console.error("failed to delete rating:", await res.json());
+            }
+        } catch (err) {
+            console.error("failed to delete rating:", err)
+        } finally {
+            setDeletionConfirmed(false);
+        }
+    }
+
+    const filteredRatings = ratings
+        .sort((a, b) => (b.ratingid || 0) - (a.ratingid || 0))
+        .filter((r) =>
+            // CRITICAL FIX: Access 'games.title' instead of 'game.title'
+            (r.games?.title || "").toLowerCase().includes(searchTerm.toLowerCase())
+        )
+
     return (
-      <div className="flex items-center justify-center min-h-96">
-        <p className="text-lg text-muted-foreground">Loading games...</p>
-      </div>
-    )
-  }
+        <div className="space-y-8 p-6">
+            <div className="flex justify-between items-center pb-4 border-b">
+                <h1 className="text-3xl font-bold flex items-center gap-2">
+                    ratings <Star size={20} className="text-yellow-400" />
+                </h1>
+                <div className="flex gap-2">
+                    <Button onClick={() => setAddOpen(true)}>add rating</Button>
+                    <Button onClick={fetchRatings} disabled={loading}>
+                        <RefreshCw className={loading ? "animate-spin mr-2" : "mr-2"} size={16} />
+                        refresh
+                    </Button>
+                </div>
 
-  return (
-    <>
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-primary">Game Database</h1>
-          <Button onClick={onRefresh} className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <RefreshCw size={20} className="mr-2" />
-            Refresh
-          </Button>
-        </div>
-
-        {games.length === 0 ? (
-          <Card className="border-2 border-primary bg-card">
-            <CardContent className="pt-6 text-center">
-              <p className="text-muted-foreground">No games found. Add one to get started!</p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {games.map((game) => (
-              <Card
-                key={game.gameid}
-                className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
-                onClick={() => setSelectedGameId(game.gameid)}
-              >
-                {game.gamecoverurl && (
-                  <div className="w-full bg-muted overflow-hidden rounded-t relative">
-                    <div className="pb-[133.33%] leading-none"></div>
-                    <img
-                      src={game.gamecoverurl || "/placeholder.svg"}
-                      alt={game.title}
-                      className="object-cover absolute inset-0 rounded-t"
-                    />
-                  </div>
+                {addOpen && (
+                    <div className="p-4 mt-4 border-2 border-primary rounded bg-primary/5">
+                        <RatingForm
+                            onSave={() => {
+                                fetchRatings()
+                                setAddOpen(false)
+                            }}
+                        />
+                        <Button
+                            onClick={() => setAddOpen(false)}
+                            className="mt-2 w-full bg-accent text-accent-foreground border-2 border-accent hover:bg-accent/90"
+                        >
+                            cancel
+                        </Button>
+                    </div>
                 )}
 
-                <CardHeader>
-                  <CardTitle className="text-primary">{game.title}</CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    Released: {new Date(game.releasedate).getFullYear()}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <p className="text-sm">{game.plotsummary}</p>
-                  <div className="flex gap-2 flex-wrap">
-                    <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">
-                      {game.multiplayersupport ? "Multiplayer" : "Single Player"}
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
+            </div>
 
-      {selectedGameId && (
-        <GameDetailModal
-          gameId={selectedGameId}
-          onClose={() => setSelectedGameId(null)}
-        />
-      )}
-    </>
-  )
+            <Input
+                placeholder="search ratings by game name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            {filteredRatings.length === 0 ? (
+                <Card>
+                    <CardContent className="py-10 text-center text-muted-foreground">
+                        no ratings found.
+                    </CardContent>
+                </Card>
+            ) : (
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredRatings.map((rating) => (
+                        <Card key={rating.ratingid} className="transition hover:shadow-md">
+                            <CardHeader className="flex flex-col gap-1">
+                                {/* CRITICAL FIX: Access 'games.title' */}
+                                <CardTitle>{rating.games?.title || "Unknown Game"}</CardTitle>
+                                <CardDescription className="flex items-center text-sm text-gray-500">
+                                    <User size={14} className="mr-1" />
+                                    By: {rating.users?.username || 'Anonymous'}
+                                </CardDescription>
+                                <CardDescription className="font-semibold text-yellow-500">
+                                    {rating.rating}/5
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                <p className="text-sm text-muted-foreground line-clamp-3">
+                                    {rating.review || "no review written"}
+                                </p>
+                                <div className="flex justify-between pt-2">
+                                    <Button size="sm" variant="outline" onClick={() => setSelectedRating(rating)}>
+                                        <Edit2 size={14} />
+                                    </Button>
+                                    <Button size="sm" variant="secondary" onClick={() => setSelectedGameId(rating.games?.gameid || null)}>
+                                        details
+                                    </Button>
+                                    <Button
+                                        size="sm"
+                                        variant={deletionConfirmed ? "destructive" : "outline"}
+                                        onClick={() => handleDelete(rating.ratingid)}
+                                    >
+                                        <Trash2 size={14} />
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            )}
+
+            {selectedRating && (
+                <RatingEditModal
+                    rating={selectedRating}
+                    onClose={() => setSelectedRating(null)}
+                    onSave={() => {
+                        fetchRatings()
+                        setSelectedRating(null)
+                    }}
+                />
+            )}
+
+            {selectedGameId !== null && (
+                <GameDetailModal
+                    gameId={selectedGameId}
+                    onClose={() => setSelectedGameId(null)}
+                />
+            )}
+        </div>
+    )
 }

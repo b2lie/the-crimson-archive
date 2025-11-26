@@ -89,115 +89,144 @@ const createSessionClient = async ()=>{
     });
 };
 }),
-"[project]/app/api/ratings/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"[project]/app/api/ratings/[ratingId]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
+    "DELETE",
+    ()=>DELETE,
     "GET",
     ()=>GET,
-    "POST",
-    ()=>POST
+    "PUT",
+    ()=>PUT
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/server.ts [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 ;
 ;
-async function GET(request) {
+async function GET(request, { params }) {
     try {
-        const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
-        // CRITICAL: We select the necessary joins: games(title) and users(username)
-        const { data: ratings, error } = await supabase.from("ratings").select("*, games(gameid, title), users(userid, username)").order("reviewtimestamp", {
-            ascending: false
-        });
-        if (error) {
-            console.error("Supabase GET Error:", error.message);
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const ratingIdStr = resolvedParams.ratingId;
+        const ratingId = Number(ratingIdStr);
+        if (!ratingIdStr || isNaN(ratingId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: error.message
+                error: "Invalid rating ID format in URL."
             }, {
-                status: 500
+                status: 400
             });
         }
-        // FIX: No mapping needed! The frontend expects the lowercase 'games' and 'users' returned by Supabase.
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            ratings
-        }, {
+        // Use the unauthenticated client for public read
+        const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
+        const { data: rating, error } = await supabase.from("ratings").select("*, games(gameid, title), users(userid, username)").eq("ratingid", ratingId).single();
+        if (error || !rating) {
+            console.error("GET Rating Error:", error?.message || 'Rating not found.');
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Rating not found"
+            }, {
+                status: 404
+            });
+        }
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(rating, {
             status: 200
         });
-    } catch (error) {
-        console.error("Unhandled GET Error:", error);
+    } catch (err) {
+        console.error("GET Rating Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to fetch ratings"
+            error: "Failed to fetch rating"
         }, {
             status: 500
         });
     }
 }
-async function POST(request) {
+async function PUT(request, { params }) {
+    // Use session client for authenticated write operation
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
-    try {
-        // 1. Get the authenticated user ID (MANDATORY)
-        const { data: { user }, error: userError } = await supabase.auth.getUser();
-        if (userError || !user) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Authentication required."
-            }, {
-                status: 401
-            });
-        }
-        const userId = user.id;
-        const ratingData = await request.json();
-        // 2. Validation
-        if (!ratingData.rating || !ratingData.gameId) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Rating score (1-5) and Game ID are required."
-            }, {
-                status: 400
-            });
-        }
-        const gameIdInt = parseInt(ratingData.gameId.toString(), 10);
-        if (isNaN(gameIdInt) || gameIdInt <= 0) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid Game ID provided."
-            }, {
-                status: 400
-            });
-        }
-        // 3. Construct the full payload
-        const insertPayload = {
-            userid: userId,
-            gameid: gameIdInt,
-            rating: ratingData.rating,
-            review: ratingData.review || null,
-            personalbest: ratingData.personalbest || null,
-            reviewtimestamp: new Date().toISOString()
-        };
-        const { data, error } = await supabase.from("ratings").insert([
-            insertPayload
-        ])// CRITICAL: Select joined data on POST to return a fully populated object 
-        .select("*, games(gameid, title), users(userid, username)").single();
-        if (error) {
-            console.error("Supabase POST Error:", error.message, error.details);
-            if (error.code === '23505') {
-                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                    error: "You have already reviewed this game."
-                }, {
-                    status: 409
-                });
-            }
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Database error: " + error.message
-            }, {
-                status: 500
-            });
-        }
-        // FIX: No mapping needed here either! Return the raw Supabase output.
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data, {
-            status: 201
-        });
-    } catch (error) {
-        console.error("Unhandled POST Error:", error);
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to add rating"
+            error: 'Unauthorized: User not authenticated.'
+        }, {
+            status: 401
+        });
+    }
+    try {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const ratingIdStr = resolvedParams.ratingId;
+        const ratingId = Number(ratingIdStr);
+        if (!ratingIdStr || isNaN(ratingId)) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Invalid rating ID format in URL."
+            }, {
+                status: 400
+            });
+        }
+        const ratingData = await request.json();
+        const { data, error } = await supabase.from("ratings").update(ratingData).eq("ratingid", ratingId).select().single();
+        if (error || !data) {
+            console.error("PUT Rating DB Error:", error?.message);
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: `Failed to update rating: ${error?.message || 'Data not found.'}`
+            }, {
+                status: 400
+            });
+        }
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data, {
+            status: 200
+        });
+    } catch (err) {
+        console.error("PUT Rating Exception:", err);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: "Failed to update rating"
+        }, {
+            status: 500
+        });
+    }
+}
+async function DELETE(request, { params }) {
+    // Use session client for authenticated write operation
+    const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: 'Unauthorized: User not authenticated.'
+        }, {
+            status: 401
+        });
+    }
+    try {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const ratingIdStr = resolvedParams.ratingId;
+        const ratingId = Number(ratingIdStr);
+        if (!ratingIdStr || isNaN(ratingId)) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Invalid rating ID format in URL."
+            }, {
+                status: 400
+            });
+        }
+        const { data, error } = await supabase.from("ratings").delete().eq("ratingid", ratingId).select().single();
+        if (error) {
+            console.error("DELETE Rating DB Error:", error.message);
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: `Failed to delete rating: ${error.message}`
+            }, {
+                status: 400
+            });
+        }
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            success: true,
+            deleted: data
+        }, {
+            status: 200
+        });
+    } catch (err) {
+        console.error("DELETE Rating Exception:", err);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: "Failed to delete rating"
         }, {
             status: 500
         });
@@ -206,4 +235,4 @@ async function POST(request) {
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__f8d60ab5._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__248eb012._.js.map

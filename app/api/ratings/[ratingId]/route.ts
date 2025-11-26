@@ -12,15 +12,16 @@ export async function GET(request: NextRequest, { params }: { params: { ratingId
     if (!ratingIdStr || isNaN(ratingId)) {
       return NextResponse.json({ error: "Invalid rating ID format in URL." }, { status: 400 });
     }
-    
+
     // Use the unauthenticated client for public read
-    const supabase = await createClient() 
+    const supabase = await createClient()
 
     const { data: rating, error } = await supabase
       .from("ratings")
-      .select("*")
+      .select("*, games(gameid, title), users(userid, username)")
       .eq("ratingid", ratingId)
       .single()
+
 
     if (error || !rating) {
       console.error("GET Rating Error:", error?.message || 'Rating not found.');
@@ -43,7 +44,7 @@ export async function PUT(request: NextRequest, { params }: { params: { ratingId
   if (authError || !user) {
     return NextResponse.json({ error: 'Unauthorized: User not authenticated.' }, { status: 401 });
   }
-  
+
   try {
     // FIX: Await params to ensure the dynamic segment value is resolved
     const resolvedParams = await params;
@@ -79,7 +80,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { ratin
   // Use session client for authenticated write operation
   const supabase = await createSessionClient()
   const { data: { user }, error: authError } = await supabase.auth.getUser()
-  
+
   if (authError || !user) {
     return NextResponse.json({ error: 'Unauthorized: User not authenticated.' }, { status: 401 });
   }

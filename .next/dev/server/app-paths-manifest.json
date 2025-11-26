@@ -1,10 +1,9 @@
 {
-  "/api/account/route": "app/api/account/route.js",
   "/api/characters/route": "app/api/characters/route.js",
-  "/api/games/[gameId]/route": "app/api/games/[gameId]/route.js",
   "/api/games/route": "app/api/games/route.js",
   "/api/maps/route": "app/api/maps/route.js",
   "/api/mobs/route": "app/api/mobs/route.js",
+  "/api/ratings/[ratingId]/route": "app/api/ratings/[ratingId]/route.js",
   "/api/ratings/route": "app/api/ratings/route.js",
   "/page": "app/page.js"
 }
