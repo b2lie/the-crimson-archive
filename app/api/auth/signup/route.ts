@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, displayName } = await request.json()
+    const { email, password } = await request.json()
 
     const supabase = await createClient()
 
@@ -17,9 +17,6 @@ export async function POST(request: NextRequest) {
       password,
       options: {
         emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/dashboard`,
-        data: {
-          display_name: displayName || email.split("@")[0],
-        },
       },
     })
 

@@ -14,9 +14,9 @@ interface AuthFormProps {
 
 export function AuthForm({ onLoginSuccess }: AuthFormProps) {
   const [isSignup, setIsSignup] = useState(false)
+  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [displayName, setDisplayName] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const router = useRouter()
@@ -28,7 +28,6 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
 
     try {
       const supabase = createClient()
-
       if (!supabase) {
         setError(
           "Supabase client not initialized. Make sure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set."
@@ -38,15 +37,10 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
       }
 
       if (isSignup) {
+        // sign up
         const { error: signupError } = await supabase.auth.signUp({
           email,
           password,
-          options: {
-            emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/dashboard`,
-            data: {
-              display_name: displayName,
-            },
-          },
         })
 
         if (signupError) {
@@ -54,11 +48,19 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
           return
         }
 
+        // insert into Users table
+        await fetch("/api/user/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: username, // from your form
+            email: email,          // from your form
+          }),
+        })
+
         setError("Check your email to confirm your account")
-        setEmail("")
-        setPassword("")
-        setDisplayName("")
       } else {
+        // login
         const { data, error: loginError } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -83,7 +85,7 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md border-2 border-primary bg-card">
         <CardHeader className="border-b-2 border-primary">
-          <CardTitle className="text-2xl text-primary">CRIMSON DATABASE</CardTitle>
+          <CardTitle className="text-2xl text-primary">CRIMSON</CardTitle>
           <CardDescription className="text-muted-foreground">
             {isSignup ? "Create a new account" : "Sign in to your account"}
           </CardDescription>
@@ -91,18 +93,17 @@ export function AuthForm({ onLoginSuccess }: AuthFormProps) {
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignup && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-foreground">Display Name</label>
-                  <Input
-                    type="text"
-                    placeholder="Enter display name"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    className="border-primary bg-background"
-                  />
-                </div>
-              </>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-foreground">Username</label>
+                <Input
+                  type="text"
+                  placeholder="Enter username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="border-primary bg-background"
+                  required
+                />
+              </div>
             )}
 
             <div>

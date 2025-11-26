@@ -16,7 +16,7 @@ interface DashboardProps {
 }
 
 export function Dashboard({ user, onLogout }: DashboardProps) {
-  const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs">("home")
+  const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs" | "account">("home")
   const [games, setGames] = useState<any[]>([])
   const [characters, setCharacters] = useState<any[]>([])
   const [maps, setMaps] = useState<any[]>([])
@@ -29,9 +29,9 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
   useEffect(() => {
     fetchGames(),
-    fetchCharacters(),
-    fetchMaps(),
-    fetchMobs()
+      fetchCharacters(),
+      fetchMaps(),
+      fetchMobs()
   }, [])
 
   const fetchGames = async () => {
@@ -174,15 +174,21 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-2">
-            <div className="text-sm mr-4">{user.username}</div>
+            <button
+              onClick={() => setView("account")}
+              className="text-sm mr-4 underline hover:opacity-80 transition-opacity"
+            >
+              {user.username}
+            </button>
+
             {navItems.map((item) => (
               <Button
                 key={item.id}
                 onClick={() => setView(item.id as any)}
                 variant={view === item.id ? "default" : "outline"}
                 className={`${view === item.id
-                    ? "bg-accent text-accent-foreground"
-                    : "border-primary-foreground text-primary-foreground hover:bg-primary/80"
+                  ? "bg-accent text-accent-foreground"
+                  : "border-primary-foreground text-primary-foreground hover:bg-primary/80"
                   }`}
               >
                 {item.label}
@@ -224,7 +230,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto p-4">
-        {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} onNavigate={setView}/>}
+        {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} onNavigate={setView} />}
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
         {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
