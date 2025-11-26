@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 274, "column": 0}, "map": {"version":3,"sources":["file:///D:/the-crimson-archive/app/api/video/route.ts"],"sourcesContent":["export { GET } from 'next-video/request-handler';"],"names":[],"mappings":";AAAA"}}]
+}

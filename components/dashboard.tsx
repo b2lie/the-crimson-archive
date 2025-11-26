@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-// Correcting relative imports to absolute imports using alias "@/components/"
 import { GamesGallery } from "@/components/games-gallery"
 import { AddGameForm } from "@/components/add-game-form"
 import { CharacterBrowser } from "@/components/character-browser"
@@ -10,33 +9,38 @@ import { MapBrowser } from "@/components/map-browser"
 import { MobBrowser } from "@/components/mob-browser"
 import { AccountDetails } from "@/components/account-details"
 import { RatingsBrowser } from "@/components/ratings-browser"
-import { AddRatingForm } from "@/components/add-rating-form"
+import { ClipBrowser } from "@/components/clip-browser"
 import { DashboardHome } from "@/components/dashboard-home"
 import { Menu, Star, X } from "lucide-react"
 
 interface DashboardProps {
   user: {
+    userid: string; // UUID string
     username: string;
     email: string;
-    userid: string; // UUID string
   }
   onLogout: () => void
 }
 
 export function Dashboard({ user, onLogout }: DashboardProps) {
-  const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs" | "ratings" | "add-rating" | "account">("home")
+  const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs" | "ratings" | "add-rating" | "account" | "clips" | "add-clip">("home")
+  const [userRole, setUserRole] = useState<"dev" | "editor" | "viewer">("viewer") // viewer = default role
   const [games, setGames] = useState<any[]>([])
   const [characters, setCharacters] = useState<any[]>([])
   const [maps, setMaps] = useState<any[]>([])
   const [mobs, setMobs] = useState<any[]>([])
   const [ratings, setRatings] = useState<any[]>([])
+  const [clips, setClips] = useState<any[]>([])
+
   const [gameIdForRating, setGameIdForRating] = useState<any[]>([])
+  const [gameIdForClip, setGameIdForClip] = useState<any[]>([])
 
   const [loadingGames, setLoadingGames] = useState(true)
   const [loadingCharacters, setLoadingCharacters] = useState(true)
   const [loadingMaps, setLoadingMaps] = useState(true)
   const [loadingMobs, setLoadingMobs] = useState(true)
   const [loadingRatings, setLoadingRatings] = useState(true)
+  const [loadingClips, setLoadingClips] = useState(true)
 
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -45,7 +49,8 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
       fetchCharacters(),
       fetchMaps(),
       fetchMobs(),
-      fetchRatings()
+      fetchRatings(),
+      fetchClips()
   }, [])
 
   const fetchGames = async () => {
@@ -165,6 +170,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
       const response = await fetch("/api/ratings")
       const data = await response.json()
       const formattedRatings = (data.ratings || []).map((rating: any) => ({
+        ratingid: rating.ratingid,
         rating: data.rating,
         review: data.review,
         reviewtimestamp: data.reviewtimestamp,
@@ -189,14 +195,43 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     setView("add-rating");
   }
 
+  const fetchClips = async () => {
+    try {
+      const response = await fetch("/api/clips")
+      const data = await response.json()
+      const formattedClips = (data.clips || []).map((clip: any) => ({
+        clipid: clip.clipid,
+        clipname: clip.clipname,
+        description: clip.description,
+        clipurl: clip.clipurl,
+      }))
+      setClips(formattedClips)
+    } catch (err) {
+      console.error("Failed to fetch clips:", err)
+    } finally {
+      setLoadingClips(false)
+    }
+  }
+
+  const handleClipAdded = () => {
+    fetchClips()
+    setView("clips")
+  }
+
+  const handleInitiateAddClip = (gameId: string | undefined) => {
+    // We wrap the gameId in an array to maintain the state's declared type of any[]
+    setGameIdForClip(gameId ? [gameId] : []);
+    setView("add-clip");
+  }
+
   const navItems = [
     { id: "home", label: "Dashboard" },
     { id: "browse", label: "Browse Games" },
-    { id: "add", label: "Add Game" },
     { id: "ratings", label: "Game Ratings", icon: Star }, // Added Ratings
     { id: "characters", label: "Characters" },
     { id: "maps", label: "Maps" },
     { id: "mobs", label: "Mobs" },
+    { id: "clips", label: "Clips" },
   ]
 
   // Logic to ensure a clean display name is always shown.
@@ -278,16 +313,15 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto p-4">
         {view === "account" && <AccountDetails user={user} onBack={() => setView("home")} />}
-        {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} onNavigate={setView} />}
+        {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} userRole={userRole} onNavigate={setView} />}
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
-        {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
+        {view === "add" && userRole === "dev" && <AddGameForm onGameAdded={handleGameAdded} />}
 
         {view === "ratings" && <RatingsBrowser ratings={ratings} loading={loadingRatings} onRefresh={fetchRatings} onAddRating={() => handleInitiateAddRating(undefined)} />}
-        {view === "add-rating" && <AddRatingForm onRatingAdded={handleRatingAdded} onBack={() => setView("ratings")} gameId={gameIdForRating} games={games} />}
-
         {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
         {view === "maps" && <MapBrowser maps={maps} loading={loadingMaps} onRefresh={fetchMaps} onMapAdded={handleMapAdded} />}
         {view === "mobs" && <MobBrowser mobs={mobs} loading={loadingMobs} onRefresh={fetchMobs} onMobAdded={handleMobAdded} />}
+        {view === "clips" && <ClipBrowser clips={clips} loading={loadingClips} onRefresh={fetchClips} onAddClip={() => handleInitiateAddClip(undefined)} />}
       </main>
     </div>
   )

@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, { params }: { params: { clipId: 
     // 2. Fetch the clip.
     const { data: clip, error } = await supabase
       .from("clips")
-      .select("*")
+      .select("*, games(gameid, title)")
       .eq("clipid", clipId)
       .single()
 

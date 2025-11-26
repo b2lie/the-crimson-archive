@@ -105,8 +105,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$serv
 async function GET(request) {
     try {
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
-        const { data: clips, error } = await supabase.from("clips").select("*");
+        // CRITICAL: We select the necessary joins: games(title) and users(username)
+        const { data: clips, error } = await supabase.from("clips").select("*, games(gameid, title)");
         if (error) {
+            console.error("Supabase GET Error:", error.message);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: error.message
             }, {
@@ -119,6 +121,7 @@ async function GET(request) {
             status: 200
         });
     } catch (error) {
+        console.error("Unhandled GET Error:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "Failed to fetch clips"
         }, {
@@ -127,34 +130,59 @@ async function GET(request) {
     }
 }
 async function POST(request) {
+    const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
     try {
-        const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
-        const clipData = await request.json();
-        if (!clipData.cliptitle) {
+        // 1. Get the authenticated user ID (MANDATORY)
+        const { data: { user }, error: userError } = await supabase.auth.getUser();
+        if (userError || !user) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Clip title required"
+                error: "Authentication required."
+            }, {
+                status: 401
+            });
+        }
+        const userId = user.id;
+        const clipData = await request.json();
+        // 2. Validation
+        if (!clipData.cliptitle || !clipData.gameId) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Clip title and Game ID are required."
             }, {
                 status: 400
             });
         }
-        const { data, error } = await supabase.from("clips").insert([
-            {
-                cliptitle: clipData.cliptitle,
-                clipurl: clipData.clipurl,
-                mediatype: clipData.mediatype
-            }
-        ]).select();
-        if (error) {
+        const gameIdInt = parseInt(clipData.gameId.toString(), 10);
+        if (isNaN(gameIdInt) || gameIdInt <= 0) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: error.message
+                error: "Invalid Game ID provided."
+            }, {
+                status: 400
+            });
+        }
+        // 3. Construct the full payload
+        const insertPayload = {
+            gameid: gameIdInt,
+            cliptitle: clipData.cliptitle,
+            clipurl: clipData.clipurl || null,
+            mediatype: clipData.mediatype || null
+        };
+        const { data, error } = await supabase.from("clips").insert([
+            insertPayload
+        ])// CRITICAL: Select joined data on POST to return a fully populated object 
+        .select("*, games(gameid, title)").single();
+        if (error) {
+            console.error("Supabase POST Error:", error.message, error.details);
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Database error: " + error.message
             }, {
                 status: 500
             });
         }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data[0], {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data, {
             status: 201
         });
     } catch (error) {
+        console.error("Unhandled POST Error:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "Failed to add clip"
         }, {

@@ -92,7 +92,7 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
         </div>
       </div>
 
-      {/* Add Form Placeholder */}
+      {/* Add Form Placeholder
       {showAddForm && (
         <Card className="border-2 border-accent bg-card">
           <CardHeader>
@@ -102,7 +102,7 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
             <div className="text-muted-foreground">Use the Add Game form to add characters</div>
           </CardContent>
         </Card>
-      )}
+      )} */}
 
       {/* Search */}
       <div className="flex gap-2 mb-4">

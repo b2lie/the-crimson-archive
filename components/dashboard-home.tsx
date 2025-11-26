@@ -2,18 +2,21 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-// Imported User as UserIconPlaceholder for the character fallback
 import { Gamepad2, Users, Map, Zap, Plus, Eye, User as UserIconPlaceholder } from "lucide-react"
 
+// 🔑 MODIFIED: Added userRole prop
 interface DashboardHomeProps {
   games: any[]
   characters: any[]
   maps: any[]
   mobs: any[]
+  userRole: "dev" | "editor" | "viewer" // Add possible roles here
   onNavigate: (view: "home" | "browse" | "add" | "characters" | "maps" | "mobs") => void
 }
 
-export function DashboardHome({ games, characters, maps, mobs, onNavigate }: DashboardHomeProps) {
+export function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }: DashboardHomeProps) {
+
+  // --- 1. STATISTICS (NO CHANGE) ---
   const stats = [
     {
       title: "Total Games",
@@ -45,26 +48,33 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
     },
   ]
 
-  const quickActions = [
-    {
+  // --- 2. QUICK ACTIONS (MODIFIED FOR ROLE CHECK) ---
+  const quickActions: any[] = [] // Start with an empty array
+
+  // 🔑 Conditional check to include 'Add Game' only for 'dev' role
+  if (userRole === "dev") {
+    quickActions.push({
       title: "Add Game",
       description: "Create a new game entry",
       icon: Plus,
       action: () => onNavigate("add"),
       color: "bg-primary text-primary-foreground hover:bg-primary/90",
-    },
-    {
-      title: "Browse Games",
-      description: "View all games in the database",
-      icon: Eye,
-      action: () => onNavigate("browse"),
-      color: "bg-accent text-accent-foreground hover:bg-accent/90",
-    },
-  ]
+    });
+  }
+
+  // 'Browse Games' is always available
+  quickActions.push({
+    title: "Browse Games",
+    description: "View all games in the database",
+    icon: Eye,
+    action: () => onNavigate("browse"),
+    color: "bg-accent text-accent-foreground hover:bg-accent/90",
+  });
+
 
   return (
     <div className="space-y-8">
-      {/* Hero Section */}
+      {/* Hero Section (NO CHANGE) */}
       <div className="bg-primary text-primary-foreground p-8 rounded-lg border-2 border-accent">
         <h1 className="text-4xl font-bold mb-2">Welcome Page</h1>
         <p className="text-lg opacity-90">
@@ -72,7 +82,7 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
         </p>
       </div>
 
-      {/* Statistics Grid */}
+      {/* Statistics Grid (NO CHANGE) */}
       <div>
         <h2 className="text-2xl font-bold text-primary mb-4">Database Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -95,7 +105,7 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Actions (MODIFIED) */}
       <div>
         <h2 className="text-2xl font-bold text-primary mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -120,7 +130,7 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
         </div>
       </div>
 
-      {/* Recent Games */}
+      {/* Recent Games (NO CHANGE) */}
       {games.length > 0 && (
         <div>
           <div className="flex justify-between items-center mb-4">
@@ -139,20 +149,18 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => onNavigate("browse")}
               >
-                {/* MODIFIED: Game Logo Display (object-contain for full fit) */}
                 <div className="w-full h-40 overflow-hidden rounded-t flex items-center justify-center p-4">
                   {game.gamelogourl ? (
                     <img
-                      src={game.gamelogourl} // Changed from gamecoverurl to gamelogourl
+                      src={game.gamelogourl}
                       alt={game.title}
-                      className="object-contain max-w-full max-h-full" // Use object-contain
-                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/160x160/292524/ffffff?text=Logo'; }} // Fallback
+                      className="object-contain max-w-full max-h-full"
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/160x160/292524/ffffff?text=Logo'; }}
                     />
                   ) : (
-                    <Gamepad2 className="w-16 h-16 text-muted-foreground" /> // Placeholder icon
+                    <Gamepad2 className="w-16 h-16 text-muted-foreground" />
                   )}
                 </div>
-                {/* END MODIFIED */}
                 <CardHeader>
                   <CardTitle className="text-primary line-clamp-1">{game.title}</CardTitle>
                   <CardDescription className="text-muted-foreground">
@@ -168,7 +176,7 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
         </div>
       )}
 
-      {/* Recent Characters */}
+      {/* Recent Characters (NO CHANGE) */}
       {characters.length > 0 && (
         <div className="mt-8">
           <div className="flex justify-between items-center mb-4">
@@ -187,20 +195,18 @@ export function DashboardHome({ games, characters, maps, mobs, onNavigate }: Das
                 className="border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer"
                 onClick={() => onNavigate("characters")}
               >
-                {/* MODIFIED: Character Sprite Display (fixed height, object-contain for sprites) */}
                 <div className="w-full h-40 overflow-hidden rounded-t flex items-center justify-center p-4">
                   {char.spriteurl ? (
                     <img
                       src={char.spriteurl}
                       alt={char.name}
-                      className="object-contain max-w-full max-h-full" // Use object-contain
-                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/160x160/292524/ffffff?text=Char'; }} // Fallback
+                      className="object-contain max-w-full max-h-full"
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/160x160/292524/ffffff?text=Char'; }}
                     />
                   ) : (
-                    <UserIconPlaceholder className="w-16 h-16 text-muted-foreground" /> // Placeholder icon
+                    <UserIconPlaceholder className="w-16 h-16 text-muted-foreground" />
                   )}
                 </div>
-                {/* END MODIFIED */}
                 <CardHeader>
                   <CardTitle className="text-primary line-clamp-1">{char.name}</CardTitle>
                   <CardDescription className="text-muted-foreground">

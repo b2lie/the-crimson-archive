@@ -1,0 +1,12 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/video/route.js")
+R.c("server/chunks/node_modules_formdata-node_lib_esm_fileFromPath_0f4ce376.js")
+R.c("server/chunks/node_modules_next_dist_6978473e._.js")
+R.c("server/chunks/node_modules_next-video_dist_6d3ca2ec._.js")
+R.c("server/chunks/node_modules_@mux_mux-node_3172109b._.js")
+R.c("server/chunks/node_modules_tr46_34e96fa4._.js")
+R.c("server/chunks/node_modules_undici_d70e2fe1._.js")
+R.c("server/chunks/node_modules_8d56331e._.js")
+R.c("server/chunks/[root-of-the-server]__f2d7140b._.js")
+R.c("server/chunks/_next-internal_server_app_api_video_route_actions_6d782901.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/video/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/video/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

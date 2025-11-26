@@ -119,7 +119,7 @@ async function GET(request, { params }) {
         // Use the unauthenticated client for public read
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
         // 2. Fetch the clip.
-        const { data: clip, error } = await supabase.from("clips").select("*").eq("clipid", clipId).single();
+        const { data: clip, error } = await supabase.from("clips").select("*, games(gameid, title)").eq("clipid", clipId).single();
         if (error || !clip) {
             console.error("GET Clip Error:", error?.message || 'Clip not found.');
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

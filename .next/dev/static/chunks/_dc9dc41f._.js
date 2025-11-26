@@ -7853,6 +7853,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$mob$2d$browser
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$account$2d$details$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/account-details.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ratings$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ratings-browser.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$rating$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/add-rating-form.tsx [app-client] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/components/clip-browser'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2d$home$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/dashboard-home.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/menu.js [app-client] (ecmascript) <export default as Menu>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
@@ -7860,6 +7865,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -7881,15 +7887,17 @@ function Dashboard({ user, onLogout }) {
     const [mobs, setMobs] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [ratings, setRatings] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [gameIdForRating, setGameIdForRating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [clips, setClips] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loadingGames, setLoadingGames] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [loadingCharacters, setLoadingCharacters] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [loadingMaps, setLoadingMaps] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [loadingMobs, setLoadingMobs] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [loadingRatings, setLoadingRatings] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [loadingClips, setLoadingClips] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [menuOpen, setMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
-            fetchGames(), fetchCharacters(), fetchMaps(), fetchMobs(), fetchRatings();
+            fetchGames(), fetchCharacters(), fetchMaps(), fetchMobs(), fetchRatings(), fetchClips();
         }
     }["Dashboard.useEffect"], []);
     const fetchGames = async ()=>{
@@ -7998,6 +8006,7 @@ function Dashboard({ user, onLogout }) {
             const response = await fetch("/api/ratings");
             const data = await response.json();
             const formattedRatings = (data.ratings || []).map((rating)=>({
+                    ratingid: rating.ratingid,
                     rating: data.rating,
                     review: data.review,
                     reviewtimestamp: data.reviewtimestamp,
@@ -8020,6 +8029,27 @@ function Dashboard({ user, onLogout }) {
             gameId
         ] : []);
         setView("add-rating");
+    };
+    const fetchClips = async ()=>{
+        try {
+            const response = await fetch("/api/clips");
+            const data = await response.json();
+            const formattedClips = (data.clips || []).map((clip)=>({
+                    clipid: clip.clipid,
+                    clipname: clip.clipname,
+                    description: clip.description,
+                    clipurl: clip.clipurl
+                }));
+            setClips(formattedClips);
+        } catch (err) {
+            console.error("Failed to fetch clips:", err);
+        } finally{
+            setLoadingClips(false);
+        }
+    };
+    const handleClipAdded = ()=>{
+        fetchClips();
+        setView("clips");
     };
     const navItems = [
         {
@@ -8072,12 +8102,12 @@ function Dashboard({ user, onLogout }) {
                                     children: "CRIMSON DB"
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 219,
+                                    lineNumber: 247,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 215,
+                                lineNumber: 243,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8092,7 +8122,7 @@ function Dashboard({ user, onLogout }) {
                                         children: displayName
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 226,
+                                        lineNumber: 254,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -8102,30 +8132,30 @@ function Dashboard({ user, onLogout }) {
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard.tsx",
-                                            lineNumber: 235,
+                                            lineNumber: 263,
                                             columnNumber: 27
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard.tsx",
-                                            lineNumber: 235,
+                                            lineNumber: 263,
                                             columnNumber: 45
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 234,
+                                        lineNumber: 262,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 223,
+                                lineNumber: 251,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 212,
+                        lineNumber: 240,
                         columnNumber: 9
                     }, this),
                     menuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8146,7 +8176,7 @@ function Dashboard({ user, onLogout }) {
                                             children: item.label
                                         }, item.id, false, {
                                             fileName: "[project]/components/dashboard.tsx",
-                                            lineNumber: 250,
+                                            lineNumber: 278,
                                             columnNumber: 19
                                         }, this)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -8156,29 +8186,29 @@ function Dashboard({ user, onLogout }) {
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 265,
+                                        lineNumber: 293,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 247,
+                                lineNumber: 275,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/dashboard.tsx",
-                            lineNumber: 244,
+                            lineNumber: 272,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 243,
+                        lineNumber: 271,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 211,
+                lineNumber: 239,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -8189,7 +8219,7 @@ function Dashboard({ user, onLogout }) {
                         onBack: ()=>setView("home")
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 280,
+                        lineNumber: 308,
                         columnNumber: 32
                     }, this),
                     view === "home" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2d$home$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DashboardHome"], {
@@ -8200,7 +8230,7 @@ function Dashboard({ user, onLogout }) {
                         onNavigate: setView
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 281,
+                        lineNumber: 309,
                         columnNumber: 29
                     }, this),
                     view === "browse" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$games$2d$gallery$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GamesGallery"], {
@@ -8209,14 +8239,14 @@ function Dashboard({ user, onLogout }) {
                         onRefresh: fetchGames
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 282,
+                        lineNumber: 310,
                         columnNumber: 31
                     }, this),
                     view === "add" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$game$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddGameForm"], {
                         onGameAdded: handleGameAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 283,
+                        lineNumber: 311,
                         columnNumber: 28
                     }, this),
                     view === "ratings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ratings$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["RatingsBrowser"], {
@@ -8226,7 +8256,7 @@ function Dashboard({ user, onLogout }) {
                         onAddRating: ()=>handleInitiateAddRating(undefined)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 285,
+                        lineNumber: 313,
                         columnNumber: 32
                     }, this),
                     view === "add-rating" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$rating$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddRatingForm"], {
@@ -8236,7 +8266,7 @@ function Dashboard({ user, onLogout }) {
                         games: games
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 286,
+                        lineNumber: 314,
                         columnNumber: 35
                     }, this),
                     view === "characters" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$character$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CharacterBrowser"], {
@@ -8246,7 +8276,7 @@ function Dashboard({ user, onLogout }) {
                         onCharacterAdded: handleCharacterAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 288,
+                        lineNumber: 316,
                         columnNumber: 35
                     }, this),
                     view === "maps" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$map$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MapBrowser"], {
@@ -8256,7 +8286,7 @@ function Dashboard({ user, onLogout }) {
                         onMapAdded: handleMapAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 289,
+                        lineNumber: 317,
                         columnNumber: 29
                     }, this),
                     view === "mobs" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$mob$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MobBrowser"], {
@@ -8266,23 +8296,33 @@ function Dashboard({ user, onLogout }) {
                         onMobAdded: handleMobAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 290,
+                        lineNumber: 318,
                         columnNumber: 29
+                    }, this),
+                    view === "clips" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ClipBrowser, {
+                        clips: clips,
+                        loading: loadingClips,
+                        onRefresh: fetchClips,
+                        onClipAdded: handleClipAdded
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard.tsx",
+                        lineNumber: 319,
+                        columnNumber: 30
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 279,
+                lineNumber: 307,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard.tsx",
-        lineNumber: 209,
+        lineNumber: 237,
         columnNumber: 5
     }, this);
 }
-_s(Dashboard, "Pgq3dTaz9LD6AaS622okqi05TDE=");
+_s(Dashboard, "pVo204cb9CsCeNJtDOptxz6Tk1g=");
 _c = Dashboard;
 var _c;
 __turbopack_context__.k.register(_c, "Dashboard");
