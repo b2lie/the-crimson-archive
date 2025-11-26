@@ -9,8 +9,10 @@ import { CharacterBrowser } from "@/components/character-browser"
 import { MapBrowser } from "@/components/map-browser"
 import { MobBrowser } from "@/components/mob-browser"
 import { AccountDetails } from "@/components/account-details"
+import { RatingsBrowser } from "@/components/ratings-browser"
+import { AddRatingForm } from "@/components/add-rating-form"
 import { DashboardHome } from "@/components/dashboard-home"
-import { Menu, X } from "lucide-react"
+import { Menu, Star, X } from "lucide-react"
 
 interface DashboardProps {
   user: {
@@ -22,23 +24,28 @@ interface DashboardProps {
 }
 
 export function Dashboard({ user, onLogout }: DashboardProps) {
-  const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs" | "account">("home")
+  const [view, setView] = useState<"home" | "browse" | "add" | "characters" | "maps" | "mobs" | "ratings" | "add-rating" | "account">("home")
   const [games, setGames] = useState<any[]>([])
   const [characters, setCharacters] = useState<any[]>([])
   const [maps, setMaps] = useState<any[]>([])
   const [mobs, setMobs] = useState<any[]>([])
-  const [accountDetails, setAccountDetails] = useState<any[]>([])
+  const [ratings, setRatings] = useState<any[]>([])
+  const [gameIdForRating, setGameIdForRating] = useState<any[]>([])
+
   const [loadingGames, setLoadingGames] = useState(true)
   const [loadingCharacters, setLoadingCharacters] = useState(true)
   const [loadingMaps, setLoadingMaps] = useState(true)
   const [loadingMobs, setLoadingMobs] = useState(true)
+  const [loadingRatings, setLoadingRatings] = useState(true)
+
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     fetchGames(),
       fetchCharacters(),
       fetchMaps(),
-      fetchMobs()
+      fetchMobs(),
+      fetchRatings()
   }, [])
 
   const fetchGames = async () => {
@@ -153,35 +160,40 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     setView("maps")
   }
 
-  const fetchAccountDetails = async () => {
+  const fetchRatings = async () => {
     try {
-      const response = await fetch("/api/account")
+      const response = await fetch("/api/ratings")
       const data = await response.json()
-      const formattedAccountDetails = (data.accountDetails || []).map((map: any) => ({
-        userid: data.userid,
-        username: data.username,
-        email: data.email,
-        isdev: data.isdev,
-        accountcreationdate: data.accountcreationdate,
-        pfpurl: data.pfpurl,
+      const formattedRatings = (data.ratings || []).map((rating: any) => ({
+        rating: data.rating,
+        review: data.review,
+        reviewtimestamp: data.reviewtimestamp,
+        personalbest: data.personalbest
       }))
-      setAccountDetails(formattedAccountDetails)
+      setRatings(formattedRatings)
     } catch (err) {
-      console.error("Failed to fetch account details:", err)
+      console.error("Failed to fetch ratings:", err)
     } finally {
-      setLoadingMaps(false)
+      setLoadingRatings(false)
     }
   }
 
-  const handleAccountDetailsAdded = () => {
-    fetchAccountDetails()
-    setView("account")
+  const handleRatingAdded = () => {
+    fetchRatings()
+    setView("ratings")
+  }
+
+  const handleInitiateAddRating = (gameId: string | undefined) => {
+    // We wrap the gameId in an array to maintain the state's declared type of any[]
+    setGameIdForRating(gameId ? [gameId] : []);
+    setView("add-rating");
   }
 
   const navItems = [
     { id: "home", label: "Dashboard" },
     { id: "browse", label: "Browse Games" },
     { id: "add", label: "Add Game" },
+    { id: "ratings", label: "Game Ratings", icon: Star }, // Added Ratings
     { id: "characters", label: "Characters" },
     { id: "maps", label: "Maps" },
     { id: "mobs", label: "Mobs" },
@@ -269,6 +281,10 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
         {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} onNavigate={setView} />}
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
+
+        {view === "ratings" && <RatingsBrowser ratings={ratings} loading={loadingRatings} onRefresh={fetchRatings} onAddRating={() => handleInitiateAddRating(undefined)} />}
+        {view === "add-rating" && <AddRatingForm onRatingAdded={handleRatingAdded} onBack={() => setView("ratings")} gameId={gameIdForRating} games={games} />}
+
         {view === "characters" && <CharacterBrowser characters={characters} loading={loadingCharacters} onRefresh={fetchCharacters} onCharacterAdded={handleCharacterAdded} />}
         {view === "maps" && <MapBrowser maps={maps} loading={loadingMaps} onRefresh={fetchMaps} onMapAdded={handleMapAdded} />}
         {view === "mobs" && <MobBrowser mobs={mobs} loading={loadingMobs} onRefresh={fetchMobs} onMobAdded={handleMobAdded} />}
