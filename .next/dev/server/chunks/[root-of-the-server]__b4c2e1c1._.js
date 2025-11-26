@@ -70,8 +70,8 @@ function createClient() {
     // This is the powerful Service Role Client
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseServiceKey);
 }
-const createSessionClient = ()=>{
-    const cookieStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])();
+const createSessionClient = async ()=>{
+    const cookieStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])();
     const supabaseUrl = ("TURBOPACK compile-time value", "https://fhyxpygukzrvwdhojlis.supabase.co");
     const anonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZoeXhweWd1a3pydndkaG9qbGlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MTg5MzcsImV4cCI6MjA3OTQ5NDkzN30.16w4I3UEZBPn6TqShKS0VzUibCqY7H7mRBX9S8jU0H4");
     if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable

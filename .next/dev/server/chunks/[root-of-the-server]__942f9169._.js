@@ -102,14 +102,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e
 ;
 // Helper to map database names to client names
 const mapToClientProfile = (dbProfile)=>({
-        userid: dbProfile.userid,
+        userID: dbProfile.userid,
         username: dbProfile.username,
         email: dbProfile.email,
-        pfpurl: dbProfile.pfpurl,
-        isdev: dbProfile.isdev,
-        accountcreationdate: dbProfile.accountcreationdate
+        pfpURL: dbProfile.pfpurl,
+        isDev: dbProfile.isdev,
+        accountCreationDate: dbProfile.accountcreationdate
     });
 async function POST(request) {
+    // 1. Initialize Supabase client and authenticate user
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
@@ -129,54 +130,62 @@ async function POST(request) {
                 status: 400
             });
         }
-        // 1. Determine file path in storage
-        const fileExtension = file.name.split('.').pop();
-        const filePath = `${user.id}/${Date.now()}.${fileExtension}`;
         const bucketName = 'avatars'; // Ensure this bucket exists in your Supabase project
-        // 2. Upload the file to Supabase Storage
+        // 2. Determine file path in storage
+        const fileName = `${user.id}-${Date.now()}`;
+        const fileExtensionMatch = file.name.match(/\.([0-9a-z]+)$/i);
+        const fileExtension = fileExtensionMatch ? fileExtensionMatch[1] : 'jpg';
+        const filePath = `${user.id}/${fileName}.${fileExtension}`;
+        // 3. Upload the file to Supabase Storage
         const { error: uploadError } = await supabase.storage.from(bucketName).upload(filePath, file, {
             cacheControl: '3600',
-            upsert: true
+            upsert: true,
+            contentType: file.type
         });
         if (uploadError) {
-            console.error('Supabase Storage Upload Error:', uploadError.message);
+            console.error('Supabase Storage Upload Error:', uploadError.message, uploadError);
+            const errorMessage = uploadError.message.includes('permission denied') ? 'Permission denied. Check your Supabase Storage RLS policies for the "avatars" bucket.' : 'Failed to upload image to storage.';
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: 'Failed to upload image to storage.'
+                error: errorMessage
             }, {
                 status: 500
             });
         }
-        // 3. Get the public URL
+        // 4. Get the public URL
         const { data: { publicUrl } } = supabase.storage.from(bucketName).getPublicUrl(filePath);
         if (!publicUrl) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: 'Failed to retrieve public URL.'
+                error: 'Failed to retrieve public URL after upload.'
             }, {
                 status: 500
             });
         }
-        // 4. Update the 'users' table with the new pfpurl
-        const { data: updatedProfiles, error: dbError } = await supabase.from('users').update({
+        // 5. Update the 'users' table with the new pfpurl
+        // We use .update() but skip the .select() part to prevent possible issues on some environments.
+        const { error: updateDbError } = await supabase.from('users').update({
             pfpurl: publicUrl
-        }).eq('userid', user.id).select() // Select the updated row
-        .returns();
-        if (dbError) {
-            console.error('Supabase Database Update Error:', dbError.message);
+        }).eq('userid', user.id);
+        if (updateDbError) {
+            console.error('Supabase Database Update Error:', updateDbError.message);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'Failed to update profile picture URL in database.'
             }, {
                 status: 500
             });
         }
-        if (!updatedProfiles || updatedProfiles.length === 0) {
+        // 6. Dedicated SELECT: Fetch the latest profile data separately for safety
+        const { data: latestProfiles, error: fetchError } = await supabase.from('users').select(`userid, username, email, pfpurl, isdev, accountcreationdate`).eq('userid', user.id).returns();
+        if (fetchError || !latestProfiles || latestProfiles.length === 0) {
+            console.error('Final Profile Fetch Error:', fetchError?.message || 'No profile found.');
+            // Changed the error message to be more explicit about where the failure happened.
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: 'Profile not found after update.'
+                error: 'Profile URL updated, but failed to retrieve the final profile data.'
             }, {
-                status: 404
+                status: 500
             });
         }
-        // 5. Return the updated profile
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(mapToClientProfile(updatedProfiles[0]), {
+        // 7. Return the updated profile
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(mapToClientProfile(latestProfiles[0]), {
             status: 200
         });
     } catch (e) {
