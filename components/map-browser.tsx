@@ -29,8 +29,15 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
   const [selectedMap, setSelectedMap] = useState<Map | null>(null)
 
   useEffect(() => {
-    fetchMaps()
-  }, [])
+    // If initialMaps is provided and not empty, use it initially
+    if (initialMaps && initialMaps.length > 0) {
+      setMaps(initialMaps);
+      setLoading(initialLoading);
+    } else {
+      // Otherwise, fetch maps on mount
+      fetchMaps()
+    }
+  }, [initialMaps, initialLoading])
 
   const fetchMaps = async () => {
     setLoading(true)
@@ -46,7 +53,8 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
   }
 
   const handleDelete = async (mapID: number) => {
-    if (!confirm("Are you sure you want to delete this map?")) return
+    // IMPORTANT: Replace native confirm with a custom modal UI in a production app/canvas environment.
+    if (!window.confirm("WARNING: Are you sure you want to permanently delete this map?")) return
 
     try {
       const response = await fetch(`/api/maps/${mapID}`, {
@@ -54,74 +62,90 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
       })
       if (response.ok) {
         setMaps(maps.filter((m) => m.mapid !== mapID))
+      } else {
+        // Handle non-2xx responses from the API
+        const errorData = await response.json();
+        console.error("API delete failed:", errorData.error);
       }
     } catch (err) {
       console.error("Failed to delete map:", err)
     }
   }
 
-  const filteredMaps = maps.filter((m) =>
+  // 1. SORT MAPS BY ID (Ascending)
+  const sortedMaps = [...maps].sort((a, b) => a.mapid - b.mapid);
+
+  // 2. FILTER THE SORTED LIST
+  const filteredMaps = sortedMaps.filter((m) =>
     (m.mapname || "").toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  );
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-96">
-        <p className="text-lg text-muted-foreground">Loading maps...</p>
+      <div className="flex items-center justify-center min-h-96 text-white bg-gray-900 p-8 rounded-xl">
+        <p className="text-lg text-red-500 animate-pulse">Loading maps...</p>
       </div>
     )
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-primary">Maps</h1>
-        <Button onClick={fetchMaps} className="bg-accent text-accent-foreground hover:bg-accent/90">
-          <RefreshCw size={20} className="mr-2" />
+    <div className="space-y-8 p-6 bg-black min-h-screen">
+      <div className="flex justify-between items-center pb-4 border-b border-red-700">
+        <h1 className="text-4xl font-extrabold text-red-500">Map Registry</h1>
+        <Button
+          onClick={fetchMaps}
+          className="bg-red-600 text-white hover:bg-red-700 shadow-lg hover:shadow-red-500/50"
+          title="Refresh Map List"
+        >
+          <RefreshCw size={16} className="mr-2" />
           Refresh
         </Button>
       </div>
 
       <Input
         type="text"
-        placeholder="Search maps..."
+        placeholder="Search maps by name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border-2 border-primary bg-background"
+        className="border-red-500 focus:border-red-400 focus:ring-1 focus:ring-red-500"
       />
 
       {filteredMaps.length === 0 ? (
-        <Card className="border-2 border-primary bg-card">
-          <CardContent className="pt-6 text-center">
-            <p className="text-muted-foreground">
-              {searchTerm ? "No maps found matching your search." : "No maps found."}
+        <Card className="border-2 border-red-600 bg-gray-900">
+          <CardContent className="pt-6 text-center text-white">
+            <p className="text-gray-500">
+              {searchTerm ? "No maps found matching your search criteria." : "No maps available yet. Start by adding one!"}
             </p>
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredMaps.map((map) => (
-            <Card key={map.mapid} className="border-2 border-primary hover:border-accent transition-colors bg-card">
+            <Card key={map.mapid} className="border-2 border-gray-700 hover:border-red-500 transition-colors bg-gray-900 shadow-lg">
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-primary">{map.mapname}</CardTitle>
+                    <CardTitle className="text-red-400">
+                      {map.mapname}
+                    </CardTitle>
                     {map.floorname && (
-                      <CardDescription className="text-muted-foreground">Floor: {map.floorname}</CardDescription>
+                      <CardDescription className="text-gray-500 mt-1">Floor: {map.floorname}</CardDescription>
                     )}
                   </div>
                   <div className="flex gap-2">
                     <Button
                       size="sm"
                       onClick={() => setSelectedMap(map)}
-                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                      className="bg-gray-700 text-red-400 hover:bg-gray-600 p-2"
+                      title="Edit Map"
                     >
                       <Edit2 size={16} />
                     </Button>
                     <Button
                       size="sm"
                       onClick={() => handleDelete(map.mapid)}
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      className="bg-red-700 text-white hover:bg-red-800 p-2"
+                      title="Delete Map"
                     >
                       <Trash2 size={16} />
                     </Button>
@@ -129,7 +153,7 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{map.description}</p>
+                <p className="text-sm text-gray-400">{map.description || "No description provided."}</p>
               </CardContent>
             </Card>
           ))}

@@ -31,8 +31,9 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-
-  console.log("character prop:", character)
+  
+  // DIAGNOSTIC 1: Log the initial character data when the modal mounts
+  console.log("Modal mounted with character prop:", character);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -48,15 +49,39 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
     setError("")
     setSuccess("")
 
+    const id = character.characterid
+    
+    // CRITICAL CLIENT-SIDE CHECK: Ensure ID is valid before fetching
+    if (typeof id !== 'number' || isNaN(id) || id <= 0) {
+      const errorMessage = `Error: Invalid character ID provided to the modal. ID: ${id}`;
+      console.error(errorMessage, character);
+      setError(errorMessage);
+      setLoading(false);
+      return;
+    }
+
+    // Prepare a clean payload: Filter out the ID, which is in the URL, 
+    // and other system fields if necessary, only sending fields that can be updated.
+    const { characterid, ...updatePayload } = formData
+
     try {
-      const response = await fetch(`/api/characters/${character.characterid}`, {
+      // FIX: Explicitly convert the numeric ID to a string for the URL path
+      const url = `/api/characters/${id.toString()}` 
+      console.log(`[PUT] Attempting to update character at URL: ${url}`);
+      
+      const response = await fetch(url, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(updatePayload),
       })
 
       if (!response.ok) {
-        setError("Failed to update character")
+        // Read the error message from the server response body
+        const errorData = await response.json();
+        const serverError = errorData.error || `Status ${response.status}: Failed to update character.`;
+        
+        console.error("Server update error:", serverError);
+        setError(serverError);
         return
       }
 
@@ -65,7 +90,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
         onSave()
       }, 1000)
     } catch (err) {
-      setError("An error occurred")
+      console.error("An unhandled error occurred during update:", err);
+      setError("An error occurred. Check the console for details.")
     } finally {
       setLoading(false)
     }
@@ -77,6 +103,8 @@ export function CharacterEditModal({ character, onClose, onSave }: CharacterEdit
         <CardHeader className="border-b-2 border-accent flex justify-between items-start">
           <div>
             <CardTitle className="text-2xl text-primary">Edit Character</CardTitle>
+            {/* TEMPORARY DEBUG LINE: Display the ID */}
+            <p className="text-xs text-red-400">DEBUG ID: {character.characterid}</p> 
             <CardDescription className="text-muted-foreground">{character.charactername}</CardDescription>
           </div>
           <button onClick={onClose} className="p-1 hover:bg-accent/20 rounded">

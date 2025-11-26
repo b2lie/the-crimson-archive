@@ -89,7 +89,7 @@ const createSessionClient = async ()=>{
     });
 };
 }),
-"[project]/app/api/characters/[characterId]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"[project]/app/api/maps/[mapId]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -106,41 +106,42 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$serv
 ;
 async function GET(request, { params }) {
     try {
-        const resolvedParams = await params; // Await params to ensure value is resolved
-        const characterIdStr = resolvedParams.characterId; // Access using the folder name [characterId]
-        const characterId = Number(characterIdStr);
-        if (!characterIdStr || isNaN(characterId)) {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const mapIdStr = resolvedParams.mapId;
+        const mapId = Number(mapIdStr);
+        if (!mapIdStr || isNaN(mapId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid character ID"
+                error: "Invalid map ID format in URL."
             }, {
                 status: 400
             });
         }
         // Use the unauthenticated client for public read
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
-        // 2. Fetch the character.
-        const { data: character, error } = await supabase.from("ingamecharacters").select("*").eq("characterid", characterId).single();
-        if (error || !character) {
-            console.error("GET Character Error:", error?.message || 'Character not found.');
+        const { data: map, error } = await supabase.from("maps").select("*").eq("mapid", mapId).single();
+        if (error || !map) {
+            console.error("GET Map Error:", error?.message || 'Map not found.');
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Character not found"
+                error: "Map not found"
             }, {
                 status: 404
             });
         }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(character, {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(map, {
             status: 200
         });
     } catch (err) {
-        console.error("GET Character Exception:", err);
+        console.error("GET Map Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to fetch character"
+            error: "Failed to fetch map"
         }, {
             status: 500
         });
     }
 }
 async function PUT(request, { params }) {
+    // Use session client for authenticated write operation
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
@@ -151,50 +152,41 @@ async function PUT(request, { params }) {
         });
     }
     try {
-        const resolvedParams = await params; // Await params to ensure value is resolved
-        const characterIdStr = resolvedParams.characterId; // Access using the folder name [characterId]
-        const characterId = Number(characterIdStr);
-        const characterData = await request.json();
-        // CRITICAL FIX FOR NaN ERROR: Validate parameter conversion immediately
-        if (isNaN(characterId) || !characterIdStr) {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const mapIdStr = resolvedParams.mapId;
+        const mapId = Number(mapIdStr);
+        if (!mapIdStr || isNaN(mapId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid character ID format in URL."
+                error: "Invalid map ID format in URL."
             }, {
                 status: 400
             });
         }
-        // 1. INPUT VALIDATION: Prevents 400 errors from malformed client data
-        if (Object.keys(characterData).length === 0) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "No update data provided."
-            }, {
-                status: 400
-            });
-        }
-        // 2. Database Update
-        const { data, error } = await supabase.from("ingamecharacters").update(characterData).eq("characterid", characterId).select().single();
+        const mapData = await request.json();
+        const { data, error } = await supabase.from("maps").update(mapData).eq("mapid", mapId).select().single();
         if (error || !data) {
-            console.error("PUT Character DB Error:", error?.message);
-            const status = error && error.message.includes('permission denied') ? 403 : 400;
+            console.error("PUT Map DB Error:", error?.message);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: `Failed to update character: ${error?.message || 'Data not found.'}`
+                error: `Failed to update map: ${error?.message || 'Data not found.'}`
             }, {
-                status: status
+                status: 400
             });
         }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data, {
             status: 200
         });
     } catch (err) {
-        console.error("PUT Character Exception:", err);
+        console.error("PUT Map Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to update character"
+            error: "Failed to update map"
         }, {
             status: 500
         });
     }
 }
 async function DELETE(request, { params }) {
+    // Use session client for authenticated write operation
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
@@ -205,37 +197,41 @@ async function DELETE(request, { params }) {
         });
     }
     try {
-        const resolvedParams = await params; // Await params to ensure value is resolved
-        const characterIdStr = resolvedParams.characterId; // Access using the folder name [characterId]
-        const characterId = Number(characterIdStr);
-        // CRITICAL FIX FOR NaN ERROR: Validate parameter conversion immediately
-        if (isNaN(characterId) || !characterIdStr) {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const mapIdStr = resolvedParams.mapId;
+        const mapId = Number(mapIdStr);
+        if (!mapIdStr || isNaN(mapId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid character ID format in URL."
+                error: "Invalid map ID format in URL."
             }, {
                 status: 400
             });
         }
-        const { data, error } = await supabase.from("ingamecharacters").delete().eq("characterid", characterId).select().single();
+        const { data, error } = await supabase.from("maps").delete().eq("mapid", mapId).select();
+        // .single() <--- REMOVED THIS TO PREVENT COERCION ERROR WHEN NO RECORD IS FOUND
         if (error) {
-            console.error("DELETE Character DB Error:", error.message);
-            const status = error.message.includes('permission denied') ? 403 : 400;
+            console.error("DELETE Map DB Error:", error.message);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: `Failed to delete character: ${error.message}`
+                error: `Failed to delete map: ${error.message}`
             }, {
-                status: status
+                status: 400
             });
         }
+        // data will be an array of deleted rows (0 or 1 in this case).
+        const deletedCount = data ? data.length : 0;
+        const message = deletedCount > 0 ? `Successfully deleted map ID ${mapId}.` : `Map ID ${mapId} not found, nothing deleted.`;
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true,
+            message,
             deleted: data
         }, {
             status: 200
         });
     } catch (err) {
-        console.error("DELETE Character Exception:", err);
+        console.error("DELETE Map Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to delete character"
+            error: "Failed to delete map"
         }, {
             status: 500
         });
@@ -244,4 +240,4 @@ async function DELETE(request, { params }) {
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__b4c2e1c1._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__7d03d1b6._.js.map

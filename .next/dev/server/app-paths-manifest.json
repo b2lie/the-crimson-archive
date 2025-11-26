@@ -1,10 +1,12 @@
 {
-  "/api/account/pfp/route": "app/api/account/pfp/route.js",
   "/api/account/route": "app/api/account/route.js",
   "/api/characters/[characterId]/route": "app/api/characters/[characterId]/route.js",
   "/api/characters/route": "app/api/characters/route.js",
+  "/api/games/[gameId]/route": "app/api/games/[gameId]/route.js",
   "/api/games/route": "app/api/games/route.js",
+  "/api/maps/[mapId]/route": "app/api/maps/[mapId]/route.js",
   "/api/maps/route": "app/api/maps/route.js",
+  "/api/mobs/[mobId]/route": "app/api/mobs/[mobId]/route.js",
   "/api/mobs/route": "app/api/mobs/route.js",
   "/page": "app/page.js"
 }

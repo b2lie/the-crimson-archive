@@ -89,7 +89,7 @@ const createSessionClient = async ()=>{
     });
 };
 }),
-"[project]/app/api/characters/[characterId]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"[project]/app/api/mobs/[mobId]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -106,41 +106,42 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$serv
 ;
 async function GET(request, { params }) {
     try {
-        const resolvedParams = await params; // Await params to ensure value is resolved
-        const characterIdStr = resolvedParams.characterId; // Access using the folder name [characterId]
-        const characterId = Number(characterIdStr);
-        if (!characterIdStr || isNaN(characterId)) {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const mobIdStr = resolvedParams.mobId;
+        const mobId = Number(mobIdStr);
+        if (!mobIdStr || isNaN(mobId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid character ID"
+                error: "Invalid mob ID format in URL."
             }, {
                 status: 400
             });
         }
         // Use the unauthenticated client for public read
         const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createClient"])();
-        // 2. Fetch the character.
-        const { data: character, error } = await supabase.from("ingamecharacters").select("*").eq("characterid", characterId).single();
-        if (error || !character) {
-            console.error("GET Character Error:", error?.message || 'Character not found.');
+        const { data: mob, error } = await supabase.from("mobs").select("*").eq("mobid", mobId).single();
+        if (error || !mob) {
+            console.error("GET Mob Error:", error?.message || 'Mob not found.');
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Character not found"
+                error: "Mob not found"
             }, {
                 status: 404
             });
         }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(character, {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(mob, {
             status: 200
         });
     } catch (err) {
-        console.error("GET Character Exception:", err);
+        console.error("GET Mob Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to fetch character"
+            error: "Failed to fetch mob"
         }, {
             status: 500
         });
     }
 }
 async function PUT(request, { params }) {
+    // Use session client for authenticated write operation
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
@@ -151,50 +152,41 @@ async function PUT(request, { params }) {
         });
     }
     try {
-        const resolvedParams = await params; // Await params to ensure value is resolved
-        const characterIdStr = resolvedParams.characterId; // Access using the folder name [characterId]
-        const characterId = Number(characterIdStr);
-        const characterData = await request.json();
-        // CRITICAL FIX FOR NaN ERROR: Validate parameter conversion immediately
-        if (isNaN(characterId) || !characterIdStr) {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const mobIdStr = resolvedParams.mobId;
+        const mobId = Number(mobIdStr);
+        if (!mobIdStr || isNaN(mobId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid character ID format in URL."
+                error: "Invalid mob ID format in URL."
             }, {
                 status: 400
             });
         }
-        // 1. INPUT VALIDATION: Prevents 400 errors from malformed client data
-        if (Object.keys(characterData).length === 0) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "No update data provided."
-            }, {
-                status: 400
-            });
-        }
-        // 2. Database Update
-        const { data, error } = await supabase.from("ingamecharacters").update(characterData).eq("characterid", characterId).select().single();
+        const mobData = await request.json();
+        const { data, error } = await supabase.from("mobs").update(mobData).eq("mobid", mobId).select().single();
         if (error || !data) {
-            console.error("PUT Character DB Error:", error?.message);
-            const status = error && error.message.includes('permission denied') ? 403 : 400;
+            console.error("PUT Mob DB Error:", error?.message);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: `Failed to update character: ${error?.message || 'Data not found.'}`
+                error: `Failed to update mob: ${error?.message || 'Data not found.'}`
             }, {
-                status: status
+                status: 400
             });
         }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data, {
             status: 200
         });
     } catch (err) {
-        console.error("PUT Character Exception:", err);
+        console.error("PUT Mob Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to update character"
+            error: "Failed to update mob"
         }, {
             status: 500
         });
     }
 }
 async function DELETE(request, { params }) {
+    // Use session client for authenticated write operation
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$server$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSessionClient"])();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
@@ -205,25 +197,24 @@ async function DELETE(request, { params }) {
         });
     }
     try {
-        const resolvedParams = await params; // Await params to ensure value is resolved
-        const characterIdStr = resolvedParams.characterId; // Access using the folder name [characterId]
-        const characterId = Number(characterIdStr);
-        // CRITICAL FIX FOR NaN ERROR: Validate parameter conversion immediately
-        if (isNaN(characterId) || !characterIdStr) {
+        // FIX: Await params to ensure the dynamic segment value is resolved
+        const resolvedParams = await params;
+        const mobIdStr = resolvedParams.mobId;
+        const mobId = Number(mobIdStr);
+        if (!mobIdStr || isNaN(mobId)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Invalid character ID format in URL."
+                error: "Invalid mob ID format in URL."
             }, {
                 status: 400
             });
         }
-        const { data, error } = await supabase.from("ingamecharacters").delete().eq("characterid", characterId).select().single();
+        const { data, error } = await supabase.from("mobs").delete().eq("mobid", mobId).select().single();
         if (error) {
-            console.error("DELETE Character DB Error:", error.message);
-            const status = error.message.includes('permission denied') ? 403 : 400;
+            console.error("DELETE Mob DB Error:", error.message);
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: `Failed to delete character: ${error.message}`
+                error: `Failed to delete mob: ${error.message}`
             }, {
-                status: status
+                status: 400
             });
         }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -233,9 +224,9 @@ async function DELETE(request, { params }) {
             status: 200
         });
     } catch (err) {
-        console.error("DELETE Character Exception:", err);
+        console.error("DELETE Mob Exception:", err);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Failed to delete character"
+            error: "Failed to delete mob"
         }, {
             status: 500
         });
@@ -244,4 +235,4 @@ async function DELETE(request, { params }) {
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__b4c2e1c1._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__eef300b2._.js.map
