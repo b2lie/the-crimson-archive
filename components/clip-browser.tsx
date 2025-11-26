@@ -113,17 +113,17 @@ export function ClipBrowser({ clips: initialClips, loading: initialLoading, onRe
                 </h1>
                 <div className="flex gap-2">
                     <Button onClick={() => setAddOpen(true)}>
-                        <FileVideo size={16} className="mr-2" /> Add Clip
+                        <FileVideo size={16} className="mr-2" /> add clip
                     </Button>
                     <Button onClick={fetchClips} disabled={loading}>
                         <RefreshCw className={loading ? "animate-spin mr-2" : "mr-2"} size={16} />
-                        Refresh
+                        refresh
                     </Button>
                 </div>
             </div>
 
             <Input
-                placeholder="Search clips by title or game..."
+                placeholder="search clips by title or game..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="mb-4"

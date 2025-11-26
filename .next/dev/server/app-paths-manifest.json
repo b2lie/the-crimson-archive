@@ -2,12 +2,10 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/api/account/route": "app/api/account/route.js",
   "/api/characters/route": "app/api/characters/route.js",
-  "/api/clips/[clipId]/route": "app/api/clips/[clipId]/route.js",
   "/api/clips/route": "app/api/clips/route.js",
   "/api/games/route": "app/api/games/route.js",
   "/api/maps/route": "app/api/maps/route.js",
   "/api/mobs/route": "app/api/mobs/route.js",
   "/api/ratings/route": "app/api/ratings/route.js",
-  "/api/video/route": "app/api/video/route.js",
   "/page": "app/page.js"
 }

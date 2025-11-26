@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { RefreshCw, Edit2, Trash2 } from "lucide-react"
+import { RefreshCw, Edit2, Trash2, SwordIcon } from "lucide-react"
 import { MobEditModal } from "./mob-edit-modal" // Assumed path
 
 interface Mob {
@@ -94,16 +94,18 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-primary">Enemies</h1>
+        <h1 className="text-3xl font-bold text-primary">
+          enemies <SwordIcon size={24} className="inline-block ml-2 text-orange-400" />
+        </h1>
         <Button onClick={fetchMobs} className="bg-accent text-accent-foreground hover:bg-accent/90">
           <RefreshCw size={20} className="mr-2" />
-          Refresh
+          refresh
         </Button>
       </div>
 
       <Input
         type="text"
-        placeholder="Search enemies..."
+        placeholder="search enemies by name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="border-2 border-primary bg-background"
@@ -148,14 +150,14 @@ export function MobBrowser({ mobs: initialMobs, loading: initialLoading }: MobBr
                     <Button
                       size="sm"
                       onClick={() => setSelectedMob(mob)}
-                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                      className="bg-gray-200 text-gray-800 hover:bg-primary/90"
                     >
                       <Edit2 size={16} />
                     </Button>
                     <Button
                       size="sm"
                       onClick={() => handleDelete(mob.mobid)}
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      className="bg-red-500 text-accent-foreground hover:bg-accent/90"
                     >
                       <Trash2 size={16} />
                     </Button>

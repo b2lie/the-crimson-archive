@@ -27,10 +27,10 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
     <>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-primary">Game Database</h1>
+          <h1 className="text-3xl font-bold text-primary"></h1>
           <Button onClick={onRefresh} className="bg-accent text-accent-foreground hover:bg-accent/90">
             <RefreshCw size={20} className="mr-2" />
-            Refresh
+            refresh
           </Button>
         </div>
 

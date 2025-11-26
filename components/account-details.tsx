@@ -279,10 +279,10 @@ export function AccountDetails({ user, onBack }: AccountDetailsProps) {
   return (
     <Card className="max-w-3xl mx-auto shadow-xl">
       <CardHeader className="flex flex-row items-start justify-between">
-        <div className="space-y-1">
-          <CardTitle className="text-3xl font-bold text-primary">Account Details</CardTitle>
+        <div className="space-y-2">
+          <CardTitle className="text-3xl font-bold text-primary">account details</CardTitle>
           <CardDescription>
-            Manage and view your Crimson DB profile information.
+            manage and view your Crimson DB profile information.
           </CardDescription>
         </div>
         <div className="flex space-x-2">
@@ -308,12 +308,12 @@ export function AccountDetails({ user, onBack }: AccountDetailsProps) {
           ) : (
             <Button onClick={() => setIsEditing(true)} variant="outline" size="sm" className="space-x-1">
               <Edit className="h-4 w-4" />
-              <span>Edit</span>
+              <span>edit</span>
             </Button>
           )}
           <Button onClick={onBack} variant="outline" size="sm" className="space-x-1">
             <ArrowLeft className="h-4 w-4" />
-            <span>Back</span>
+            <span>back</span>
           </Button>
         </div>
       </CardHeader>

@@ -1329,8 +1329,7 @@ function GamesGallery({ games, loading, onRefresh }) {
                         className: "flex justify-between items-center",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: "text-3xl font-bold text-primary",
-                                children: "Game Database"
+                                className: "text-3xl font-bold text-primary"
                             }, void 0, false, {
                                 fileName: "[project]/components/games-gallery.tsx",
                                 lineNumber: 30,
@@ -1348,7 +1347,7 @@ function GamesGallery({ games, loading, onRefresh }) {
                                         lineNumber: 32,
                                         columnNumber: 13
                                     }, this),
-                                    "Refresh"
+                                    "refresh"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/games-gallery.tsx",
@@ -3424,7 +3423,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.js [app-client] (ecmascript) <export default as RefreshCw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/pen.js [app-client] (ecmascript) <export default as Edit2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserPlus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user-plus.js [app-client] (ecmascript) <export default as UserPlus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/eye.js [app-client] (ecmascript) <export default as Eye>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$character$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/character-edit-modal.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -3497,9 +3497,19 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                 className: "flex justify-between items-center gap-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-3xl font-bold text-primary",
-                        children: "Characters"
-                    }, void 0, false, {
+                        className: "text-3xl font-bold flex items-center gap-2",
+                        children: [
+                            "characters ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
+                                size: 28,
+                                color: "cyan"
+                            }, void 0, false, {
+                                fileName: "[project]/components/character-browser.tsx",
+                                lineNumber: 82,
+                                columnNumber: 22
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/character-browser.tsx",
                         lineNumber: 81,
                         columnNumber: 9
@@ -3507,6 +3517,25 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex gap-2",
                         children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                onClick: ()=>setShowAddForm(!showAddForm),
+                                className: "bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-primary",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserPlus$3e$__["UserPlus"], {
+                                        size: 20,
+                                        className: "mr-2"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/character-browser.tsx",
+                                        lineNumber: 89,
+                                        columnNumber: 13
+                                    }, this),
+                                    " add character"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/character-browser.tsx",
+                                lineNumber: 85,
+                                columnNumber: 11
+                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                 onClick: fetchCharacters,
                                 className: "bg-accent text-accent-foreground hover:bg-accent/90",
@@ -3516,39 +3545,20 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                         className: "mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 84,
+                                        lineNumber: 92,
                                         columnNumber: 13
                                     }, this),
-                                    " Refresh"
+                                    " refresh"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/character-browser.tsx",
-                                lineNumber: 83,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                onClick: ()=>setShowAddForm(!showAddForm),
-                                className: "bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-primary",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
-                                        size: 20,
-                                        className: "mr-2"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 90,
-                                        columnNumber: 13
-                                    }, this),
-                                    " Add Character"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/character-browser.tsx",
-                                lineNumber: 86,
+                                lineNumber: 91,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/character-browser.tsx",
-                        lineNumber: 82,
+                        lineNumber: 84,
                         columnNumber: 9
                     }, this)
                 ]
@@ -3561,18 +3571,18 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                 className: "flex gap-2 mb-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                     type: "text",
-                    placeholder: "Search characters...",
+                    placeholder: "search characters by name...",
                     value: searchTerm,
                     onChange: (e)=>setSearchTerm(e.target.value),
                     className: "border-2 border-primary bg-background"
                 }, void 0, false, {
                     fileName: "[project]/components/character-browser.tsx",
-                    lineNumber: 109,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/character-browser.tsx",
-                lineNumber: 108,
+                lineNumber: 110,
                 columnNumber: 7
             }, this),
             filteredCharacters.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -3584,17 +3594,17 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                         children: searchTerm ? "No characters found matching your search." : "No characters found."
                     }, void 0, false, {
                         fileName: "[project]/components/character-browser.tsx",
-                        lineNumber: 122,
+                        lineNumber: 124,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/character-browser.tsx",
-                    lineNumber: 121,
+                    lineNumber: 123,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/character-browser.tsx",
-                lineNumber: 120,
+                lineNumber: 122,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
@@ -3609,12 +3619,12 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                     className: "w-full h-full object-cover"
                                 }, void 0, false, {
                                     fileName: "[project]/components/character-browser.tsx",
-                                    lineNumber: 137,
+                                    lineNumber: 139,
                                     columnNumber: 19
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/character-browser.tsx",
-                                lineNumber: 136,
+                                lineNumber: 138,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
@@ -3624,7 +3634,7 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                         children: character.charactername
                                     }, void 0, false, {
                                         fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 147,
                                         columnNumber: 17
                                     }, this),
                                     (character.englishva || character.japaneseva) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -3635,7 +3645,7 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 147,
+                                        lineNumber: 149,
                                         columnNumber: 19
                                     }, this),
                                     character.motioncapture && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -3646,13 +3656,13 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 154,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/character-browser.tsx",
-                                lineNumber: 144,
+                                lineNumber: 146,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -3663,7 +3673,7 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                         children: character.backstory
                                     }, void 0, false, {
                                         fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 158,
+                                        lineNumber: 160,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3682,14 +3692,14 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                                         className: "mr-1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/character-browser.tsx",
-                                                        lineNumber: 168,
+                                                        lineNumber: 170,
                                                         columnNumber: 21
                                                     }, this),
-                                                    " Edit"
+                                                    " edit"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/character-browser.tsx",
-                                                lineNumber: 160,
+                                                lineNumber: 162,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3705,37 +3715,37 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                                                         className: "mr-1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/character-browser.tsx",
-                                                        lineNumber: 178,
+                                                        lineNumber: 180,
                                                         columnNumber: 21
                                                     }, this),
-                                                    " Delete"
+                                                    " delete"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/character-browser.tsx",
-                                                lineNumber: 170,
+                                                lineNumber: 172,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/character-browser.tsx",
-                                        lineNumber: 159,
+                                        lineNumber: 161,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/character-browser.tsx",
-                                lineNumber: 157,
+                                lineNumber: 159,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, character.characterid, true, {
                         fileName: "[project]/components/character-browser.tsx",
-                        lineNumber: 130,
+                        lineNumber: 132,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/character-browser.tsx",
-                lineNumber: 128,
+                lineNumber: 130,
                 columnNumber: 9
             }, this),
             selectedCharacter && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$character$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CharacterEditModal"], {
@@ -3747,7 +3757,7 @@ function CharacterBrowser({ characters: initialCharacters, loading: initialLoadi
                 }
             }, void 0, false, {
                 fileName: "[project]/components/character-browser.tsx",
-                lineNumber: 189,
+                lineNumber: 191,
                 columnNumber: 9
             }, this)
         ]
@@ -4123,6 +4133,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.js [app-client] (ecmascript) <export default as RefreshCw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/pen.js [app-client] (ecmascript) <export default as Edit2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Map$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/map.js [app-client] (ecmascript) <export default as Map>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$map$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/map-edit-modal.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -4192,7 +4203,7 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
     const filteredMaps = sortedMaps.filter((m)=>(m.mapname || "").toLowerCase().includes(searchTerm.toLowerCase()));
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex items-center justify-center min-h-96 text-white bg-gray-900 p-8 rounded-xl",
+            className: "flex items-center justify-center min-h-96 text-white bg-black-900 p-8 rounded-xl",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 className: "text-lg text-red-500 animate-pulse",
                 children: "Loading maps..."
@@ -4214,27 +4225,36 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                 className: "flex justify-between items-center pb-4 border-b border-red-700",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-4xl font-extrabold text-red-500",
-                        children: "Map Registry"
-                    }, void 0, false, {
+                        className: "text-3xl font-bold flex items-center gap-2",
+                        children: [
+                            "maps ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Map$3e$__["Map"], {
+                                size: 28,
+                                color: "green"
+                            }, void 0, false, {
+                                fileName: "[project]/components/map-browser.tsx",
+                                lineNumber: 94,
+                                columnNumber: 73
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/map-browser.tsx",
                         lineNumber: 94,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                         onClick: fetchMaps,
-                        className: "bg-red-600 text-white hover:bg-red-700 shadow-lg hover:shadow-red-500/50",
-                        title: "Refresh Map List",
+                        disabled: loading,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                size: 16,
-                                className: "mr-2"
+                                className: loading ? "animate-spin mr-2" : "mr-2",
+                                size: 16
                             }, void 0, false, {
                                 fileName: "[project]/components/map-browser.tsx",
-                                lineNumber: 100,
+                                lineNumber: 96,
                                 columnNumber: 11
                             }, this),
-                            "Refresh"
+                            "refresh"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/map-browser.tsx",
@@ -4249,13 +4269,13 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                 type: "text",
-                placeholder: "Search maps by name...",
+                placeholder: "search maps by name...",
                 value: searchTerm,
                 onChange: (e)=>setSearchTerm(e.target.value),
                 className: "border-red-500 focus:border-red-400 focus:ring-1 focus:ring-red-500"
             }, void 0, false, {
                 fileName: "[project]/components/map-browser.tsx",
-                lineNumber: 105,
+                lineNumber: 101,
                 columnNumber: 7
             }, this),
             filteredMaps.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -4267,22 +4287,22 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                         children: searchTerm ? "No maps found matching your search criteria." : "No maps available yet. Start by adding one!"
                     }, void 0, false, {
                         fileName: "[project]/components/map-browser.tsx",
-                        lineNumber: 116,
+                        lineNumber: 112,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/map-browser.tsx",
-                    lineNumber: 115,
+                    lineNumber: 111,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/map-browser.tsx",
-                lineNumber: 114,
+                lineNumber: 110,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3",
                 children: filteredMaps.map((map)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-                        className: "border-2 border-gray-700 hover:border-red-500 transition-colors bg-gray-900 shadow-lg",
+                        className: "transition hover:shadow-md",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
                                 className: "pb-3",
@@ -4292,11 +4312,16 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
-                                                    className: "text-red-400",
+                                                    className: "text-red-500",
                                                     children: map.mapname
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/map-browser.tsx",
-                                                    lineNumber: 128,
+                                                    lineNumber: 124,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                                    fileName: "[project]/components/map-browser.tsx",
+                                                    lineNumber: 127,
                                                     columnNumber: 21
                                                 }, this),
                                                 map.floorname && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -4307,13 +4332,13 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/map-browser.tsx",
-                                                    lineNumber: 132,
+                                                    lineNumber: 129,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/map-browser.tsx",
-                                            lineNumber: 127,
+                                            lineNumber: 123,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4324,16 +4349,17 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                                                     onClick: ()=>setSelectedMap(map),
                                                     className: "bg-gray-700 text-red-400 hover:bg-gray-600 p-2",
                                                     title: "Edit Map",
+                                                    variant: "outline",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit2$3e$__["Edit2"], {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/map-browser.tsx",
-                                                        lineNumber: 142,
+                                                        lineNumber: 140,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/map-browser.tsx",
-                                                    lineNumber: 136,
+                                                    lineNumber: 133,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4341,33 +4367,34 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                                                     onClick: ()=>handleDelete(map.mapid),
                                                     className: "bg-red-700 text-white hover:bg-red-800 p-2",
                                                     title: "Delete Map",
+                                                    variant: "outline",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/map-browser.tsx",
-                                                        lineNumber: 150,
+                                                        lineNumber: 149,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/map-browser.tsx",
-                                                    lineNumber: 144,
+                                                    lineNumber: 142,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/map-browser.tsx",
-                                            lineNumber: 135,
+                                            lineNumber: 132,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/map-browser.tsx",
-                                    lineNumber: 126,
+                                    lineNumber: 122,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/map-browser.tsx",
-                                lineNumber: 125,
+                                lineNumber: 121,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -4376,23 +4403,23 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                                     children: map.description || "No description provided."
                                 }, void 0, false, {
                                     fileName: "[project]/components/map-browser.tsx",
-                                    lineNumber: 156,
+                                    lineNumber: 155,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/map-browser.tsx",
-                                lineNumber: 155,
+                                lineNumber: 154,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, map.mapid, true, {
                         fileName: "[project]/components/map-browser.tsx",
-                        lineNumber: 124,
+                        lineNumber: 120,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/map-browser.tsx",
-                lineNumber: 122,
+                lineNumber: 118,
                 columnNumber: 9
             }, this),
             selectedMap && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$map$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MapEditModal"], {
@@ -4404,7 +4431,7 @@ function MapBrowser({ maps: initialMaps, loading: initialLoading }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/map-browser.tsx",
-                lineNumber: 164,
+                lineNumber: 163,
                 columnNumber: 9
             }, this)
         ]
@@ -4791,6 +4818,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.js [app-client] (ecmascript) <export default as RefreshCw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/pen.js [app-client] (ecmascript) <export default as Edit2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sword$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__SwordIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sword.js [app-client] (ecmascript) <export default as SwordIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$mob$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/mob-edit-modal.tsx [app-client] (ecmascript)"); // Assumed path
 ;
 var _s = __turbopack_context__.k.signature();
@@ -4875,8 +4903,18 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-3xl font-bold text-primary",
-                        children: "Enemies"
-                    }, void 0, false, {
+                        children: [
+                            "enemies ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sword$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__SwordIcon$3e$__["SwordIcon"], {
+                                size: 24,
+                                className: "inline-block ml-2 text-orange-400"
+                            }, void 0, false, {
+                                fileName: "[project]/components/mob-browser.tsx",
+                                lineNumber: 98,
+                                columnNumber: 19
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/mob-browser.tsx",
                         lineNumber: 97,
                         columnNumber: 9
@@ -4890,14 +4928,14 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                 className: "mr-2"
                             }, void 0, false, {
                                 fileName: "[project]/components/mob-browser.tsx",
-                                lineNumber: 99,
+                                lineNumber: 101,
                                 columnNumber: 11
                             }, this),
-                            "Refresh"
+                            "refresh"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/mob-browser.tsx",
-                        lineNumber: 98,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, this)
                 ]
@@ -4908,13 +4946,13 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                 type: "text",
-                placeholder: "Search enemies...",
+                placeholder: "search enemies by name...",
                 value: searchTerm,
                 onChange: (e)=>setSearchTerm(e.target.value),
                 className: "border-2 border-primary bg-background"
             }, void 0, false, {
                 fileName: "[project]/components/mob-browser.tsx",
-                lineNumber: 104,
+                lineNumber: 106,
                 columnNumber: 7
             }, this),
             filteredMobs.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -4926,17 +4964,17 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                         children: searchTerm ? "No enemies found matching your search." : "No enemies found."
                     }, void 0, false, {
                         fileName: "[project]/components/mob-browser.tsx",
-                        lineNumber: 115,
+                        lineNumber: 117,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/mob-browser.tsx",
-                    lineNumber: 114,
+                    lineNumber: 116,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/mob-browser.tsx",
-                lineNumber: 113,
+                lineNumber: 115,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "grid grid-cols-1 md:grid-cols-2 gap-4",
@@ -4963,12 +5001,12 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/mob-browser.tsx",
-                                                        lineNumber: 131,
+                                                        lineNumber: 133,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/mob-browser.tsx",
-                                                    lineNumber: 130,
+                                                    lineNumber: 132,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -4976,7 +5014,7 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                                     children: mob.mobname
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/mob-browser.tsx",
-                                                    lineNumber: 141,
+                                                    lineNumber: 143,
                                                     columnNumber: 21
                                                 }, this),
                                                 mob.mobtype && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -4987,13 +5025,13 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/mob-browser.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 145,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/mob-browser.tsx",
-                                            lineNumber: 127,
+                                            lineNumber: 129,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5002,50 +5040,50 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                     size: "sm",
                                                     onClick: ()=>setSelectedMob(mob),
-                                                    className: "bg-primary text-primary-foreground hover:bg-primary/90",
+                                                    className: "bg-gray-200 text-gray-800 hover:bg-primary/90",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit2$3e$__["Edit2"], {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/mob-browser.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 155,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/mob-browser.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 150,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                     size: "sm",
                                                     onClick: ()=>handleDelete(mob.mobid),
-                                                    className: "bg-accent text-accent-foreground hover:bg-accent/90",
+                                                    className: "bg-red-500 text-accent-foreground hover:bg-accent/90",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/mob-browser.tsx",
-                                                        lineNumber: 160,
+                                                        lineNumber: 162,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/mob-browser.tsx",
-                                                    lineNumber: 155,
+                                                    lineNumber: 157,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/mob-browser.tsx",
-                                            lineNumber: 147,
+                                            lineNumber: 149,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/mob-browser.tsx",
-                                    lineNumber: 125,
+                                    lineNumber: 127,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/mob-browser.tsx",
-                                lineNumber: 124,
+                                lineNumber: 126,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -5056,7 +5094,7 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                         children: mob.description
                                     }, void 0, false, {
                                         fileName: "[project]/components/mob-browser.tsx",
-                                        lineNumber: 166,
+                                        lineNumber: 168,
                                         columnNumber: 17
                                     }, this),
                                     mob.weakness && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5067,7 +5105,7 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                                 children: "Weakness:"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/mob-browser.tsx",
-                                                lineNumber: 169,
+                                                lineNumber: 171,
                                                 columnNumber: 21
                                             }, this),
                                             " ",
@@ -5076,30 +5114,30 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                                                 children: mob.weakness
                                             }, void 0, false, {
                                                 fileName: "[project]/components/mob-browser.tsx",
-                                                lineNumber: 169,
+                                                lineNumber: 171,
                                                 columnNumber: 70
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/mob-browser.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 170,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/mob-browser.tsx",
-                                lineNumber: 165,
+                                lineNumber: 167,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, mob.mobid, true, {
                         fileName: "[project]/components/mob-browser.tsx",
-                        lineNumber: 123,
+                        lineNumber: 125,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/mob-browser.tsx",
-                lineNumber: 121,
+                lineNumber: 123,
                 columnNumber: 9
             }, this),
             selectedMob && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$mob$2d$edit$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MobEditModal"], {
@@ -5111,7 +5149,7 @@ function MobBrowser({ mobs: initialMobs, loading: initialLoading }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/mob-browser.tsx",
-                lineNumber: 179,
+                lineNumber: 181,
                 columnNumber: 9
             }, this)
         ]
@@ -5469,18 +5507,18 @@ function AccountDetails({ user, onBack }) {
                 className: "flex flex-row items-start justify-between",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "space-y-1",
+                        className: "space-y-2",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
                                 className: "text-3xl font-bold text-primary",
-                                children: "Account Details"
+                                children: "account details"
                             }, void 0, false, {
                                 fileName: "[project]/components/account-details.tsx",
                                 lineNumber: 283,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
-                                children: "Manage and view your Crimson DB profile information."
+                                children: "manage and view your Crimson DB profile information."
                             }, void 0, false, {
                                 fileName: "[project]/components/account-details.tsx",
                                 lineNumber: 284,
@@ -5568,7 +5606,7 @@ function AccountDetails({ user, onBack }) {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Edit"
+                                        children: "edit"
                                     }, void 0, false, {
                                         fileName: "[project]/components/account-details.tsx",
                                         lineNumber: 311,
@@ -5594,7 +5632,7 @@ function AccountDetails({ user, onBack }) {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Back"
+                                        children: "back"
                                     }, void 0, false, {
                                         fileName: "[project]/components/account-details.tsx",
                                         lineNumber: 316,
@@ -7463,7 +7501,7 @@ function ClipBrowser({ clips: initialClips, loading: initialLoading, onRefresh, 
                                         lineNumber: 116,
                                         columnNumber: 25
                                     }, this),
-                                    " Add Clip"
+                                    " add clip"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/clip-browser.tsx",
@@ -7482,7 +7520,7 @@ function ClipBrowser({ clips: initialClips, loading: initialLoading, onRefresh, 
                                         lineNumber: 119,
                                         columnNumber: 25
                                     }, this),
-                                    "Refresh"
+                                    "refresh"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/clip-browser.tsx",
@@ -7502,7 +7540,7 @@ function ClipBrowser({ clips: initialClips, loading: initialLoading, onRefresh, 
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                placeholder: "Search clips by title or game...",
+                placeholder: "search clips by title or game...",
                 value: searchTerm,
                 onChange: (e)=>setSearchTerm(e.target.value),
                 className: "mb-4"
@@ -7716,100 +7754,164 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/eye.js [app-client] (ecmascript) <export default as Eye>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user.js [app-client] (ecmascript) <export default as User>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
 "use client";
 ;
 ;
 ;
 ;
 function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) {
-    // --- 1. STATISTICS (NO CHANGE) ---
     const stats = [
         {
-            title: "Total Games",
+            title: "total games",
             value: games.length,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gamepad$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gamepad2$3e$__["Gamepad2"],
-            color: "text-primary",
-            bgColor: "bg-primary/10"
+            color: "text-red-500",
+            bgColor: "bg-red-500/10"
         },
         {
-            title: "Characters",
+            title: "characters",
             value: characters.length,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
-            color: "text-accent",
-            bgColor: "bg-accent/10"
+            color: "text-white",
+            bgColor: "bg-white/10"
         },
         {
-            title: "Maps",
+            title: "maps",
             value: maps.length,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Map$3e$__["Map"],
-            color: "text-primary",
-            bgColor: "bg-primary/10"
+            color: "text-red-500",
+            bgColor: "bg-red-500/10"
         },
         {
-            title: "Enemies",
+            title: "enemies",
             value: mobs.length,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"],
-            color: "text-accent",
-            bgColor: "bg-accent/10"
+            color: "text-white",
+            bgColor: "bg-white/10"
         }
     ];
-    // --- 2. QUICK ACTIONS (MODIFIED FOR ROLE CHECK) ---
-    const quickActions = [] // Start with an empty array
-    ;
-    // 🔑 Conditional check to include 'Add Game' only for 'dev' role
+    const quickActions = [];
     if (userRole === "dev") {
         quickActions.push({
             title: "Add Game",
             description: "Create a new game entry",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"],
             action: ()=>onNavigate("add"),
-            color: "bg-primary text-primary-foreground hover:bg-primary/90"
+            color: "bg-red-500 text-black hover:bg-red-600"
         });
     }
-    // 'Browse Games' is always available
     quickActions.push({
         title: "Browse Games",
         description: "View all games in the database",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"],
         action: ()=>onNavigate("browse"),
-        color: "bg-accent text-accent-foreground hover:bg-accent/90"
+        color: "bg-white text-black hover:bg-white/90"
     });
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "space-y-8",
+        className: "space-y-8 font-sans text-white",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "bg-primary text-primary-foreground p-8 rounded-lg border-2 border-accent",
+                className: "bg-black border-red-500 rounded-lg shadow-md py-10 space-y-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-4xl font-bold mb-2",
-                        children: "Welcome Page"
+                        className: "text-4xl font-bold",
+                        style: {
+                            fontFamily: 'Press Start 2P, monospace',
+                            color: "#ff2b2b"
+                        },
+                        children: "navigation."
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 79,
+                        lineNumber: 49,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-lg opacity-90",
-                        children: "Add whatever you'd like here tbh. Maybe some news, updates, or quick links? Ur marzi."
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-wrap gap-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                onClick: ()=>onNavigate("browse"),
+                                className: "text-red-500 font-bold text-lg px-3 py-2 border-red-500 rounded hover:text-white hover:shadow-[0_0_8px_red] transition-all cursor-pointer",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "browse games"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard-home.tsx",
+                                lineNumber: 57,
+                                columnNumber: 11
+                            }, this),
+                            userRole === "dev" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                onClick: ()=>onNavigate("add"),
+                                className: "text-red-500 font-bold text-lg px-3 py-2 border-red-500 rounded hover:text-white transition-all cursor-pointer",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "add game"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard-home.tsx",
+                                lineNumber: 66,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                onClick: ()=>onNavigate("characters"),
+                                className: "text-red-500 font-bold text-lg px-3 py-2 border-red-500 rounded hover:text-white hover:shadow-[0_0_8px_red] transition-all cursor-pointer",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "characters"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard-home.tsx",
+                                lineNumber: 75,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                onClick: ()=>onNavigate("maps"),
+                                className: "text-red-500 font-bold text-lg px-3 py-2 border-red-500 rounded hover:text-white hover:shadow-[0_0_8px_red] transition-all cursor-pointer",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "maps"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard-home.tsx",
+                                lineNumber: 83,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                onClick: ()=>onNavigate("mobs"),
+                                className: "text-red-500 font-bold text-lg px-3 py-2 border-red-500 rounded hover:text-white hover:shadow-[0_0_8px_red] transition-all cursor-pointer",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "mobs"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard-home.tsx",
+                                lineNumber: 91,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 80,
+                        lineNumber: 56,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-home.tsx",
-                lineNumber: 78,
+                lineNumber: 48,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "text-2xl font-bold text-primary mb-4",
-                        children: "Database Overview"
+                        className: "text-2xl font-bold text-red-500 mb-4",
+                        style: {
+                            fontFamily: 'Press Start 2P, monospace'
+                        },
+                        children: "database overview"
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 87,
+                        lineNumber: 104,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7817,10 +7919,10 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                         children: stats.map((stat, idx)=>{
                             const Icon = stat.icon;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "border-2 border-primary bg-card hover:border-accent transition-colors",
+                                className: "border-2 border-red-500 bg-black hover:shadow-[0_0_8px_red] transition-all",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
-                                        className: "pb-3",
+                                        className: "pb-3 flex flex-col items-center",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: `${stat.bgColor} w-12 h-12 rounded-lg flex items-center justify-center mb-2`,
@@ -7828,68 +7930,72 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                                                     className: `${stat.color} w-6 h-6`
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard-home.tsx",
-                                                    lineNumber: 95,
+                                                    lineNumber: 112,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-home.tsx",
-                                                lineNumber: 94,
+                                                lineNumber: 111,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
-                                                className: "text-sm text-muted-foreground",
+                                                className: "text-sm text-gray-300 text-center",
                                                 children: stat.title
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-home.tsx",
-                                                lineNumber: 97,
+                                                lineNumber: 114,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 110,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
+                                        className: "text-center",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "text-3xl font-bold text-primary",
+                                            className: "text-3xl font-bold text-red-500",
                                             children: stat.value
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 100,
+                                            lineNumber: 117,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 116,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, idx, true, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 92,
+                                lineNumber: 109,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 88,
+                        lineNumber: 105,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-home.tsx",
-                lineNumber: 86,
+                lineNumber: 103,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "text-2xl font-bold text-primary mb-4",
-                        children: "Quick Actions"
+                        className: "text-2xl font-bold text-red-500 mb-4",
+                        style: {
+                            fontFamily: 'Press Start 2P, monospace'
+                        },
+                        children: "quick actions"
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 110,
+                        lineNumber: 127,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7898,7 +8004,7 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                             const Icon = action.icon;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                 onClick: action.action,
-                                className: `${action.color} h-auto p-6 border-2 border-current justify-start flex-col items-start`,
+                                className: `${action.color} h-auto p-6 border-2 border-red-500 justify-start flex-col items-start hover:shadow-[0_0_8px_red] transition-all`,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex items-center gap-3 w-full",
                                     children: [
@@ -7906,7 +8012,7 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                                             size: 32
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 121,
+                                            lineNumber: 138,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7917,7 +8023,7 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                                                     children: action.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard-home.tsx",
-                                                    lineNumber: 123,
+                                                    lineNumber: 140,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7925,36 +8031,36 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                                                     children: action.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard-home.tsx",
-                                                    lineNumber: 124,
+                                                    lineNumber: 141,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 139,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-home.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 137,
                                     columnNumber: 17
                                 }, this)
                             }, idx, false, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 115,
+                                lineNumber: 132,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 111,
+                        lineNumber: 128,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-home.tsx",
-                lineNumber: 109,
+                lineNumber: 126,
                 columnNumber: 7
             }, this),
             games.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7963,32 +8069,35 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                         className: "flex justify-between items-center mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-2xl font-bold text-primary",
-                                children: "Recent Games"
+                                className: "text-2xl font-bold text-red-500",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "recent games"
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 137,
+                                lineNumber: 154,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                 onClick: ()=>onNavigate("browse"),
-                                className: "bg-accent text-accent-foreground hover:bg-accent/90",
+                                className: "bg-white text-black border-2 border-red-500 hover:bg-white/90 hover:shadow-[0_0_6px_red] transition-all",
                                 children: "View All"
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 138,
+                                lineNumber: 155,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 136,
+                        lineNumber: 153,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
                         children: games.slice(0, 3).map((game)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer",
+                                className: "border-2 border-red-500 hover:shadow-[0_0_8px_red] transition-all bg-black cursor-pointer",
                                 onClick: ()=>onNavigate("browse"),
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8003,73 +8112,73 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 162,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gamepad$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gamepad2$3e$__["Gamepad2"], {
-                                            className: "w-16 h-16 text-muted-foreground"
+                                            className: "w-16 h-16 text-gray-400"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 161,
-                                            columnNumber: 21
+                                            lineNumber: 168,
+                                            columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 160,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
-                                                className: "text-primary line-clamp-1",
+                                                className: "text-red-500 line-clamp-1",
                                                 children: game.title
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-home.tsx",
-                                                lineNumber: 165,
+                                                lineNumber: 171,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
-                                                className: "text-muted-foreground",
+                                                className: "text-gray-300",
                                                 children: new Date(game.releasedate).getFullYear()
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-home.tsx",
-                                                lineNumber: 166,
+                                                lineNumber: 172,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 170,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm line-clamp-2 text-muted-foreground",
+                                            className: "text-sm line-clamp-2 text-gray-400",
                                             children: game.plotsummary
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 171,
+                                            lineNumber: 175,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 170,
+                                        lineNumber: 174,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, game.gameid, true, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 147,
+                                lineNumber: 159,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 145,
+                        lineNumber: 157,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-home.tsx",
-                lineNumber: 135,
+                lineNumber: 152,
                 columnNumber: 9
             }, this),
             characters.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8079,32 +8188,35 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                         className: "flex justify-between items-center mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-2xl font-bold text-primary",
-                                children: "Recent Characters"
+                                className: "text-2xl font-bold text-red-500",
+                                style: {
+                                    fontFamily: 'Press Start 2P, monospace'
+                                },
+                                children: "recent characters"
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 183,
+                                lineNumber: 187,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                 onClick: ()=>onNavigate("characters"),
-                                className: "bg-accent text-accent-foreground hover:bg-accent/90",
+                                className: "bg-white text-black border-2 border-red-500 hover:bg-white/90 hover:shadow-[0_0_6px_red] transition-all",
                                 children: "View All"
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 184,
+                                lineNumber: 188,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 182,
+                        lineNumber: 186,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
                         children: characters.slice(0, 3).map((char)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-                                className: "border-2 border-primary hover:border-accent transition-colors bg-card cursor-pointer",
+                                className: "border-2 border-red-500 hover:shadow-[0_0_8px_red] transition-all bg-black cursor-pointer",
                                 onClick: ()=>onNavigate("characters"),
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8119,86 +8231,155 @@ function DashboardHome({ games, characters, maps, mobs, userRole, onNavigate }) 
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 200,
+                                            lineNumber: 195,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
-                                            className: "w-16 h-16 text-muted-foreground"
+                                            className: "w-16 h-16 text-gray-400"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 207,
-                                            columnNumber: 21
+                                            lineNumber: 201,
+                                            columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 198,
+                                        lineNumber: 193,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
-                                                className: "text-primary line-clamp-1",
+                                                className: "text-red-500 line-clamp-1",
                                                 children: char.name
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-home.tsx",
-                                                lineNumber: 211,
+                                                lineNumber: 204,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
-                                                className: "text-muted-foreground",
+                                                className: "text-gray-300",
                                                 children: char.englishva && `English VA: ${char.englishva}`
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-home.tsx",
-                                                lineNumber: 212,
+                                                lineNumber: 205,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 210,
+                                        lineNumber: 203,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm line-clamp-2 text-muted-foreground",
+                                            className: "text-sm line-clamp-2 text-gray-400",
                                             children: char.backstory
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-home.tsx",
-                                            lineNumber: 217,
+                                            lineNumber: 210,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-home.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 209,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, char.characterid, true, {
                                 fileName: "[project]/components/dashboard-home.tsx",
-                                lineNumber: 193,
+                                lineNumber: 192,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-home.tsx",
-                        lineNumber: 191,
+                        lineNumber: 190,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-home.tsx",
-                lineNumber: 181,
+                lineNumber: 185,
                 columnNumber: 9
             }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                fileName: "[project]/components/dashboard-home.tsx",
+                lineNumber: 218,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-                className: "border-0 border-primary bg-primary/5"
+                className: "w-full py-10 mt-8 bg-black hover:shadow-[0_0_8px_red] transition-all",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: "/default-pfp.jpg",
+                            alt: "The Crimson Archive Logo",
+                            className: "w-16 h-16 mb-4 mx-auto"
+                        }, void 0, false, {
+                            fileName: "[project]/components/dashboard-home.tsx",
+                            lineNumber: 222,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-sm text-gray-400 text-center px-100",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("b", {
+                                    children: "Welcome to The Crimson Archive Dashboard!"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard-home.tsx",
+                                    lineNumber: 224,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                    fileName: "[project]/components/dashboard-home.tsx",
+                                    lineNumber: 224,
+                                    columnNumber: 61
+                                }, this),
+                                " ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                    fileName: "[project]/components/dashboard-home.tsx",
+                                    lineNumber: 224,
+                                    columnNumber: 67
+                                }, this),
+                                "Here you can manage and explore the extensive database of games, characters, maps, and enemies. Use the navigation links above to get started, and take advantage of the quick actions for efficient workflow. ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                    fileName: "[project]/components/dashboard-home.tsx",
+                                    lineNumber: 224,
+                                    columnNumber: 279
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                    fileName: "[project]/components/dashboard-home.tsx",
+                                    lineNumber: 224,
+                                    columnNumber: 284
+                                }, this),
+                                " Happy archiving!"
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/dashboard-home.tsx",
+                            lineNumber: 223,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
+                            size: 28,
+                            className: "text-yellow-400 mt-4 mx-auto"
+                        }, void 0, false, {
+                            fileName: "[project]/components/dashboard-home.tsx",
+                            lineNumber: 226,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/dashboard-home.tsx",
+                    lineNumber: 221,
+                    columnNumber: 9
+                }, this)
             }, void 0, false, {
                 fileName: "[project]/components/dashboard-home.tsx",
-                lineNumber: 225,
+                lineNumber: 220,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard-home.tsx",
-        lineNumber: 76,
+        lineNumber: 46,
         columnNumber: 5
     }, this);
 }
@@ -8249,8 +8430,7 @@ var _s = __turbopack_context__.k.signature();
 function Dashboard({ user, onLogout }) {
     _s();
     const [view, setView] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("home");
-    const [userRole, setUserRole] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("viewer") // viewer = default role
-    ;
+    const [userRole, setUserRole] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(user.isdev ? "dev" : "viewer");
     const [games, setGames] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [characters, setCharacters] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [maps, setMaps] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -8268,7 +8448,12 @@ function Dashboard({ user, onLogout }) {
     const [menuOpen, setMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
-            fetchGames(), fetchCharacters(), fetchMaps(), fetchMobs(), fetchRatings(), fetchClips();
+            fetchGames();
+            fetchCharacters();
+            fetchMaps();
+            fetchMobs();
+            fetchRatings();
+            fetchClips();
         }
     }["Dashboard.useEffect"], []);
     const fetchGames = async ()=>{
@@ -8299,24 +8484,19 @@ function Dashboard({ user, onLogout }) {
         try {
             const response = await fetch("/api/characters");
             const data = await response.json();
-            if (data.error) {
-                console.error(data.error);
-                setCharacters([]);
-                return;
-            }
-            const formattedCharacters = (data.characters || []).map((char)=>({
-                    characterid: char.characterid,
-                    name: char.charactername,
-                    description: char.description,
-                    backstory: char.backstory,
-                    englishva: char.englishva,
-                    japaneseva: char.japaneseva,
-                    motioncapture: char.motioncapture,
-                    spriteurl: char.spriteurl
+            const formatted = (data.characters || []).map((c)=>({
+                    characterid: c.characterid,
+                    name: c.charactername,
+                    description: c.description,
+                    backstory: c.backstory,
+                    englishva: c.englishva,
+                    japaneseva: c.japaneseva,
+                    motioncapture: c.motioncapture,
+                    spriteurl: c.spriteurl
                 }));
-            setCharacters(formattedCharacters);
+            setCharacters(formatted);
         } catch (err) {
-            console.error("Failed to fetch characters:", err);
+            console.error(err);
             setCharacters([]);
         } finally{
             setLoadingCharacters(false);
@@ -8330,7 +8510,7 @@ function Dashboard({ user, onLogout }) {
         try {
             const response = await fetch("/api/mobs");
             const data = await response.json();
-            const formattedMobs = (data.mobs || []).map((mob)=>({
+            const formatted = (data.mobs || []).map((mob)=>({
                     mobid: mob.mobid,
                     mobname: mob.mobname,
                     mobtype: mob.mobtype,
@@ -8339,9 +8519,9 @@ function Dashboard({ user, onLogout }) {
                     mobspriteurl: mob.mobspriteurl,
                     spawnnotes: mob.spawnnotes
                 }));
-            setMobs(formattedMobs);
+            setMobs(formatted);
         } catch (err) {
-            console.error("Failed to fetch mobs:", err);
+            console.error(err);
         } finally{
             setLoadingMobs(false);
         }
@@ -8354,16 +8534,16 @@ function Dashboard({ user, onLogout }) {
         try {
             const response = await fetch("/api/maps");
             const data = await response.json();
-            const formattedMaps = (data.maps || []).map((map)=>({
+            const formatted = (data.maps || []).map((map)=>({
                     mapid: map.mapid,
                     mapname: map.mapname,
                     floorname: map.floorname,
                     description: map.description,
                     mapurl: map.mapurl
                 }));
-            setMaps(formattedMaps);
+            setMaps(formatted);
         } catch (err) {
-            console.error("Failed to fetch maps:", err);
+            console.error(err);
         } finally{
             setLoadingMaps(false);
         }
@@ -8376,16 +8556,16 @@ function Dashboard({ user, onLogout }) {
         try {
             const response = await fetch("/api/ratings");
             const data = await response.json();
-            const formattedRatings = (data.ratings || []).map((rating)=>({
-                    ratingid: rating.ratingid,
-                    rating: data.rating,
-                    review: data.review,
-                    reviewtimestamp: data.reviewtimestamp,
-                    personalbest: data.personalbest
+            const formatted = (data.ratings || []).map((r)=>({
+                    ratingid: r.ratingid,
+                    rating: r.rating,
+                    review: r.review,
+                    reviewtimestamp: r.reviewtimestamp,
+                    personalbest: r.personalbest
                 }));
-            setRatings(formattedRatings);
+            setRatings(formatted);
         } catch (err) {
-            console.error("Failed to fetch ratings:", err);
+            console.error(err);
         } finally{
             setLoadingRatings(false);
         }
@@ -8395,7 +8575,6 @@ function Dashboard({ user, onLogout }) {
         setView("ratings");
     };
     const handleInitiateAddRating = (gameId)=>{
-        // We wrap the gameId in an array to maintain the state's declared type of any[]
         setGameIdForRating(gameId ? [
             gameId
         ] : []);
@@ -8405,15 +8584,15 @@ function Dashboard({ user, onLogout }) {
         try {
             const response = await fetch("/api/clips");
             const data = await response.json();
-            const formattedClips = (data.clips || []).map((clip)=>({
+            const formatted = (data.clips || []).map((clip)=>({
                     clipid: clip.clipid,
                     clipname: clip.clipname,
                     description: clip.description,
                     clipurl: clip.clipurl
                 }));
-            setClips(formattedClips);
+            setClips(formatted);
         } catch (err) {
-            console.error("Failed to fetch clips:", err);
+            console.error(err);
         } finally{
             setLoadingClips(false);
         }
@@ -8423,7 +8602,6 @@ function Dashboard({ user, onLogout }) {
         setView("clips");
     };
     const handleInitiateAddClip = (gameId)=>{
-        // We wrap the gameId in an array to maintain the state's declared type of any[]
         setGameIdForClip(gameId ? [
             gameId
         ] : []);
@@ -8432,42 +8610,40 @@ function Dashboard({ user, onLogout }) {
     const navItems = [
         {
             id: "home",
-            label: "Dashboard"
+            label: "dashboard"
         },
         {
             id: "browse",
-            label: "Browse Games"
+            label: "browse games"
         },
         {
             id: "ratings",
-            label: "Game Ratings",
+            label: "game ratings",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"]
         },
         {
             id: "characters",
-            label: "Characters"
+            label: "characters"
         },
         {
             id: "maps",
-            label: "Maps"
+            label: "maps"
         },
         {
             id: "mobs",
-            label: "Mobs"
+            label: "mobs"
         },
         {
             id: "clips",
-            label: "Clips"
+            label: "clips"
         }
     ];
-    // Logic to ensure a clean display name is always shown.
-    // Use the username property, or fall back to the local part of the email.
     const displayName = user.username && user.username.length > 0 ? user.username : user.email ? user.email.split('@')[0] : 'Account';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen bg-background",
+        className: "min-h-screen bg-black text-white font-sans",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-                className: "bg-primary text-primary-foreground border-b-4 border-accent",
+                className: "bg-black border-b-4 border-red-600 shadow-md",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "max-w-7xl mx-auto px-4 py-4 flex justify-between items-center",
@@ -8475,17 +8651,31 @@ function Dashboard({ user, onLogout }) {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>setView("home"),
                                 className: "flex items-center gap-2 hover:opacity-80 transition-opacity",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-2xl font-bold",
-                                    children: "CRIMSON DB"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 254,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: "/logo.jpg",
+                                        alt: "Logo",
+                                        className: "h-16 w-auto"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard.tsx",
+                                        lineNumber: 190,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-2xl font-bold tracking-widest text-red-500",
+                                        style: {
+                                            fontFamily: 'Press Start 2P, monospace'
+                                        },
+                                        children: "CRIMSON."
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard.tsx",
+                                        lineNumber: 191,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 250,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8496,108 +8686,98 @@ function Dashboard({ user, onLogout }) {
                                             setView("account");
                                             setMenuOpen(false);
                                         },
-                                        className: "text-sm underline hover:opacity-80 transition-opacity",
+                                        className: "text-sm underline hover:text-red-500 transition-colors",
                                         children: displayName
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 195,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setMenuOpen(!menuOpen),
-                                        className: "p-2 hover:bg-primary/80 rounded",
+                                        className: "p-2 hover:bg-red-700 rounded transition-colors",
                                         children: menuOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard.tsx",
-                                            lineNumber: 270,
+                                            lineNumber: 202,
                                             columnNumber: 27
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard.tsx",
-                                            lineNumber: 270,
+                                            lineNumber: 202,
                                             columnNumber: 45
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 269,
+                                        lineNumber: 201,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 258,
+                                lineNumber: 194,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 247,
+                        lineNumber: 188,
                         columnNumber: 9
                     }, this),
                     menuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-primary/95 border-t border-primary-foreground",
+                        className: "bg-black border-t border-red-600",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "max-w-7xl mx-auto px-4 py-4",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col md:flex-row md:items-center md:gap-2 w-full space-y-2 md:space-y-0",
-                                children: [
-                                    navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            onClick: ()=>{
-                                                setView(item.id);
-                                                setMenuOpen(false);
-                                            },
-                                            // Ensure full width on mobile, and standard width on desktop
-                                            className: "w-full justify-start md:w-auto md:justify-center",
-                                            variant: view === item.id ? "default" : "outline",
-                                            children: item.label
-                                        }, item.id, false, {
-                                            fileName: "[project]/components/dashboard.tsx",
-                                            lineNumber: 285,
-                                            columnNumber: 19
-                                        }, this)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                        onClick: onLogout,
-                                        className: "w-full justify-start bg-transparent md:w-auto md:justify-center md:ml-auto",
-                                        variant: "outline",
-                                        children: "Logout"
-                                    }, void 0, false, {
+                            className: "max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:gap-2 space-y-2 md:space-y-0",
+                            children: [
+                                navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        onClick: ()=>{
+                                            setView(item.id);
+                                            setMenuOpen(false);
+                                        },
+                                        className: `w-full md:w-auto justify-start transition-all ${view === item.id ? "bg-red-800 text-white" : "border-red-500 text-red-500 hover:text-black bg-black"}`,
+                                        children: item.label
+                                    }, item.id, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 300,
+                                        lineNumber: 211,
                                         columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 282,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
+                                    }, this)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: onLogout,
+                                    className: "w-full md:w-auto justify-start bg-black text-red-500 border-red-500 hover:text-white md:ml-auto transition-all",
+                                    children: "logout"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard.tsx",
+                                    lineNumber: 219,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/components/dashboard.tsx",
-                            lineNumber: 279,
+                            lineNumber: 209,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 278,
+                        lineNumber: 208,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 246,
+                lineNumber: 187,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                className: "max-w-7xl mx-auto p-4",
+                className: "max-w-7xl mx-auto p-4 space-y-6",
                 children: [
                     view === "account" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$account$2d$details$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AccountDetails"], {
                         user: user,
                         onBack: ()=>setView("home")
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 315,
+                        lineNumber: 231,
                         columnNumber: 32
                     }, this),
                     view === "home" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2d$home$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DashboardHome"], {
@@ -8609,7 +8789,7 @@ function Dashboard({ user, onLogout }) {
                         onNavigate: setView
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 316,
+                        lineNumber: 232,
                         columnNumber: 29
                     }, this),
                     view === "browse" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$games$2d$gallery$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GamesGallery"], {
@@ -8618,14 +8798,14 @@ function Dashboard({ user, onLogout }) {
                         onRefresh: fetchGames
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 317,
+                        lineNumber: 233,
                         columnNumber: 31
                     }, this),
                     view === "add" && userRole === "dev" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$game$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddGameForm"], {
                         onGameAdded: handleGameAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 318,
+                        lineNumber: 234,
                         columnNumber: 50
                     }, this),
                     view === "ratings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ratings$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["RatingsBrowser"], {
@@ -8635,7 +8815,7 @@ function Dashboard({ user, onLogout }) {
                         onAddRating: ()=>handleInitiateAddRating(undefined)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 320,
+                        lineNumber: 235,
                         columnNumber: 32
                     }, this),
                     view === "characters" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$character$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CharacterBrowser"], {
@@ -8645,7 +8825,7 @@ function Dashboard({ user, onLogout }) {
                         onCharacterAdded: handleCharacterAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 321,
+                        lineNumber: 236,
                         columnNumber: 35
                     }, this),
                     view === "maps" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$map$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MapBrowser"], {
@@ -8655,7 +8835,7 @@ function Dashboard({ user, onLogout }) {
                         onMapAdded: handleMapAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 322,
+                        lineNumber: 237,
                         columnNumber: 29
                     }, this),
                     view === "mobs" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$mob$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MobBrowser"], {
@@ -8665,7 +8845,7 @@ function Dashboard({ user, onLogout }) {
                         onMobAdded: handleMobAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 323,
+                        lineNumber: 238,
                         columnNumber: 29
                     }, this),
                     view === "clips" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$clip$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ClipBrowser"], {
@@ -8675,23 +8855,23 @@ function Dashboard({ user, onLogout }) {
                         onAddClip: ()=>handleInitiateAddClip(undefined)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 324,
+                        lineNumber: 239,
                         columnNumber: 30
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 314,
+                lineNumber: 230,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard.tsx",
-        lineNumber: 244,
+        lineNumber: 185,
         columnNumber: 5
     }, this);
 }
-_s(Dashboard, "5Wz2K260ZSTqKehrdIA/TvsjWvU=");
+_s(Dashboard, "wu7Kp1Gezx00q9zrwa6nY41Q6k4=");
 _c = Dashboard;
 var _c;
 __turbopack_context__.k.register(_c, "Dashboard");
@@ -8707,7 +8887,7 @@ __turbopack_context__.s([
     ()=>Home
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)"); // Added useCallback
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase/client.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$auth$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/auth-form.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/dashboard.tsx [app-client] (ecmascript)");
@@ -8724,19 +8904,15 @@ function Home() {
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    // 🔑 FIX 1: Store the client instance (or a reference to it) in state/ref
-    // Since createClient() is idempotent and fast, we will define it directly in the scope
-    // and pass it where necessary, but we'll modify the functions to handle client creation.
     // -------------------------------------------------------------------
-    // 1. checkUser is now a memoized callback that creates the client internally
+    // 1. checkUser FUNCTION DEFINITION (Accessible outside useEffect)
     // -------------------------------------------------------------------
+    // This function is the core logic for fetching the user and setting the state.
     const checkUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Home.useCallback[checkUser]": async ()=>{
-            // 🔑 FIX 2: Create the client inside the function, or pass it as an argument if defined elsewhere.
-            // Given the structure, recreating it is safest for external calls like onLoginSuccess.
+            // Create the client inside the function to avoid scope/null issues.
             const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])();
             if (!supabase) {
-                // Handle the case where the client creation fails (should be caught by the useEffect error check)
                 setError("Supabase not configured.");
                 setLoading(false);
                 setUser(null);
@@ -8746,7 +8922,8 @@ function Home() {
                 setLoading(true);
                 const { data: { user: supabaseUser } } = await supabase.auth.getUser();
                 if (supabaseUser) {
-                    // --- ROLE/ISDEV LOGIC (Placeholder) ---
+                    // --- ROLE/ISDEV LOGIC ---
+                    // Assumes 'isdev' is a boolean flag in the user's metadata/profile
                     const isdev = supabaseUser.user_metadata?.isdev === true;
                     const username = supabaseUser.user_metadata?.display_name || supabaseUser.email?.split("@")[0] || "User";
                     setUser({
@@ -8764,14 +8941,13 @@ function Home() {
             } finally{
                 setLoading(false);
             }
-        // No dependencies needed since it only relies on the client factory and state setters
         }
-    }["Home.useCallback[checkUser]"], []);
+    }["Home.useCallback[checkUser]"], []) // Dependencies array is empty, as it only relies on the client factory
+    ;
     // -------------------------------------------------------------------
-    // 2. handleLogout must also create the client internally
+    // 2. handleLogout
     // -------------------------------------------------------------------
     const handleLogout = async ()=>{
-        // 🔑 FIX 3: Recreate the client inside handleLogout to ensure it's not null
         const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2f$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createClient"])();
         if (supabase) {
             await supabase.auth.signOut();
@@ -8779,7 +8955,7 @@ function Home() {
         setUser(null);
     };
     // -------------------------------------------------------------------
-    // 3. useEffect is simplified to handle initial checks and the listener
+    // 3. useEffect (Initialization and Listener)
     // -------------------------------------------------------------------
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Home.useEffect": ()=>{
@@ -8789,13 +8965,12 @@ function Home() {
                 setLoading(false);
                 return;
             }
-            // Call checkUser on initial mount
+            // 🔑 CALL 1: Initial check on component mount
             checkUser();
             const { data: { subscription } } = supabase.auth.onAuthStateChange({
                 "Home.useEffect": async (_event, session)=>{
-                    // When auth state changes, re-run the full check for a clean state update
                     if (session?.user) {
-                        // No need to pass 'supabase' since checkUser creates it internally now
+                        // 🔑 CALL 2: Check user whenever auth state changes
                         checkUser();
                     } else {
                         setUser(null);
@@ -8807,7 +8982,7 @@ function Home() {
                     subscription?.unsubscribe();
                 }
             })["Home.useEffect"];
-        // Add checkUser to dependencies since it's defined outside, even though it's memoized
+        // checkUser is a dependency because it's defined outside useEffect
         }
     }["Home.useEffect"], [
         checkUser
@@ -8822,7 +8997,7 @@ function Home() {
                         className: "animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-accent mx-auto mb-4"
                     }, void 0, false, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 127,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -8830,18 +9005,18 @@ function Home() {
                         children: "Loading..."
                     }, void 0, false, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 128,
+                        lineNumber: 121,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/page.tsx",
-                lineNumber: 126,
+                lineNumber: 119,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/page.tsx",
-            lineNumber: 125,
+            lineNumber: 118,
             columnNumber: 7
         }, this);
     }
@@ -8856,7 +9031,7 @@ function Home() {
                         children: "Configuration Error"
                     }, void 0, false, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 138,
+                        lineNumber: 131,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -8864,7 +9039,7 @@ function Home() {
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 139,
+                        lineNumber: 132,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -8872,18 +9047,18 @@ function Home() {
                         children: 'Check your Vercel project\'s environment variables in the "Vars" section of the Connect sidebar.'
                     }, void 0, false, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 140,
+                        lineNumber: 133,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/page.tsx",
-                lineNumber: 137,
+                lineNumber: 130,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/page.tsx",
-            lineNumber: 136,
+            lineNumber: 129,
             columnNumber: 7
         }, this);
     }
@@ -8894,21 +9069,21 @@ function Home() {
             onLogout: handleLogout
         }, void 0, false, {
             fileName: "[project]/app/page.tsx",
-            lineNumber: 151,
+            lineNumber: 144,
             columnNumber: 9
         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$auth$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AuthForm"], {
             onLoginSuccess: (userData)=>{
-                // 🔑 FIX 4: Call checkUser directly after successful auth to pull full user profile
+                // 🔑 CALL 3: Check user immediately after successful login/sign-up
                 checkUser();
             }
         }, void 0, false, {
             fileName: "[project]/app/page.tsx",
-            lineNumber: 153,
+            lineNumber: 146,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/page.tsx",
-        lineNumber: 149,
+        lineNumber: 142,
         columnNumber: 5
     }, this);
 }

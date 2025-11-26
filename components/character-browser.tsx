@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { RefreshCw, Edit2, Trash2, Plus } from "lucide-react"
+import { RefreshCw, Edit2, Trash2, Plus, UserPlus, PersonStanding, PersonStandingIcon, UserCircle, UserCircleIcon, Hand, Eye } from "lucide-react"
 import { CharacterEditModal } from "./character-edit-modal"
 
 interface Character {
@@ -78,16 +78,18 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
     <div className="space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center gap-4">
-        <h1 className="text-3xl font-bold text-primary">Characters</h1>
+        <h1 className="text-3xl font-bold flex items-center gap-2">
+          characters <Eye size={28} color="cyan" />
+        </h1>
         <div className="flex gap-2">
-          <Button onClick={fetchCharacters} className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <RefreshCw size={20} className="mr-2" /> Refresh
-          </Button>
           <Button
             onClick={() => setShowAddForm(!showAddForm)}
             className="bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-primary"
           >
-            <Plus size={20} className="mr-2" /> Add Character
+            <UserPlus size={20} className="mr-2" /> add character
+          </Button>
+          <Button onClick={fetchCharacters} className="bg-accent text-accent-foreground hover:bg-accent/90">
+            <RefreshCw size={20} className="mr-2" /> refresh
           </Button>
         </div>
       </div>
@@ -108,7 +110,7 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
       <div className="flex gap-2 mb-4">
         <Input
           type="text"
-          placeholder="Search characters..."
+          placeholder="search characters by name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border-2 border-primary bg-background"
@@ -165,7 +167,7 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
                     }}
                     className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
                   >
-                    <Edit2 size={16} className="mr-1" /> Edit
+                    <Edit2 size={16} className="mr-1" /> edit
                   </Button>
                   <Button
                     size="sm"
@@ -175,7 +177,7 @@ export function CharacterBrowser({ characters: initialCharacters, loading: initi
                     }}
                     className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
                   >
-                    <Trash2 size={16} className="mr-1" /> Delete
+                    <Trash2 size={16} className="mr-1" /> delete
                   </Button>
                 </div>
               </CardContent>

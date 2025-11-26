@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { RefreshCw, Edit2, Trash2 } from "lucide-react"
+import { RefreshCw, Edit2, Trash2, Map } from "lucide-react"
 import { MapEditModal } from "./map-edit-modal"
 
 interface Map {
@@ -82,7 +82,7 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-96 text-white bg-gray-900 p-8 rounded-xl">
+      <div className="flex items-center justify-center min-h-96 text-white bg-black-900 p-8 rounded-xl">
         <p className="text-lg text-red-500 animate-pulse">Loading maps...</p>
       </div>
     )
@@ -91,20 +91,16 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
   return (
     <div className="space-y-8 p-6 bg-black min-h-screen">
       <div className="flex justify-between items-center pb-4 border-b border-red-700">
-        <h1 className="text-4xl font-extrabold text-red-500">Map Registry</h1>
-        <Button
-          onClick={fetchMaps}
-          className="bg-red-600 text-white hover:bg-red-700 shadow-lg hover:shadow-red-500/50"
-          title="Refresh Map List"
-        >
-          <RefreshCw size={16} className="mr-2" />
-          Refresh
+        <h1 className="text-3xl font-bold flex items-center gap-2">maps <Map size={28} color="green" /></h1>
+        <Button onClick={fetchMaps} disabled={loading}>
+          <RefreshCw className={loading ? "animate-spin mr-2" : "mr-2"} size={16} />
+          refresh
         </Button>
       </div>
 
       <Input
         type="text"
-        placeholder="Search maps by name..."
+        placeholder="search maps by name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="border-red-500 focus:border-red-400 focus:ring-1 focus:ring-red-500"
@@ -121,13 +117,14 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredMaps.map((map) => (
-            <Card key={map.mapid} className="border-2 border-gray-700 hover:border-red-500 transition-colors bg-gray-900 shadow-lg">
+            <Card key={map.mapid} className="transition hover:shadow-md">
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-red-400">
+                    <CardTitle className="text-red-500">
                       {map.mapname}
                     </CardTitle>
+                    <br />
                     {map.floorname && (
                       <CardDescription className="text-gray-500 mt-1">Floor: {map.floorname}</CardDescription>
                     )}
@@ -138,6 +135,7 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
                       onClick={() => setSelectedMap(map)}
                       className="bg-gray-700 text-red-400 hover:bg-gray-600 p-2"
                       title="Edit Map"
+                      variant="outline"
                     >
                       <Edit2 size={16} />
                     </Button>
@@ -146,6 +144,7 @@ export function MapBrowser({ maps: initialMaps, loading: initialLoading }: MapBr
                       onClick={() => handleDelete(map.mapid)}
                       className="bg-red-700 text-white hover:bg-red-800 p-2"
                       title="Delete Map"
+                      variant="outline"
                     >
                       <Trash2 size={16} />
                     </Button>
