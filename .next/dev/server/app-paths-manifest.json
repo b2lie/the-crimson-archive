@@ -1,4 +1,9 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/account/pfp/route": "app/api/account/pfp/route.js",
+  "/api/account/route": "app/api/account/route.js",
+  "/api/auth/password-reset/route": "app/api/auth/password-reset/route.js",
+  "/api/auth/signup/route": "app/api/auth/signup/route.js",
   "/api/characters/route": "app/api/characters/route.js",
   "/api/games/[gameId]/route": "app/api/games/[gameId]/route.js",
   "/api/games/route": "app/api/games/route.js",

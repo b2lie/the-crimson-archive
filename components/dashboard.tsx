@@ -7,11 +7,16 @@ import { AddGameForm } from "./add-game-form"
 import { CharacterBrowser } from "./character-browser"
 import { MapBrowser } from "./map-browser"
 import { MobBrowser } from "./mob-browser"
+import { AccountDetails } from "./account-details"
 import { DashboardHome } from "./dashboard-home"
 import { Menu, X } from "lucide-react"
 
 interface DashboardProps {
-  user: { username: string; email: string }
+  user: {
+    username: string;
+    email: string;
+    userid: string; // UUID string
+  }
   onLogout: () => void
 }
 
@@ -21,6 +26,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
   const [characters, setCharacters] = useState<any[]>([])
   const [maps, setMaps] = useState<any[]>([])
   const [mobs, setMobs] = useState<any[]>([])
+  const [accountDetails, setAccountDetails] = useState<any[]>([])
   const [loadingGames, setLoadingGames] = useState(true)
   const [loadingCharacters, setLoadingCharacters] = useState(true)
   const [loadingMaps, setLoadingMaps] = useState(true)
@@ -141,6 +147,31 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
     }
   }
 
+  const handleAccountDetailsAdded = () => {
+    fetchAccountDetails()
+    setView("account")
+  }
+
+    const fetchAccountDetails = async () => {
+    try {
+      const response = await fetch("/api/account")
+      const data = await response.json()
+      const formattedAccountDetails = (data.accountDetails || []).map((map: any) => ({
+        userid: data.userid,
+        username: data.username,
+        email: data.email,
+        isdev: data.isdev,
+        accountcreationdate: data.accountcreationdate,
+        pfpurl: data.pfpurl,
+      }))
+      setAccountDetails(formattedAccountDetails)
+    } catch (err) {
+      console.error("Failed to fetch account details:", err)
+    } finally {
+      setLoadingMaps(false)
+    }
+  }
+
   const handleMapAdded = () => {
     fetchMaps()
     setView("maps")
@@ -227,6 +258,7 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto p-4">
+        {view === "account" && <AccountDetails user={user} onBack={() => setView("home")} />}
         {view === "home" && <DashboardHome games={games} characters={characters} maps={maps} mobs={mobs} onNavigate={setView} />}
         {view === "browse" && <GamesGallery games={games} loading={loadingGames} onRefresh={fetchGames} />}
         {view === "add" && <AddGameForm onGameAdded={handleGameAdded} />}
