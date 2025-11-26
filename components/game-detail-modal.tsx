@@ -19,6 +19,7 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
     storyArcs: false,
     contributors: false
   })
+  const [formattedDate, setFormattedDate] = useState<string>("")
   const [gameData, setGameData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -55,6 +56,15 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
     fetchGameDetails()
   }, [gameId])
 
+  // a separate useEffect to handle client-side date formatting
+  useEffect(() => {
+    if (gameData && gameData.releasedate) {
+      // will only run on the client after hydration is complete
+      const dateStr = new Date(gameData.releasedate).toLocaleDateString();
+      setFormattedDate(dateStr);
+    }
+  }, [gameData]);
+
   if (loading) return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <Card className="w-full max-w-2xl border-2 border-accent">
@@ -83,12 +93,12 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <Card className="w-full max-w-2xl border-2 border-accent bg-card my-8">
-        <CardHeader className="border-b-2 border-accent flex justify-between items-start">
+      <Card className="w-full max-w-2xl border-2 border-accent bg-card my-8 max-h-[90vh] flex flex-col">
+        <CardHeader className="border-b-2 border-accent flex justify-between items-start flex-shrink-0">
           <div>
             <CardTitle className="text-2xl text-primary">{gameData.title}</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Released: {new Date(gameData.releasedate).toLocaleDateString()}
+              Released: {formattedDate || new Date(gameData.releasedate).toISOString().split('T')[0]}
             </CardDescription>
           </div>
           <button onClick={onClose} className="p-1 hover:bg-accent/20 rounded">
@@ -96,7 +106,7 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
           </button>
         </CardHeader>
 
-        <CardContent className="pt-6 space-y-4">
+        <CardContent className="pt-6 space-y-4 overflow-y-auto flex-grow">
           {/* Overview */}
           <div className="border-l-4 border-accent">
             <button
@@ -109,7 +119,7 @@ export function GameDetailModal({ gameId, onClose }: GameDetailModalProps) {
             {expandedSections.overview && (
               <div className="p-4 space-y-3">
                 {gameData.gamelogourl && (
-                  <div className="w-32 h-32 bg-muted rounded overflow-hidden">
+                  <div className="w-full bg-muted rounded overflow-hidden">
                     <img src={gameData.gamelogourl} alt="Game Logo" className="w-full h-full object-cover" />
                   </div>
                 )}

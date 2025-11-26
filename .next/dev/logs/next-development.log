@@ -1,20 +1,7 @@
-[00:00:01.586] Server  LOG      ✓ Ready in 1025ms
-[00:00:04.632] Server  LOG      ○ Compiling / ...
-[00:00:07.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:09.746] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:10.090] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:10.189] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:11.674] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:12.978] Browser LOG     Fetching game details for game ID: 1
-[00:00:12.978] Browser LOG     Fetching game details for game ID: 1
-[00:00:13.915] Server  LOG     Received params: {}
-[00:00:13.917] Server  LOG     Fetching game with ID: 1
-[00:00:13.918] Server  LOG     Raw gameId parameter: "1"
-[00:00:14.389] Server  LOG     Received params: {}
-[00:00:14.390] Server  LOG     Fetching game with ID: 1
-[00:00:14.392] Server  LOG     Raw gameId parameter: "1"
-[00:00:54.497] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:54.775] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:01.954] Server  LOG      ✓ Ready in 1363ms
+[00:00:05.049] Server  LOG      ○ Compiling / ...
+[00:00:06.974] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.287] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -52,7 +39,7 @@ It can also happen if the client has a browser extension installed which messes 
                         <html lang="en" className="dark">
                           <body
                             className="font-sans antialiased"
--                           __processed_a7e9f337-26f2-46a4-b8b8-15ad76e8cd7f__="true"
+-                           __processed_eeb62357-bef5-410a-ab72-2b7a24878c75__="true"
 -                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6Im5pbWxtZWpibW5lY25hZ2hnbWJhaG1iYWRk..."
                           >
                             ...
@@ -70,34 +57,163 @@ It can also happen if the client has a browser extension installed which messes 
                                       ...
                   ...
 
-[00:00:55.390] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:55.643] Server  LOG     fetched games: [{...},{...},{...}]
-[00:00:57.664] Server  LOG     Received params: {}
-[00:00:57.666] Server  LOG     Fetching game with ID: 1
-[00:00:57.668] Server  LOG     Raw gameId parameter: "1"
-[00:00:57.736] Browser LOG     Fetching game details for game ID: 1
-[00:00:57.736] Browser LOG     Fetching game details for game ID: 1
-[00:00:57.941] Server  LOG     Received params: {}
-[00:00:57.942] Server  LOG     Fetching game with ID: 1
-[00:00:57.967] Server  LOG     Raw gameId parameter: "1"
-[00:01:55.918] Server  LOG      ✓ Compiled in 164ms
-[00:01:56.418] Server  LOG     Received params: {}
-[00:01:56.420] Server  LOG     Fetching game with ID: 1
-[00:01:56.421] Server  LOG     Raw gameId parameter: "1"
-[00:01:56.989] Browser LOG     Fetching game details for game ID: 1
-[00:02:06.124] Server  LOG      ✓ Compiled in 95ms
-[00:02:06.142] Server  LOG     Received params: {}
-[00:02:06.148] Server  LOG     Fetching game with ID: 1
-[00:02:06.149] Server  LOG     Raw gameId parameter: "1"
-[00:02:06.795] Browser LOG     Fetching game details for game ID: 1
-[00:02:09.660] Server  LOG     Received params: {}
-[00:02:09.663] Server  LOG     Fetching game with ID: 1
-[00:02:09.664] Server  LOG     Raw gameId parameter: "1"
-[00:02:09.676] Server  LOG      ✓ Compiled in 78ms
-[00:02:09.787] Browser LOG     Fetching game details for game ID: 1
-[00:02:10.551] Server  LOG      ✓ Compiled in 181ms
-[00:02:10.724] Server  LOG     Received params: {}
-[00:02:10.725] Server  LOG     Fetching game with ID: 1
-[00:02:10.726] Server  LOG     Raw gameId parameter: "1"
-[00:02:11.790] Browser LOG     Fetching game details for game ID: 1
-[00:03:08.724] Server  LOG      ✓ Compiled in 87ms
+[00:00:09.307] Server  LOG     fetched games: [{...},{...},{...}]
+[00:00:09.540] Server  LOG     fetched games: [{...},{...},{...}]
+[00:01:30.648] Server  LOG      ✓ Compiled in 188ms
+[00:01:34.054] Browser LOG     Fetching game details for game ID: 1
+[00:01:34.055] Browser LOG     Fetching game details for game ID: 1
+[00:01:34.893] Server  LOG     Received params: {}
+[00:01:34.895] Server  LOG     Fetching game with ID: 1
+[00:01:34.895] Server  LOG     Raw gameId parameter: "1"
+[00:01:35.369] Server  LOG     Received params: {}
+[00:01:35.373] Server  LOG     Fetching game with ID: 1
+[00:01:35.378] Server  LOG     Raw gameId parameter: "1"
+[00:01:56.438] Server  LOG      ✓ Compiled in 134ms
+[00:02:12.825] Server  LOG      ✓ Compiled in 103ms
+[00:03:20.018] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:26.792] Server  LOG     fetched games: [{...},{...},{...}]
+[00:03:26.960] Server  LOG     fetched games: [{...},{...},{...}]
+[00:03:28.748] Server  LOG     Received params: {}
+[00:03:28.749] Server  LOG     Fetching game with ID: 1
+[00:03:28.750] Server  LOG     Raw gameId parameter: "1"
+[00:03:28.814] Browser LOG     Fetching game details for game ID: 1
+[00:03:28.815] Browser LOG     Fetching game details for game ID: 1
+[00:03:29.015] Server  LOG     Received params: {}
+[00:03:29.016] Server  LOG     Fetching game with ID: 1
+[00:03:29.017] Server  LOG     Raw gameId parameter: "1"
+[00:05:16.690] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:16.892] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{lazyData:null, ...}}>
+                    <__next_viewport_boundary__>
+                    <Next.Metadata>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="dark">
+                          <body
+                            className="font-sans antialiased"
+-                           __processed_fa4736ca-1406-46bc-bd07-2619da810df5__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6Im5pbWxtZWpibW5lY25hZ2hnbWJhaG1iYWRk..."
+                          >
+                            ...
+                              <ClientPageRoot Component={function Home} serverProvidedParams={{...}}>
+                                <Home params={Promise} searchParams={Promise}>
+                                  <main className="min-h-scre...">
+                                    <div
+                                      className="text-center"
+-                                     bis_skin_checked="1"
+                                    >
+                                      <div
+                                        className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-..."
+-                                       bis_skin_checked="1"
+                                      >
+                                      ...
+                            ...
+                  ...
+
+[00:05:17.835] Server  LOG     fetched games: [{...},{...},{...}]
+[00:05:18.037] Server  LOG     fetched games: [{...},{...},{...}]
+[00:06:25.959] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:26.228] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{lazyData:null, ...}}>
+                    <__next_viewport_boundary__>
+                    <Next.Metadata>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  ...
+                    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="page.tsx">
+                        <SegmentTrieNode>
+                        <ClientPageRoot Component={function Home} serverProvidedParams={{...}}>
+                          <Home params={Promise} searchParams={Promise}>
+                            <main className="min-h-scre...">
+                              <div
+                                className="text-center"
+-                               bis_skin_checked="1"
+                              >
+                                <div
+                                  className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-acce..."
+-                                 bis_skin_checked="1"
+                                >
+                                ...
+                      ...
+                  ...
+
+[00:06:27.152] Server  LOG     fetched games: [{...},{...},{...}]
+[00:06:27.356] Server  LOG     fetched games: [{...},{...},{...}]
+[00:07:59.860] Server  LOG     fetched games: [{...},{...},{...}]
+[00:08:00.027] Server  LOG     fetched games: [{...},{...},{...}]
+[00:08:06.488] Server  LOG     Received params: {}
+[00:08:06.490] Server  LOG     Fetching game with ID: 3
+[00:08:06.491] Server  LOG     Raw gameId parameter: "3"
+[00:08:06.557] Browser LOG     Fetching game details for game ID: 3
+[00:08:06.557] Browser LOG     Fetching game details for game ID: 3
+[00:08:06.687] Server  LOG     Received params: {}
+[00:08:06.689] Server  LOG     Fetching game with ID: 3
+[00:08:06.690] Server  LOG     Raw gameId parameter: "3"
+[00:08:28.930] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:29.434] Server  LOG     fetched games: [{...},{...},{...}]
+[00:08:29.610] Server  LOG     fetched games: [{...},{...},{...}]
+[00:10:06.366] Server  LOG      ✓ Compiled in 64ms
+[00:10:08.498] Server  LOG      ✓ Compiled in 70ms
+[00:11:01.057] Server  LOG      ✓ Compiled in 260ms
+[00:11:01.443] Server  LOG      ✓ Compiled in 58ms
+[00:11:23.196] Server  LOG      ✓ Compiled in 64ms
+[00:13:13.654] Server  LOG      ✓ Compiled in 109ms
+[00:14:36.052] Server  LOG      ✓ Compiled in 72ms
+[00:15:10.392] Server  LOG      ✓ Compiled in 127ms
+[00:15:29.795] Server  LOG      ✓ Compiled in 63ms
+[00:15:45.368] Server  LOG      ✓ Compiled in 52ms
+[00:16:32.423] Server  LOG      ✓ Compiled in 73ms
+[00:16:34.857] Server  LOG      ✓ Compiled in 49ms

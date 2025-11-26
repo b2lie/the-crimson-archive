@@ -49,14 +49,16 @@ export function GamesGallery({ games, loading, onRefresh }: GamesGalleryProps) {
                 onClick={() => setSelectedGameId(game.gameid)}
               >
                 {game.gamecoverurl && (
-                  <div className="w-full h-48 bg-muted overflow-hidden rounded-t">
+                  <div className="w-full bg-muted overflow-hidden rounded-t relative">
+                    <div className="pb-[133.33%] leading-none"></div>
                     <img
                       src={game.gamecoverurl || "/placeholder.svg"}
                       alt={game.title}
-                      className="w-full h-full object-cover"
+                      className="object-cover absolute inset-0 rounded-t"
                     />
                   </div>
                 )}
+
                 <CardHeader>
                   <CardTitle className="text-primary">{game.title}</CardTitle>
                   <CardDescription className="text-muted-foreground">

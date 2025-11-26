@@ -160,6 +160,8 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
       {/* Header */}
       <header className="bg-primary text-primary-foreground border-b-4 border-accent">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+
+          {/* 1. Logo/Title (Stays on the left) */}
           <button
             onClick={() => setView("home")}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -167,63 +169,58 @@ export function Dashboard({ user, onLogout }: DashboardProps) {
             <div className="text-2xl font-bold">CRIMSON DB</div>
           </button>
 
-          {/* Mobile Menu Button */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 hover:bg-primary/80">
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* 2. Fixed Actions (Grouped on the right) */}
+          <div className="flex items-center gap-4">
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
+            {/* ✅ FIXED ACCOUNT BUTTON (Always visible) */}
             <button
-              onClick={() => setView("account")}
-              className="text-sm mr-4 underline hover:opacity-80 transition-opacity"
+              onClick={() => { setView("account"); setMenuOpen(false); }}
+              className="text-sm underline hover:opacity-80 transition-opacity"
             >
               {user.username}
             </button>
 
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                onClick={() => setView(item.id as any)}
-                variant={view === item.id ? "default" : "outline"}
-                className={`${view === item.id
-                  ? "bg-accent text-accent-foreground"
-                  : "border-primary-foreground text-primary-foreground hover:bg-primary/80"
-                  }`}
-              >
-                {item.label}
-              </Button>
-            ))}
-            <Button
-              onClick={onLogout}
-              variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary/80 bg-transparent"
-            >
-              Logout
-            </Button>
+            {/* 3. Hamburger Toggle (Always visible) */}
+            <button onClick={() => setMenuOpen(!menuOpen)} className="p-2 hover:bg-primary/80 rounded">
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
+
         </div>
 
-        {/* Mobile Navigation */}
+        {/* 4. Dropdown Navigation Menu (Conditional) */}
         {menuOpen && (
-          <div className="md:hidden bg-primary/95 border-t border-primary-foreground p-4 space-y-2">
-            <div className="text-sm pb-2">{user.username}</div>
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                onClick={() => {
-                  setView(item.id as any)
-                  setMenuOpen(false)
-                }}
-                className="w-full justify-start"
-                variant={view === item.id ? "default" : "outline"}
-              >
-                {item.label}
-              </Button>
-            ))}
-            <Button onClick={onLogout} className="w-full justify-start bg-transparent" variant="outline">
-              Logout
-            </Button>
+          <div className="bg-primary/95 border-t border-primary-foreground">
+            <div className="max-w-7xl mx-auto px-4 py-4">
+
+              {/* Navigation Links and Logout (Flow horizontal on desktop) */}
+              <div className="flex flex-col md:flex-row md:items-center md:gap-2 w-full space-y-2 md:space-y-0">
+
+                {navItems.map((item) => (
+                  <Button
+                    key={item.id}
+                    onClick={() => {
+                      setView(item.id as any)
+                      setMenuOpen(false)
+                    }}
+                    // Ensure full width on mobile, and standard width on desktop
+                    className="w-full justify-start md:w-auto md:justify-center"
+                    variant={view === item.id ? "default" : "outline"}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
+
+                {/* Logout Button (Still inside the conditional menu) */}
+                <Button
+                  onClick={onLogout}
+                  className="w-full justify-start bg-transparent md:w-auto md:justify-center md:ml-auto"
+                  variant="outline"
+                >
+                  Logout
+                </Button>
+              </div>
+            </div>
           </div>
         )}
       </header>

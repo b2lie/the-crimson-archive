@@ -578,6 +578,7 @@ function GameDetailModal({ gameId, onClose }) {
         storyArcs: false,
         contributors: false
     });
+    const [formattedDate, setFormattedDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [gameData, setGameData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -619,6 +620,18 @@ function GameDetailModal({ gameId, onClose }) {
     }["GameDetailModal.useEffect"], [
         gameId
     ]);
+    // a separate useEffect to handle client-side date formatting
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "GameDetailModal.useEffect": ()=>{
+            if (gameData && gameData.releasedate) {
+                // will only run on the client after hydration is complete
+                const dateStr = new Date(gameData.releasedate).toLocaleDateString();
+                setFormattedDate(dateStr);
+            }
+        }
+    }["GameDetailModal.useEffect"], [
+        gameData
+    ]);
     if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -630,22 +643,22 @@ function GameDetailModal({ gameId, onClose }) {
                     children: "Loading game details..."
                 }, void 0, false, {
                     fileName: "[project]/components/game-detail-modal.tsx",
-                    lineNumber: 62,
+                    lineNumber: 72,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/game-detail-modal.tsx",
-                lineNumber: 61,
+                lineNumber: 71,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/game-detail-modal.tsx",
-            lineNumber: 60,
+            lineNumber: 70,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/game-detail-modal.tsx",
-        lineNumber: 59,
+        lineNumber: 69,
         columnNumber: 5
     }, this);
     if (error || !gameData) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -661,7 +674,7 @@ function GameDetailModal({ gameId, onClose }) {
                             children: "Failed to load game"
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 72,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -672,18 +685,18 @@ function GameDetailModal({ gameId, onClose }) {
                                 className: "text-red-500"
                             }, void 0, false, {
                                 fileName: "[project]/components/game-detail-modal.tsx",
-                                lineNumber: 74,
+                                lineNumber: 84,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 73,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/game-detail-modal.tsx",
-                    lineNumber: 71,
+                    lineNumber: 81,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -693,32 +706,32 @@ function GameDetailModal({ gameId, onClose }) {
                         children: "Could not fetch game details."
                     }, void 0, false, {
                         fileName: "[project]/components/game-detail-modal.tsx",
-                        lineNumber: 78,
+                        lineNumber: 88,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/game-detail-modal.tsx",
-                    lineNumber: 77,
+                    lineNumber: 87,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/game-detail-modal.tsx",
-            lineNumber: 70,
+            lineNumber: 80,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/game-detail-modal.tsx",
-        lineNumber: 69,
+        lineNumber: 79,
         columnNumber: 5
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-            className: "w-full max-w-2xl border-2 border-accent bg-card my-8",
+            className: "w-full max-w-2xl border-2 border-accent bg-card my-8 max-h-[90vh] flex flex-col",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
-                    className: "border-b-2 border-accent flex justify-between items-start",
+                    className: "border-b-2 border-accent flex justify-between items-start flex-shrink-0",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
@@ -727,24 +740,24 @@ function GameDetailModal({ gameId, onClose }) {
                                     children: gameData.title
                                 }, void 0, false, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 99,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                                     className: "text-muted-foreground",
                                     children: [
                                         "Released: ",
-                                        new Date(gameData.releasedate).toLocaleDateString()
+                                        formattedDate || new Date(gameData.releasedate).toISOString().split('T')[0]
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 100,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 88,
+                            lineNumber: 98,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -755,22 +768,22 @@ function GameDetailModal({ gameId, onClose }) {
                                 className: "text-accent"
                             }, void 0, false, {
                                 fileName: "[project]/components/game-detail-modal.tsx",
-                                lineNumber: 95,
+                                lineNumber: 105,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 94,
+                            lineNumber: 104,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/game-detail-modal.tsx",
-                    lineNumber: 87,
+                    lineNumber: 97,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
-                    className: "pt-6 space-y-4",
+                    className: "pt-6 space-y-4 overflow-y-auto flex-grow",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "border-l-4 border-accent",
@@ -784,45 +797,45 @@ function GameDetailModal({ gameId, onClose }) {
                                             children: "Overview"
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 106,
+                                            lineNumber: 116,
                                             columnNumber: 15
                                         }, this),
                                         expandedSections.overview ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__["ChevronUp"], {
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 107,
+                                            lineNumber: 117,
                                             columnNumber: 44
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 107,
+                                            lineNumber: 117,
                                             columnNumber: 70
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 102,
+                                    lineNumber: 112,
                                     columnNumber: 13
                                 }, this),
                                 expandedSections.overview && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "p-4 space-y-3",
                                     children: [
                                         gameData.gamelogourl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-32 h-32 bg-muted rounded overflow-hidden",
+                                            className: "w-full bg-muted rounded overflow-hidden",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                 src: gameData.gamelogourl,
                                                 alt: "Game Logo",
                                                 className: "w-full h-full object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/game-detail-modal.tsx",
-                                                lineNumber: 113,
+                                                lineNumber: 123,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 112,
+                                            lineNumber: 122,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -832,7 +845,7 @@ function GameDetailModal({ gameId, onClose }) {
                                                     children: "Plot Summary"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                                    lineNumber: 117,
+                                                    lineNumber: 127,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -840,13 +853,13 @@ function GameDetailModal({ gameId, onClose }) {
                                                     children: gameData.plotsummary || "No description available"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 128,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 126,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -858,7 +871,7 @@ function GameDetailModal({ gameId, onClose }) {
                                                         children: "Multiplayer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/game-detail-modal.tsx",
-                                                        lineNumber: 122,
+                                                        lineNumber: 132,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -866,30 +879,30 @@ function GameDetailModal({ gameId, onClose }) {
                                                         children: gameData.multiplayersupport ? "Yes" : "Single Player"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/game-detail-modal.tsx",
-                                                        lineNumber: 123,
+                                                        lineNumber: 133,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/game-detail-modal.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 131,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 120,
+                                            lineNumber: 130,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 110,
+                                    lineNumber: 120,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 101,
+                            lineNumber: 111,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Section, {
@@ -907,7 +920,7 @@ function GameDetailModal({ gameId, onClose }) {
                                             children: char.charactername
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 135,
+                                            lineNumber: 145,
                                             columnNumber: 17
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -915,19 +928,19 @@ function GameDetailModal({ gameId, onClose }) {
                                             children: char.backstory
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 136,
+                                            lineNumber: 146,
                                             columnNumber: 17
                                         }, void 0)
                                     ]
                                 }, char.characterid, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 134,
+                                    lineNumber: 144,
                                     columnNumber: 15
                                 }, void 0);
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 131,
+                            lineNumber: 141,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Section, {
@@ -946,7 +959,7 @@ function GameDetailModal({ gameId, onClose }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 144,
+                                            lineNumber: 154,
                                             columnNumber: 15
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -954,18 +967,18 @@ function GameDetailModal({ gameId, onClose }) {
                                             children: map.description
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 145,
+                                            lineNumber: 155,
                                             columnNumber: 15
                                         }, void 0)
                                     ]
                                 }, map.mapid, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 143,
+                                    lineNumber: 153,
                                     columnNumber: 13
                                 }, void 0)
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 142,
+                            lineNumber: 152,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Section, {
@@ -986,7 +999,7 @@ function GameDetailModal({ gameId, onClose }) {
                                                             children: mob.mobname
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                                            lineNumber: 154,
+                                                            lineNumber: 164,
                                                             columnNumber: 19
                                                         }, void 0),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -994,13 +1007,13 @@ function GameDetailModal({ gameId, onClose }) {
                                                             children: mob.description
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                                            lineNumber: 155,
+                                                            lineNumber: 165,
                                                             columnNumber: 19
                                                         }, void 0)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 163,
                                                     columnNumber: 17
                                                 }, void 0),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1008,13 +1021,13 @@ function GameDetailModal({ gameId, onClose }) {
                                                     children: mob.mobtype
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                                    lineNumber: 157,
+                                                    lineNumber: 167,
                                                     columnNumber: 17
                                                 }, void 0)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 152,
+                                            lineNumber: 162,
                                             columnNumber: 15
                                         }, void 0),
                                         mob.weakness && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1026,24 +1039,24 @@ function GameDetailModal({ gameId, onClose }) {
                                                     children: mob.weakness
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                                    lineNumber: 159,
+                                                    lineNumber: 169,
                                                     columnNumber: 92
                                                 }, void 0)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 159,
+                                            lineNumber: 169,
                                             columnNumber: 32
                                         }, void 0)
                                     ]
                                 }, mob.mobid, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 151,
+                                    lineNumber: 161,
                                     columnNumber: 13
                                 }, void 0)
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 150,
+                            lineNumber: 160,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Section, {
@@ -1063,7 +1076,7 @@ function GameDetailModal({ gameId, onClose }) {
                                                         children: arc.arctitle
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/game-detail-modal.tsx",
-                                                        lineNumber: 168,
+                                                        lineNumber: 178,
                                                         columnNumber: 19
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1071,13 +1084,13 @@ function GameDetailModal({ gameId, onClose }) {
                                                         children: arc.summary
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/game-detail-modal.tsx",
-                                                        lineNumber: 169,
+                                                        lineNumber: 179,
                                                         columnNumber: 19
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/game-detail-modal.tsx",
-                                                lineNumber: 167,
+                                                lineNumber: 177,
                                                 columnNumber: 17
                                             }, void 0),
                                             arc.ismainarc && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1085,23 +1098,23 @@ function GameDetailModal({ gameId, onClose }) {
                                                 children: "Main Arc"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/game-detail-modal.tsx",
-                                                lineNumber: 171,
+                                                lineNumber: 181,
                                                 columnNumber: 35
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/game-detail-modal.tsx",
-                                        lineNumber: 166,
+                                        lineNumber: 176,
                                         columnNumber: 15
                                     }, void 0)
                                 }, arc.storyarcid, false, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 165,
+                                    lineNumber: 175,
                                     columnNumber: 13
                                 }, void 0)
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 164,
+                            lineNumber: 174,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Section, {
@@ -1119,7 +1132,7 @@ function GameDetailModal({ gameId, onClose }) {
                                             children: contrib.contributorname
                                         }, void 0, false, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 181,
+                                            lineNumber: 191,
                                             columnNumber: 17
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1130,7 +1143,7 @@ function GameDetailModal({ gameId, onClose }) {
                                                     children: contrib.rolename
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 193,
                                                     columnNumber: 19
                                                 }, void 0),
                                                 contrib.specialization && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1139,26 +1152,26 @@ function GameDetailModal({ gameId, onClose }) {
                                                         children: contrib.specialization
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/game-detail-modal.tsx",
-                                                        lineNumber: 185,
+                                                        lineNumber: 195,
                                                         columnNumber: 21
                                                     }, void 0)
                                                 }, void 0, false)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/game-detail-modal.tsx",
-                                            lineNumber: 182,
+                                            lineNumber: 192,
                                             columnNumber: 17
                                         }, void 0)
                                     ]
                                 }, contrib.contributorid, true, {
                                     fileName: "[project]/components/game-detail-modal.tsx",
-                                    lineNumber: 180,
+                                    lineNumber: 190,
                                     columnNumber: 15
                                 }, void 0);
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 177,
+                            lineNumber: 187,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1167,28 +1180,28 @@ function GameDetailModal({ gameId, onClose }) {
                             children: "Close"
                         }, void 0, false, {
                             fileName: "[project]/components/game-detail-modal.tsx",
-                            lineNumber: 192,
+                            lineNumber: 202,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/game-detail-modal.tsx",
-                    lineNumber: 99,
+                    lineNumber: 109,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/game-detail-modal.tsx",
-            lineNumber: 86,
+            lineNumber: 96,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/game-detail-modal.tsx",
-        lineNumber: 85,
+        lineNumber: 95,
         columnNumber: 5
     }, this);
 }
-_s(GameDetailModal, "upI1SjWdBo/bCNzuIB8/033mzc4=");
+_s(GameDetailModal, "+OEy4+EKlzbC8zFR9Ybg/8lWiiE=");
 _c = GameDetailModal;
 // reusable section component
 function Section({ title, items, expanded, toggle, renderItem }) {
@@ -1209,26 +1222,26 @@ function Section({ title, items, expanded, toggle, renderItem }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/game-detail-modal.tsx",
-                        lineNumber: 209,
+                        lineNumber: 219,
                         columnNumber: 9
                     }, this),
                     expanded ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__["ChevronUp"], {
                         size: 20
                     }, void 0, false, {
                         fileName: "[project]/components/game-detail-modal.tsx",
-                        lineNumber: 210,
+                        lineNumber: 220,
                         columnNumber: 21
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                         size: 20
                     }, void 0, false, {
                         fileName: "[project]/components/game-detail-modal.tsx",
-                        lineNumber: 210,
+                        lineNumber: 220,
                         columnNumber: 47
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/game-detail-modal.tsx",
-                lineNumber: 208,
+                lineNumber: 218,
                 columnNumber: 7
             }, this),
             expanded && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1242,18 +1255,18 @@ function Section({ title, items, expanded, toggle, renderItem }) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/game-detail-modal.tsx",
-                    lineNumber: 214,
+                    lineNumber: 224,
                     columnNumber: 64
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/game-detail-modal.tsx",
-                lineNumber: 213,
+                lineNumber: 223,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/game-detail-modal.tsx",
-        lineNumber: 207,
+        lineNumber: 217,
         columnNumber: 5
     }, this);
 }
@@ -1375,17 +1388,26 @@ function GamesGallery({ games, loading, onRefresh }) {
                                 onClick: ()=>setSelectedGameId(game.gameid),
                                 children: [
                                     game.gamecoverurl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-full h-48 bg-muted overflow-hidden rounded-t",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                            src: game.gamecoverurl || "/placeholder.svg",
-                                            alt: game.title,
-                                            className: "w-full h-full object-cover"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/games-gallery.tsx",
-                                            lineNumber: 53,
-                                            columnNumber: 21
-                                        }, this)
-                                    }, void 0, false, {
+                                        className: "w-full bg-muted overflow-hidden rounded-t relative",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "pb-[133.33%] leading-none"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/games-gallery.tsx",
+                                                lineNumber: 53,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                src: game.gamecoverurl || "/placeholder.svg",
+                                                alt: game.title,
+                                                className: "object-cover absolute inset-0 rounded-t"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/games-gallery.tsx",
+                                                lineNumber: 54,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/components/games-gallery.tsx",
                                         lineNumber: 52,
                                         columnNumber: 19
@@ -1397,7 +1419,7 @@ function GamesGallery({ games, loading, onRefresh }) {
                                                 children: game.title
                                             }, void 0, false, {
                                                 fileName: "[project]/components/games-gallery.tsx",
-                                                lineNumber: 61,
+                                                lineNumber: 63,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -1408,13 +1430,13 @@ function GamesGallery({ games, loading, onRefresh }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/games-gallery.tsx",
-                                                lineNumber: 62,
+                                                lineNumber: 64,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/games-gallery.tsx",
-                                        lineNumber: 60,
+                                        lineNumber: 62,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1425,7 +1447,7 @@ function GamesGallery({ games, loading, onRefresh }) {
                                                 children: game.plotsummary
                                             }, void 0, false, {
                                                 fileName: "[project]/components/games-gallery.tsx",
-                                                lineNumber: 67,
+                                                lineNumber: 69,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1435,18 +1457,18 @@ function GamesGallery({ games, loading, onRefresh }) {
                                                     children: game.multiplayersupport ? "Multiplayer" : "Single Player"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/games-gallery.tsx",
-                                                    lineNumber: 69,
+                                                    lineNumber: 71,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/games-gallery.tsx",
-                                                lineNumber: 68,
+                                                lineNumber: 70,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/games-gallery.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 68,
                                         columnNumber: 17
                                     }, this)
                                 ]
@@ -1471,7 +1493,7 @@ function GamesGallery({ games, loading, onRefresh }) {
                 onClose: ()=>setSelectedGameId(null)
             }, void 0, false, {
                 fileName: "[project]/components/games-gallery.tsx",
-                lineNumber: 81,
+                lineNumber: 83,
                 columnNumber: 9
             }, this)
         ]
@@ -5682,71 +5704,54 @@ function Dashboard({ user, onLogout }) {
                                     children: "CRIMSON DB"
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 169,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 163,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>setMenuOpen(!menuOpen),
-                                className: "md:hidden p-2 hover:bg-primary/80",
-                                children: menuOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                    size: 24
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 172,
-                                    columnNumber: 25
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
-                                    size: 24
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 172,
-                                    columnNumber: 43
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 171,
+                                lineNumber: 165,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hidden md:flex items-center gap-2",
+                                className: "flex items-center gap-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setView("account"),
-                                        className: "text-sm mr-4 underline hover:opacity-80 transition-opacity",
+                                        onClick: ()=>{
+                                            setView("account");
+                                            setMenuOpen(false);
+                                        },
+                                        className: "text-sm underline hover:opacity-80 transition-opacity",
                                         children: user.username
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 177,
+                                        lineNumber: 176,
                                         columnNumber: 13
                                     }, this),
-                                    navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            onClick: ()=>setView(item.id),
-                                            variant: view === item.id ? "default" : "outline",
-                                            className: `${view === item.id ? "bg-accent text-accent-foreground" : "border-primary-foreground text-primary-foreground hover:bg-primary/80"}`,
-                                            children: item.label
-                                        }, item.id, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setMenuOpen(!menuOpen),
+                                        className: "p-2 hover:bg-primary/80 rounded",
+                                        children: menuOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                            size: 24
+                                        }, void 0, false, {
                                             fileName: "[project]/components/dashboard.tsx",
                                             lineNumber: 185,
-                                            columnNumber: 15
-                                        }, this)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                        onClick: onLogout,
-                                        variant: "outline",
-                                        className: "border-primary-foreground text-primary-foreground hover:bg-primary/80 bg-transparent",
-                                        children: "Logout"
+                                            columnNumber: 27
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
+                                            size: 24
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/dashboard.tsx",
+                                            lineNumber: 185,
+                                            columnNumber: 45
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard.tsx",
-                                        lineNumber: 197,
+                                        lineNumber: 184,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 176,
+                                lineNumber: 173,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -5756,43 +5761,50 @@ function Dashboard({ user, onLogout }) {
                         columnNumber: 9
                     }, this),
                     menuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "md:hidden bg-primary/95 border-t border-primary-foreground p-4 space-y-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-sm pb-2",
-                                children: user.username
-                            }, void 0, false, {
+                        className: "bg-primary/95 border-t border-primary-foreground",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "max-w-7xl mx-auto px-4 py-4",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-col md:flex-row md:items-center md:gap-2 w-full space-y-2 md:space-y-0",
+                                children: [
+                                    navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                            onClick: ()=>{
+                                                setView(item.id);
+                                                setMenuOpen(false);
+                                            },
+                                            // Ensure full width on mobile, and standard width on desktop
+                                            className: "w-full justify-start md:w-auto md:justify-center",
+                                            variant: view === item.id ? "default" : "outline",
+                                            children: item.label
+                                        }, item.id, false, {
+                                            fileName: "[project]/components/dashboard.tsx",
+                                            lineNumber: 200,
+                                            columnNumber: 19
+                                        }, this)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        onClick: onLogout,
+                                        className: "w-full justify-start bg-transparent md:w-auto md:justify-center md:ml-auto",
+                                        variant: "outline",
+                                        children: "Logout"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard.tsx",
+                                        lineNumber: 215,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 210,
-                                columnNumber: 13
-                            }, this),
-                            navItems.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    onClick: ()=>{
-                                        setView(item.id);
-                                        setMenuOpen(false);
-                                    },
-                                    className: "w-full justify-start",
-                                    variant: view === item.id ? "default" : "outline",
-                                    children: item.label
-                                }, item.id, false, {
-                                    fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 212,
-                                    columnNumber: 15
-                                }, this)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                onClick: onLogout,
-                                className: "w-full justify-start bg-transparent",
-                                variant: "outline",
-                                children: "Logout"
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard.tsx",
-                                lineNumber: 224,
-                                columnNumber: 13
+                                lineNumber: 197,
+                                columnNumber: 15
                             }, this)
-                        ]
-                    }, void 0, true, {
+                        }, void 0, false, {
+                            fileName: "[project]/components/dashboard.tsx",
+                            lineNumber: 194,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 209,
+                        lineNumber: 193,
                         columnNumber: 11
                     }, this)
                 ]
@@ -5812,7 +5824,7 @@ function Dashboard({ user, onLogout }) {
                         onNavigate: setView
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 233,
+                        lineNumber: 230,
                         columnNumber: 29
                     }, this),
                     view === "browse" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$games$2d$gallery$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GamesGallery"], {
@@ -5821,14 +5833,14 @@ function Dashboard({ user, onLogout }) {
                         onRefresh: fetchGames
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 234,
+                        lineNumber: 231,
                         columnNumber: 31
                     }, this),
                     view === "add" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$game$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddGameForm"], {
                         onGameAdded: handleGameAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 235,
+                        lineNumber: 232,
                         columnNumber: 28
                     }, this),
                     view === "characters" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$character$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CharacterBrowser"], {
@@ -5838,7 +5850,7 @@ function Dashboard({ user, onLogout }) {
                         onCharacterAdded: handleCharacterAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 236,
+                        lineNumber: 233,
                         columnNumber: 35
                     }, this),
                     view === "maps" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$map$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MapBrowser"], {
@@ -5848,7 +5860,7 @@ function Dashboard({ user, onLogout }) {
                         onMapAdded: handleMapAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 237,
+                        lineNumber: 234,
                         columnNumber: 29
                     }, this),
                     view === "mobs" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$mob$2d$browser$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MobBrowser"], {
@@ -5858,13 +5870,13 @@ function Dashboard({ user, onLogout }) {
                         onMobAdded: handleMobAdded
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 238,
+                        lineNumber: 235,
                         columnNumber: 29
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 232,
+                lineNumber: 229,
                 columnNumber: 7
             }, this)
         ]

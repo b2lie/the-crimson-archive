@@ -36,7 +36,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`font-sans antialiased`}>{children}</body>
+      <body 
+        className={`font-sans antialiased ...`}
+        suppressHydrationWarning={true} // Fix 1: Body tag (already done)
+      >
+        {/* ✅ Fix 2: Wrap children in a top-level div 
+          and apply the prop again to catch attributes injected 
+          on the first element of your app.
+        */}
+        <div suppressHydrationWarning={true}>
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
